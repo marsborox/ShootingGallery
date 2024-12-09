@@ -6,18 +6,19 @@ public class TrajectoryConfigCollection : MonoBehaviour
 {
     GameObject route;
 
-    [SerializeField] public SO_TrajectoryConfigs R_L_GaussCurve { get; private set; }
-    public SO_TrajectoryConfigs L_R_GaussCurve { get; private set; }
+    [SerializeField] public SO_TrajectoryConfig R_L_GaussCurve /*{ get; private set; }*/;
+    public SO_TrajectoryConfig L_R_GaussCurve { get; private set; }
 
 
 
 
-    public List<SO_TrajectoryConfigs> configList { get; private set; }
+    public List<SO_TrajectoryConfig> configList /*{ get; private set; }*/;
     // Start is called before the first frame update
     void Start()
     {
         SetAllL_R_Configs();
         AddConfigsToConfigList();
+
     }
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class TrajectoryConfigCollection : MonoBehaviour
 
     void SetAllL_R_Configs()
     {
+        L_R_GaussCurve = new SO_TrajectoryConfig();
         L_R_GaussCurve.trajectoryWaypointTransformList = SetL_R_Config(R_L_GaussCurve.trajectoryWaypointTransformList);
 
     }
@@ -47,5 +49,13 @@ public class TrajectoryConfigCollection : MonoBehaviour
         }
         return returnList;
 
+    }
+    public int ReturnRandomConfig()
+    {
+        int randomConfigIndex;
+        randomConfigIndex = Random.Range(0, (configList.Count-1));
+        Debug.Log("TrajectoryConfigCollection.randomConfigIndex = "+randomConfigIndex);
+        
+        return randomConfigIndex;
     }
 }

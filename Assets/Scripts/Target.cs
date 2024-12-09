@@ -6,24 +6,26 @@ using UnityEngine.Pool;
 public class Target : MonoBehaviour
 {
     float movementSpeed = 0.01f;
-    public int trajectoryIndex { get ;  set; }
+    public int trajectoryIndex { get; set; }
     public int waypointIndexGlobal = 1;
 
+    string floorTag = "Floor";
 
-
+    public bool dead { private get; set; } = false;
 
     public GameObject trajectoryPrefab;
     public int SO_index{ private get; set; }
 
     public Transform nextWaypoint;
 
-    TrajectoryConfigCollection trajectoryConfigCollection;
+    public TrajectoryConfigCollection trajectoryConfigCollection { private get; set; }
     // Start is called before the first frame update
-
     
+    private IObjectPool<Target> targetPool;
+    public IObjectPool<Target> targetPoolInTarget { set => targetPool = value; }
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -33,6 +35,10 @@ public class Target : MonoBehaviour
         CheckWaypoint();
         Move();
         */
+    }
+    private void OnEnable()
+    {
+        
     }
     private void Move()
     {
@@ -74,11 +80,12 @@ public class Target : MonoBehaviour
             GenerateNextWaypointTransform(trajectoryIndex,waypointIndexGlobal);
         }
     }
-    void RestartRoute()
+    public void RestartRoute()
     {
         waypointIndexGlobal=0;
         transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[0].position;
     }
+
     Transform GenerateNextWaypointTransform(int trajectoryIndex,int waypointIndex)
     {
         /*
@@ -95,5 +102,24 @@ public class Target : MonoBehaviour
         waypointIndexGlobal++;
         return trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex];
     }
-
+    public void Die()
+    {
+        //falling down
+        dead = true;
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (dead &&other.tag == floorTag)
+        {
+            Deactivate();
+        }
+        //if floor collider hits this object
+        /*{
+        Deactivate
+            }*/
+    }
+    public void Deactivate()
+    {
+        targetPool.Release(this);
+    }
 }

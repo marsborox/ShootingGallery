@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "TrajectoryConfig", fileName = "New Trajectory Config")]
-public class SO_TrajectoryConfigs : ScriptableObject
+public class SO_TrajectoryConfig : ScriptableObject
 {
     [SerializeField] Transform trajectoryPrefab;
 

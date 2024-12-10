@@ -8,8 +8,8 @@ public class TrajectoryConfigCollection : MonoBehaviour
 
     [SerializeField] public SO_TrajectoryConfig R_L_GaussCurve /*{ get; private set; }*/;
     public SO_TrajectoryConfig L_R_GaussCurve { get; private set; }
-
-
+    [SerializeField] public SO_TrajectoryConfig L_R_LinearFalling;
+    public SO_TrajectoryConfig R_L_LinearFalling { get; private set; }
 
 
     public List<SO_TrajectoryConfig> configList /*{ get; private set; }*/;
@@ -31,13 +31,16 @@ public class TrajectoryConfigCollection : MonoBehaviour
     {
         L_R_GaussCurve = new SO_TrajectoryConfig();
         L_R_GaussCurve.trajectoryWaypointTransformList = SetL_R_Config(R_L_GaussCurve.trajectoryWaypointTransformList);
-
+        L_R_LinearFalling = new SO_TrajectoryConfig();
+        L_R_LinearFalling.trajectoryWaypointTransformList = SetL_R_Config(R_L_GaussCurve.trajectoryWaypointTransformList);
     }
 
     void AddConfigsToConfigList()
     {
         configList.Add(R_L_GaussCurve);
         configList.Add(L_R_GaussCurve);
+        configList.Add(R_L_LinearFalling);
+        configList.Add(L_R_LinearFalling);
     }
 
     List<Transform> SetL_R_Config(List<Transform> R_L_Variant)
@@ -49,6 +52,13 @@ public class TrajectoryConfigCollection : MonoBehaviour
         }
         return returnList;
 
+    }
+    List<Transform> Reverse(List<Transform> R_L_Variant)
+    {
+        //List<Transform> returnList = new List<Transform>();
+        
+        List<Transform> returnList = Reverse(R_L_Variant);
+        return returnList;
     }
     public int ReturnRandomConfig()
     {

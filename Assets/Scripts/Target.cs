@@ -6,14 +6,14 @@ using UnityEngine.Pool;
 public class Target : MonoBehaviour
 {
     float movementSpeed = 0.01f;
-    public int trajectoryIndex { get; set; }
-    public int waypointIndexGlobal = 1;
+    [SerializeField] public int trajectoryIndex;
+    [SerializeField] public int waypointIndexGlobal;
 
     string floorTag = "Floor";
 
     public bool dead { private get; set; } = false;
 
-    public GameObject trajectoryPrefab;
+    //public GameObject trajectoryPrefab;
     public int SO_index{ private get; set; }
 
     public Transform nextWaypoint;
@@ -57,8 +57,9 @@ public class Target : MonoBehaviour
             //nextWaypoint = trajectoryPrefab.transform.GetChild(GetMeNextWaypointIndex());
         }
     }
+    /*
     int GetMeNextWaypointIndex()
-    {
+    {//this is discontinued method that ignores SOs
         if (trajectoryPrefab.transform.GetChild(waypointIndexGlobal + 1) == null)
         {
             transform.position = trajectoryPrefab.transform.GetChild(0).position;
@@ -68,7 +69,7 @@ public class Target : MonoBehaviour
         {
             return waypointIndexGlobal ++;
         }
-    }
+    }*/
     void ArrivedToWaypoint()
     {
         if (trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count-1==waypointIndexGlobal)

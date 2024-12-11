@@ -11,9 +11,11 @@ public class SO_TrajectoryConfig : ScriptableObject
     public List<Transform> trajectoryWaypointTransformList;
     void Start()
     { 
-        //trajectoryTransform = new List();
+        
+    }
+    public void SetWaypoints()
+    { 
         trajectoryWaypointTransformList=GetWaypoints();
-
     }
     public Transform GetStartingWapoint()
     {

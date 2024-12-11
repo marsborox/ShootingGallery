@@ -19,6 +19,7 @@ public class TargetSpawner : MonoBehaviour
         if (!spawningInProgress)
         {
             StartCoroutine(SpawnTargetEveryINPUTseconds());
+            //Debug.Log("targetSpawner.spawning target");
         }
     }
 
@@ -29,9 +30,9 @@ public class TargetSpawner : MonoBehaviour
     IEnumerator SpawnTargetEveryINPUTseconds()
     {
         spawningInProgress = true;
-        Debug.Log("WaitingForSpawn");
+        //Debug.Log("targetSpawner.WaitingForSpawn");
         yield return new WaitForSeconds(RandomRespawnTime());
-        Debug.Log("DoingSpawn");
+        //Debug.Log("targetSpawner.DoingSpawn");
         targetPool.targetPoolPool.Get();
         spawningInProgress = false;
     }

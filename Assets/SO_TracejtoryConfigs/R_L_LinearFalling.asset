@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38262f39b0e74d7479dce10744ffe453, type: 3}
-  m_Name: R-L_LinearFalling
+  m_Name: R_L_LinearFalling
   m_EditorClassIdentifier: 
-  trajectoryPrefab: {fileID: 0}
+  trajectoryPrefab: {fileID: 3954596940658405729, guid: 9a4e2015b8060834787b911735eaef97, type: 3}
   trajectoryWaypointTransformList: []

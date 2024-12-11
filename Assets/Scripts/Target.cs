@@ -7,7 +7,7 @@ public class Target : MonoBehaviour
 {
     float movementSpeed = 0.01f;
     [SerializeField] public int trajectoryIndex;
-    [SerializeField] public int waypointIndexGlobal;
+    [SerializeField] public int waypointIndex_GlobalVar=0;
 
     string floorTag = "Floor";
 
@@ -31,14 +31,14 @@ public class Target : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         CheckWaypoint();
         Move();
-        */
+        
     }
     private void OnEnable()
     {
-        
+        RestartRoute();
     }
     private void Move()
     {
@@ -72,19 +72,21 @@ public class Target : MonoBehaviour
     }*/
     void ArrivedToWaypoint()
     {
-        if (trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count-1==waypointIndexGlobal)
+        if (trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count - 1==waypointIndex_GlobalVar)
         {
+            Debug.Log("target.trajectoryWaypointTransformList.Count = " + trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count);
             RestartRoute();
         }
         else
         {
-            GenerateNextWaypointTransform(trajectoryIndex,waypointIndexGlobal);
+            GenerateNextWaypointTransform(trajectoryIndex,waypointIndex_GlobalVar);
         }
     }
     public void RestartRoute()
     {
-        waypointIndexGlobal=0;
-        transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[0].position;
+        waypointIndex_GlobalVar=0;
+        transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex_GlobalVar].position;
+        nextWaypoint = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex_GlobalVar+1];
     }
 
     Transform GenerateNextWaypointTransform(int trajectoryIndex,int waypointIndex)
@@ -100,7 +102,7 @@ public class Target : MonoBehaviour
         // waypointIndex++
         //return waypoint
 
-        waypointIndexGlobal++;
+        waypointIndex_GlobalVar++;
         return trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex];
     }
     public void Die()

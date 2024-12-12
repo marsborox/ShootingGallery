@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d8d09b6d09f914494b6ec3d0a0dd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPrefab: {fileID: 2147300119986146043, guid: 04a3b39060ce7ae47ac89aa51b84e1ed, type: 3}
+  targetPrefab: {fileID: 1580559285}
   targetPoolCollectionCheck: 1
   targetPoolDefaultCapacity: 20
   targetPoolMaxSize: 100
@@ -408,6 +408,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 925d155d73442604d9bafebd0b5a90df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1580559285 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2147300119986146043, guid: 04a3b39060ce7ae47ac89aa51b84e1ed, type: 3}
+  m_PrefabInstance: {fileID: 3050962472520263191}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a53347569a6c0ef499921377b621bf17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1699656816

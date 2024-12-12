@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.UIElements;
 
 public class Target : MonoBehaviour
 {
     float movementSpeed = 0.01f;
     [SerializeField] public int trajectoryIndex;
-    [SerializeField] public int waypointIndex_GlobalVar=0;
+    [SerializeField] int waypointIndex;
 
     string floorTag = "Floor";
 
@@ -23,9 +26,13 @@ public class Target : MonoBehaviour
     
     private IObjectPool<Target> targetPool;
     public IObjectPool<Target> targetPoolInTarget { set => targetPool = value; }
+    private void Awake()
+    {
+        trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();
+    }
     void Start()
     {
-        
+        waypointIndex = 0;
     }
 
     // Update is called once per frame
@@ -38,16 +45,32 @@ public class Target : MonoBehaviour
     }
     private void OnEnable()
     {
-        RestartRoute();
+        //RestartRoute();
     }
     private void Move()
     {
-        transform.position= Vector2.MoveTowards(transform.position,nextWaypoint.position,movementSpeed*Time.deltaTime);
+        Debug.Log("target.Moving");
+        transform.position= Vector2.MoveTowards(transform.position,nextWaypoint.position,movementSpeed);// *Time.deltaTime
+        //Debug.Log(Vector2.Distance(transform.position, nextWaypoint.transform.position));
     }
 
     void CheckWaypoint()
     {
-        if (Vector2.Distance(transform.position, nextWaypoint.transform.position) < 0.1)
+        //for some reasin this is broken it returns object even it should not
+        //in distance +/- less than 0.4 but does not print the waypoint reached
+        Debug.Log("target.checkingWaypoint");
+        if (transform.position == null)
+        {
+            Debug.Log("target.nextWaypoint.transform.positio");    
+        }
+        if (transform.position == null)
+        {
+            Debug.Log("target.nextWaypoint.transform.positio");
+        }
+        Debug.Log(Vector2.Distance(transform.position, nextWaypoint.transform.position));
+
+
+        if (Vector2.Distance(transform.position, nextWaypoint.transform.position) < 0.0001)
         {
             Debug.Log("waypoint reached");
 
@@ -72,24 +95,68 @@ public class Target : MonoBehaviour
     }*/
     void ArrivedToWaypoint()
     {
-        if (trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count - 1==waypointIndex_GlobalVar)
+        if (trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count - 1==waypointIndex)
         {
             Debug.Log("target.trajectoryWaypointTransformList.Count = " + trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count);
             RestartRoute();
         }
         else
         {
-            GenerateNextWaypointTransform(trajectoryIndex,waypointIndex_GlobalVar);
+            Debug.Log("target.Generating next index");
+            GenerateNextWaypointTransform(trajectoryIndex);
         }
     }
     public void RestartRoute()
     {
-        waypointIndex_GlobalVar=0;
-        transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex_GlobalVar].position;
-        nextWaypoint = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex_GlobalVar+1];
+        waypointIndex=0;
+        //Debug.Log("target.display indexes = "+ trajectoryIndex + " " + waypointIndex_GlobalVar);
+
+        /*var pulledTransform = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex_GlobalVar].transform;
+        if (pulledTransform == null)
+        {
+            Debug.Log("target.pulledTransform = Null");
+        }*/
+        //transform.position = ReturnWaypoont(trajectoryIndex, waypointIndex_GlobalVar).position;
+         
+        transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform.position;
+        nextWaypoint = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex+1].transform;
     }
 
-    Transform GenerateNextWaypointTransform(int trajectoryIndex,int waypointIndex)
+    Transform ReturnWaypoont(int i, int j)
+    {
+
+        return trajectoryConfigCollection.configList[i].trajectoryWaypointTransformList[j].transform;
+        if (trajectoryConfigCollection == null)
+        {
+            Debug.LogError("Collection is null. Make sure it is initialized before calling this method.");
+            return null;
+        }
+
+        // Ensure the index i is within bounds of list1
+        if (i < 0 || i >= trajectoryConfigCollection.configList.Count)
+        {
+            Debug.LogError("Index i is out of range.");
+            return null;
+        }
+
+        // Ensure the index j is within bounds of the GameObject list in the selected ScriptableObject
+        var selectedContainer = trajectoryConfigCollection.configList[i];
+        if (selectedContainer == null)
+        {
+            Debug.LogError("Selected container is null.");
+            return null;
+        }
+        if (j < 0 || j >= selectedContainer.trajectoryWaypointTransformList.Count)
+        {
+            Debug.LogError("Index j is out of range.");
+            return null;
+        }
+
+        // Return the Transform of the specified GameObject
+        return selectedContainer.trajectoryWaypointTransformList[j].transform;
+    }
+
+    Transform GenerateNextWaypointTransform(int trajectoryIndex)
     {
         /*
         Transform returnTransform=null;
@@ -102,8 +169,8 @@ public class Target : MonoBehaviour
         // waypointIndex++
         //return waypoint
 
-        waypointIndex_GlobalVar++;
-        return trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex];
+        waypointIndex++;
+        return trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform;
     }
     public void Die()
     {

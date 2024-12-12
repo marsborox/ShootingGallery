@@ -32,7 +32,7 @@ public class TargetPool : MonoBehaviour
     {
         Target target = Instantiate(targetPrefab);
         target.targetPoolInTarget = targetPoolPool;
-        target.trajectoryConfigCollection = trajectoryConfigCollection;
+        //target.trajectoryConfigCollection =  this.gameObject.GetComponent<TrajectoryConfigCollection>();
         return target;
     }
     void OnReleaseToPool(Target target)

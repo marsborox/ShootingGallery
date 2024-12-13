@@ -56,45 +56,23 @@ public class Target : MonoBehaviour
 
     void CheckWaypoint()
     {
+
+
         //for some reasin this is broken it returns object even it should not
         //in distance +/- less than 0.4 but does not print the waypoint reached
-        Debug.Log("target.checkingWaypoint");
-        if (transform.position == null)
-        {
-            Debug.Log("target.nextWaypoint.transform.positio");    
-        }
-        if (transform.position == null)
-        {
-            Debug.Log("target.nextWaypoint.transform.positio");
-        }
-        Debug.Log(Vector2.Distance(transform.position, nextWaypoint.transform.position));
-
-
-        if (Vector2.Distance(transform.position, nextWaypoint.transform.position) < 0.0001)
+        Debug.Log("target.Checking waypoint");
+        if(transform.position== nextWaypoint.transform.position)
+        
         {
             Debug.Log("waypoint reached");
 
-            ArrivedToWaypoint();
-            //nextWaypoint = GenerateNextWaypointTransform(trajectoryIndex,waypointIndexGlobal);
+            //ArrivedToWaypoint();
 
-            //nextWaypoint = trajectoryPrefab.transform.GetChild(GetMeNextWaypointIndex());
         }
     }
-    /*
-    int GetMeNextWaypointIndex()
-    {//this is discontinued method that ignores SOs
-        if (trajectoryPrefab.transform.GetChild(waypointIndexGlobal + 1) == null)
-        {
-            transform.position = trajectoryPrefab.transform.GetChild(0).position;
-            return 1;
-        }
-        else
-        {
-            return waypointIndexGlobal ++;
-        }
-    }*/
+
     void ArrivedToWaypoint()
-    {
+    {//smthing broken here
         if (trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count - 1==waypointIndex)
         {
             Debug.Log("target.trajectoryWaypointTransformList.Count = " + trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count);

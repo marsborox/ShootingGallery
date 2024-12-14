@@ -49,40 +49,47 @@ public class Target : MonoBehaviour
     }
     private void Move()
     {
-        Debug.Log("target.Moving");
+        //Debug.Log("target.Moving");
         transform.position= Vector2.MoveTowards(transform.position,nextWaypoint.position,movementSpeed);// *Time.deltaTime
         //Debug.Log(Vector2.Distance(transform.position, nextWaypoint.transform.position));
     }
 
     void CheckWaypoint()
     {
-
+        
 
         //for some reasin this is broken it returns object even it should not
         //in distance +/- less than 0.4 but does not print the waypoint reached
-        Debug.Log("target.Checking waypoint");
+        //Debug.Log("target.Checking waypoint");
         if(transform.position== nextWaypoint.transform.position)
         
         {
-            Debug.Log("waypoint reached");
-
-            //ArrivedToWaypoint();
+            ArrivedToWaypoint();
 
         }
     }
 
     void ArrivedToWaypoint()
-    {//smthing broken here
-        if (trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count - 1==waypointIndex)
+    {
+        Debug.Log("target.waypointIndex&");
+
+        int maxWaypointIndex = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count-1;
+        Debug.Log("target.max index of waypoint= " + maxWaypointIndex);
+        Debug.Log("target.waypoint Index is= "+waypointIndex);
+        
+        if (maxWaypointIndex == waypointIndex)
         {
             Debug.Log("target.trajectoryWaypointTransformList.Count = " + trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count);
             RestartRoute();
         }
         else
         {
+            //when we reach waypoint 
             Debug.Log("target.Generating next index");
-            GenerateNextWaypointTransform(trajectoryIndex);
+            nextWaypoint =GenerateNextWaypointTransform();
         }
+
+
     }
     public void RestartRoute()
     {
@@ -134,19 +141,8 @@ public class Target : MonoBehaviour
         return selectedContainer.trajectoryWaypointTransformList[j].transform;
     }
 
-    Transform GenerateNextWaypointTransform(int trajectoryIndex)
+    Transform GenerateNextWaypointTransform()
     {
-        /*
-        Transform returnTransform=null;
-        
-        returnTransform = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex];
-        return returnTransform;
-        */
-        //input int "index from configs", int waypointIndex 
-        //waypoint at targetPool.<List>TrajectoryConfigs.[trajectoryIndex].<List>Trajectory[waypointIndex]
-        // waypointIndex++
-        //return waypoint
-
         waypointIndex++;
         return trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform;
     }

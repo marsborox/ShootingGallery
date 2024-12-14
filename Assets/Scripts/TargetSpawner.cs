@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetSpawner : MonoBehaviour
 {
     TargetPool targetPool;
-
+    List<Target> targets = new List<Target>();
     float MaxRespawnTime = 2;
     bool spawningInProgress = false;
 
@@ -34,6 +34,7 @@ public class TargetSpawner : MonoBehaviour
         yield return new WaitForSeconds(RandomRespawnTime());
         //Debug.Log("targetSpawner.DoingSpawn");
         targetPool.targetPoolPool.Get();
+
         spawningInProgress = false;
     }
 }

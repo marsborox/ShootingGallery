@@ -71,21 +71,21 @@ public class Target : MonoBehaviour
 
     void ArrivedToWaypoint()
     {
-        Debug.Log("target.waypointIndex&");
+        //Debug.Log("target.waypointIndex&");
 
         int maxWaypointIndex = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count-1;
-        Debug.Log("target.max index of waypoint= " + maxWaypointIndex);
-        Debug.Log("target.waypoint Index is= "+waypointIndex);
+        //Debug.Log("target.max index of waypoint= " + maxWaypointIndex);
+        //Debug.Log("target.waypoint Index is= "+waypointIndex);
         
         if (maxWaypointIndex == waypointIndex)
         {
-            Debug.Log("target.trajectoryWaypointTransformList.Count = " + trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count);
+            //Debug.Log("target.trajectoryWaypointTransformList.Count = " + trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count);
             RestartRoute();
         }
         else
         {
             //when we reach waypoint 
-            Debug.Log("target.Generating next index");
+            //Debug.Log("target.Generating next index");
             nextWaypoint =GenerateNextWaypointTransform();
         }
 

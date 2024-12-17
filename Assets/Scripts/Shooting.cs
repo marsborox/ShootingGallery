@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class Shooting : MonoBehaviour
 {
     PlayerControls playerControls;
-
+    [SerializeField] GameObject projectile;
     Action shoot;
     Action reload;
 
@@ -37,6 +37,7 @@ public class Shooting : MonoBehaviour
     void Shoot()
     {
         Debug.Log("Shooting. pew pew");
+        Instantiate(projectile);
         //Input.GetMouseButton(0);
     }
     private void Reload()

@@ -20,13 +20,13 @@ public class Shooting : MonoBehaviour
     }
     void Start()
     {
-        
+        PlayerInput();
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerInput();
+        //PlayerInput();
     }
     void PlayerInput()
     {
@@ -38,7 +38,7 @@ public class Shooting : MonoBehaviour
     {
         Debug.Log("Shooting. pew pew");
         Instantiate(projectile);
-        //Input.GetMouseButton(0);
+        
     }
     private void Reload()
     {

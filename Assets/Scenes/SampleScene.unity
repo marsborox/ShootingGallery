@@ -308,6 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 767614006}
   - component: {fileID: 767614007}
+  - component: {fileID: 767614008}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -343,7 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 4c44c4dc56777a04d987189bd0c2b817, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -360,6 +361,19 @@ MonoBehaviour:
   m_DefaultActionMap: Shooting
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &767614008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767614005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf471feb8d1b94541a13e3adc70805fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 8169175218049088948, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
 --- !u!1 &1303896441
 GameObject:
   m_ObjectHideFlags: 0

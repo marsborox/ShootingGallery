@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    private void Start()
+    {
+        SpawnRoutine();
+    }
+    //int damage = 10;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.GetComponent<Target>())
@@ -15,8 +21,11 @@ public class Projectile : MonoBehaviour
             Debug.Log("Doing Le Damage");
         }
     }
-    private void DoDamage()
-    { 
-        
+
+    IEnumerable SpawnRoutine()
+    {
+        yield return new WaitForSecondsRealtime(0.01f);
+        Destroy(gameObject);
     }
+
 }

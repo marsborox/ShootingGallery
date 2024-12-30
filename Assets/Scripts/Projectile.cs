@@ -1,13 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     private void Start()
     {
-        SpawnRoutine();
+
+        //Debug.Log("projectile.Projectile spawned, starting routine");
+        SetPosition();
+        StartCoroutine(SpawnRoutine());
     }
     //int damage = 10;
     private void OnTriggerEnter2D(Collider2D other)
@@ -18,14 +19,23 @@ public class Projectile : MonoBehaviour
 
             other.gameObject.GetComponent<Target>().Deactivate();
             //Do Damage
-            Debug.Log("Doing Le Damage");
+            //Debug.Log("projectile.Doing Le Damage");
         }
     }
 
-    IEnumerable SpawnRoutine()
+    IEnumerator SpawnRoutine()
     {
-        yield return new WaitForSecondsRealtime(0.01f);
+        yield return new WaitForSecondsRealtime(1f);
+        //Debug.Log("projectile.Projectile despawning");
         Destroy(gameObject);
     }
-
+    void SetPosition() 
+    {
+        Debug.Log("projectile. mouse posiiton");
+        
+        Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        pz.z = 0;
+        gameObject.transform.position = pz;
+  
+    }
 }

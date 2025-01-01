@@ -3,19 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Pool;
 
 public class Shooting : MonoBehaviour
 {
     PlayerControls playerControls;
-    [SerializeField] GameObject projectile;
+    [SerializeField] Projectile projectilePrefab;
     Action shoot;
     Action reload;
 
+    private IObjectPool<Projectile> projectilePool;
+
+    [SerializeField] private bool collectionCheck = true;
+    [SerializeField] private int defaultCapacity = 10;
+    [SerializeField] private int maxSize = 30;
     // Start is called before the first frame update
     private void Awake()
     {
-        //playerControls=GetComponent<PlayerControls>();
-        //playerControls.onActionTriggered += Shoot;
+        projectilePool = new ObjectPool<Projectile>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxSize);
         playerControls=new PlayerControls();
     }
     void Start()
@@ -37,9 +42,34 @@ public class Shooting : MonoBehaviour
     void Shoot()
     {
         Debug.Log("Shooting. pew pew");
-        Instantiate(projectile);
+        projectilePool.Get();
         
     }
+
+    #region ProjectilePooling
+    private Projectile CreateProjectile()
+    { 
+        Projectile projectileInstance = Instantiate(projectilePrefab);
+        projectileInstance.projectilePoolPublic = projectilePool;
+
+        return projectileInstance;
+    }
+    private void OnGetFromPool(Projectile projectile)
+    {
+        projectile.gameObject.SetActive(true);
+    }
+    private void OnReleaseToPool(Projectile projectile)
+    { 
+        projectile.gameObject.SetActive(false);
+    }
+    private void OnDestroyPooledObject(Projectile projectile)
+    {
+        Destroy(projectile.gameObject);
+    }
+
+    #endregion
+
+
     private void Reload()
     {
         Debug.Log("Shooting.Reloading");

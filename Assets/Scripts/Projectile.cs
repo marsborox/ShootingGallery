@@ -1,14 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Projectile : MonoBehaviour
 {
+    private IObjectPool<Projectile> projectilePoolPrivate;
+    public IObjectPool<Projectile> projectilePoolPublic { set => projectilePoolPrivate = value; }
     private void Start()
     {
 
         //Debug.Log("projectile.Projectile spawned, starting routine");
-        SetPosition();
-        StartCoroutine(SpawnRoutine());
+        
     }
     //int damage = 10;
     private void OnTriggerEnter2D(Collider2D other)
@@ -22,12 +24,21 @@ public class Projectile : MonoBehaviour
             //Debug.Log("projectile.Doing Le Damage");
         }
     }
+    private void OnEnable()
+    {
+        SetPosition();
+        StartCoroutine(SpawnRoutine());
+    }
 
+    public void Deactivate()
+    {
+        projectilePoolPrivate.Release(this);
+    }
     IEnumerator SpawnRoutine()
     {
         yield return new WaitForSecondsRealtime(1f);
         //Debug.Log("projectile.Projectile despawning");
-        Destroy(gameObject);
+        Deactivate();
     }
     void SetPosition() 
     {

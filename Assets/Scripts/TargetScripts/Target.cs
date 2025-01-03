@@ -18,14 +18,16 @@ public class Target : MonoBehaviour
 
     //public GameObject trajectoryPrefab;
     public int SO_index{ private get; set; }
+    int targetScore = 1;
 
     public Transform nextWaypoint;
-
+    [SerializeField] Score playerScore;
     public TrajectoryConfigCollection trajectoryConfigCollection { private get; set; }
     // Start is called before the first frame update
     
     private IObjectPool<Target> targetPool;
     public IObjectPool<Target> targetPoolInTarget { set => targetPool = value; }
+
     private void Awake()
     {
         trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();
@@ -56,16 +58,13 @@ public class Target : MonoBehaviour
 
     void CheckWaypoint()
     {
-        
-
+        //may be outdated
         //for some reasin this is broken it returns object even it should not
         //in distance +/- less than 0.4 but does not print the waypoint reached
         //Debug.Log("target.Checking waypoint");
         if(transform.position== nextWaypoint.transform.position)
-        
         {
             ArrivedToWaypoint();
-
         }
     }
 
@@ -88,8 +87,6 @@ public class Target : MonoBehaviour
             //Debug.Log("target.Generating next index");
             nextWaypoint =GenerateNextWaypointTransform();
         }
-
-
     }
     public void RestartRoute()
     {
@@ -146,24 +143,33 @@ public class Target : MonoBehaviour
         waypointIndex++;
         return trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform;
     }
-    public void Die()
-    {
-        //falling down
-        dead = true;
-    }
+    
     public void OnTriggerEnter(Collider other)
     {
         if (dead &&other.tag == floorTag)
         {
-            Deactivate();
+            TakeDamage();
+        }
+        if (other == other.gameObject.GetComponent<Projectile>())
+        {
+            TakeDamage();
         }
         //if floor collider hits this object
         /*{
         Deactivate
             }*/
     }
-    public void Deactivate()
+    public void TakeDamage()
     {
+        Die();
+    }
+    public void Die()
+    {
+        playerScore.AddScore(targetScore);
+        //falling down
+        dead = true;
+
         targetPool.Release(this);
+
     }
 }

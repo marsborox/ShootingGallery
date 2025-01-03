@@ -4,13 +4,18 @@ using UnityEngine.Pool;
 
 public class Projectile : MonoBehaviour
 {
+    Collider2D collider;
     private IObjectPool<Projectile> projectilePoolPrivate;
     public IObjectPool<Projectile> projectilePoolPublic { set => projectilePoolPrivate = value; }
+    private void Awake()
+    {
+        
+        collider = GetComponent<Collider2D>();
+    }
     private void Start()
     {
-
+        collider.enabled = false;
         //Debug.Log("projectile.Projectile spawned, starting routine");
-        
     }
     //int damage = 10;
     private void OnTriggerEnter2D(Collider2D other)
@@ -19,7 +24,7 @@ public class Projectile : MonoBehaviour
         {
             //other.gameObject.GetComponent<Target>().Die();
 
-            other.gameObject.GetComponent<Target>().Deactivate();
+            other.gameObject.GetComponent<Target>().TakeDamage();
             //Do Damage
             //Debug.Log("projectile.Doing Le Damage");
         }
@@ -28,6 +33,8 @@ public class Projectile : MonoBehaviour
     {
         SetPosition();
         StartCoroutine(SpawnRoutine());
+        collider.enabled = true;
+        collider.enabled = false;
     }
 
     public void Deactivate()
@@ -36,7 +43,7 @@ public class Projectile : MonoBehaviour
     }
     IEnumerator SpawnRoutine()
     {
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.4f);
         //Debug.Log("projectile.Projectile despawning");
         Deactivate();
     }

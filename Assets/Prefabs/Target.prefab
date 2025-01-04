@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 2596858563490581847}
   - component: {fileID: 2922199875021324533}
   - component: {fileID: 2493953990042312641}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2276248003745736708
 Transform:
   m_ObjectHideFlags: 0
@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53347569a6c0ef499921377b621bf17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointIndexGlobal: 1
-  trajectoryPrefab: {fileID: 0}
+  trajectoryIndex: 0
+  waypointIndex: 0
   nextWaypoint: {fileID: 0}
+  playerScore: {fileID: 0}
 --- !u!212 &2596858563490581847
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88,8 +89,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1848904149
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e247cab0c8fe1a24685277c2cca4778f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

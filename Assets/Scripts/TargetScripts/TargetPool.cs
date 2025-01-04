@@ -38,7 +38,7 @@ public class TargetPool : MonoBehaviour
     void OnReleaseToPool(Target target)
     { 
         target.gameObject.SetActive(false);
-        target.dead = false;
+        target.alive = false;
     }
     public void OnGetFromPool(Target target)
     {

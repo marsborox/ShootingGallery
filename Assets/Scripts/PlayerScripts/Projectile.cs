@@ -33,8 +33,9 @@ public class Projectile : MonoBehaviour
     {
         SetPosition();
         StartCoroutine(SpawnRoutine());
+        StartCoroutine(ColliderShutdownRoutine());
         collider.enabled = true;
-        collider.enabled = false;
+        
     }
 
     public void Deactivate()
@@ -46,6 +47,11 @@ public class Projectile : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.4f);
         //Debug.Log("projectile.Projectile despawning");
         Deactivate();
+    }
+    IEnumerator ColliderShutdownRoutine()
+    {
+        yield return new WaitForSecondsRealtime(0.02f);
+        collider.enabled = false;
     }
     void SetPosition() 
     {

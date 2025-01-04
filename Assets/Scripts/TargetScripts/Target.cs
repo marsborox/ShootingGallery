@@ -12,14 +12,16 @@ public class Target : MonoBehaviour
     [SerializeField] public int trajectoryIndex;
     [SerializeField] int waypointIndex;
 
+    float deadGravity = 10f;//10 is good
+    float aliveGravity = 0f;
+
     string floorTag = "Floor";
-
-    public bool dead { private get; set; } = false;
-
+    string projectileTag = "Projectile";
+    public bool alive { private get; set; } = true;
     //public GameObject trajectoryPrefab;
     public int SO_index{ private get; set; }
     int targetScore = 1;
-
+    Rigidbody2D rigidBody2D;
     public Transform nextWaypoint;
     [SerializeField] Score playerScore;
     public TrajectoryConfigCollection trajectoryConfigCollection { private get; set; }
@@ -31,6 +33,7 @@ public class Target : MonoBehaviour
     private void Awake()
     {
         trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();
+        rigidBody2D = GetComponent<Rigidbody2D>();
     }
     void Start()
     {
@@ -41,13 +44,20 @@ public class Target : MonoBehaviour
     void Update()
     {
         
-        CheckWaypoint();
-        Move();
+        
+        if (alive) 
+        { 
+            CheckWaypoint(); 
+            Move(); 
+        }
+        else return;
+        
         
     }
     private void OnEnable()
     {
         //RestartRoute();
+        SetGravity(aliveGravity);
     }
     private void Move()
     {
@@ -146,11 +156,11 @@ public class Target : MonoBehaviour
     
     public void OnTriggerEnter(Collider other)
     {
-        if (dead &&other.tag == floorTag)
+        if (!alive && other.tag == floorTag)
         {
-            TakeDamage();
+            targetPool.Release(this);
         }
-        if (other == other.gameObject.GetComponent<Projectile>())
+        if (alive && other.tag==projectileTag)
         {
             TakeDamage();
         }
@@ -161,15 +171,43 @@ public class Target : MonoBehaviour
     }
     public void TakeDamage()
     {
+
         Die();
     }
     public void Die()
     {
-        playerScore.AddScore(targetScore);
+        //**** problem hereplayerScore.AddScore(targetScore);
         //falling down
-        dead = true;
+        alive = false;
+        SetGravity(deadGravity);
+        Throw();
+    }
+    void SetGravity(float inputGravityScale)
+    {
+        this.rigidBody2D.gravityScale = inputGravityScale;
+    }
+    void SetRandomDirection()
+    { 
+        
+    }
+    private void Throw()
+    {
+        transform.eulerAngles = new Vector3(Random.Range(0, 360), Random.Range(0, 360), transform.eulerAngles.z);
 
-        targetPool.Release(this);
+        float speed = 5000;
+        //rigidBody2D.isKinematic = false;
+        Vector3 force = transform.forward;
+        force = new Vector3(force.x, force.y, 1);
+        rigidBody2D.AddForce(force * speed);
+    }
+    private void RandomThrow()
+    {
+        transform.eulerAngles = new Vector2(transform.eulerAngles.x, Random.Range(0, 360));
 
+        float speed = 10;
+        rigidBody2D.isKinematic = false;
+        Vector3 force = transform.forward;
+        force = new Vector2(force.x, 1);
+        rigidBody2D.AddForce(force * speed);
     }
 }

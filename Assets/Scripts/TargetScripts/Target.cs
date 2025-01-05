@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,8 +23,14 @@ public class Target : MonoBehaviour
     public int SO_index{ private get; set; }
     int targetScore = 1;
     Rigidbody2D rigidBody2D;
+
     public Transform nextWaypoint;
-    [SerializeField] Score playerScore;
+    [SerializeField] GameObject player;
+    private Score score;
+
+    //public delegate void DeathEvent(GameObject hero);
+    public event Action OnDeath;
+
     public TrajectoryConfigCollection trajectoryConfigCollection { private get; set; }
     // Start is called before the first frame update
     
@@ -32,6 +39,7 @@ public class Target : MonoBehaviour
 
     private void Awake()
     {
+        score=player.GetComponent<Score>();
         trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();
         rigidBody2D = GetComponent<Rigidbody2D>();
     }
@@ -176,7 +184,9 @@ public class Target : MonoBehaviour
     }
     public void Die()
     {
-        //**** problem hereplayerScore.AddScore(targetScore);
+
+        score.AddScore(targetScore);
+        OnDeath?.Invoke();
         //falling down
         alive = false;
         SetGravity(deadGravity);
@@ -192,7 +202,7 @@ public class Target : MonoBehaviour
     }
     private void Throw()
     {
-        transform.eulerAngles = new Vector3(Random.Range(0, 360), Random.Range(0, 360), transform.eulerAngles.z);
+        transform.eulerAngles = new Vector3(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), transform.eulerAngles.z);
 
         float speed = 5000;
         //rigidBody2D.isKinematic = false;
@@ -202,7 +212,7 @@ public class Target : MonoBehaviour
     }
     private void RandomThrow()
     {
-        transform.eulerAngles = new Vector2(transform.eulerAngles.x, Random.Range(0, 360));
+        transform.eulerAngles = new Vector2(transform.eulerAngles.x, UnityEngine.Random.Range(0, 360));
 
         float speed = 10;
         rigidBody2D.isKinematic = false;

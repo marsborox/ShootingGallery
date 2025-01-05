@@ -28,7 +28,7 @@ public class Target : MonoBehaviour
     [SerializeField] GameObject player;
     private Score score;
 
-    //public delegate void DeathEvent(GameObject hero);
+    
     public event Action OnDeath;
 
     public TrajectoryConfigCollection trajectoryConfigCollection { private get; set; }

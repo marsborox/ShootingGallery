@@ -25,33 +25,34 @@ public class Target : MonoBehaviour
     Rigidbody2D rigidBody2D;
 
     public Transform nextWaypoint;
-    [SerializeField] GameObject player;
     private Score score;
 
     
     public event Action OnDeath;
 
     public TrajectoryConfigCollection trajectoryConfigCollection { private get; set; }
+    [SerializeField] GameObject player;
     // Start is called before the first frame update
     
-    private IObjectPool<Target> targetPool;
+    public IObjectPool<Target> targetPool { private get; set; }
     public IObjectPool<Target> targetPoolInTarget { set => targetPool = value; }
 
     private void Awake()
     {
-        score=player.GetComponent<Score>();
-        trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();
+        //score=player.GetComponent<Score>();
+        //trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();for some reason wont work
+
         rigidBody2D = GetComponent<Rigidbody2D>();
     }
     void Start()
     {
         waypointIndex = 0;
+        RestartRoute();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         
         if (alive) 
         { 
@@ -64,7 +65,7 @@ public class Target : MonoBehaviour
     }
     private void OnEnable()
     {
-        //RestartRoute();
+        RestartRoute();
         SetGravity(aliveGravity);
     }
     private void Move()
@@ -80,6 +81,7 @@ public class Target : MonoBehaviour
         //for some reasin this is broken it returns object even it should not
         //in distance +/- less than 0.4 but does not print the waypoint reached
         //Debug.Log("target.Checking waypoint");
+        
         if(transform.position== nextWaypoint.transform.position)
         {
             ArrivedToWaypoint();
@@ -108,59 +110,65 @@ public class Target : MonoBehaviour
     }
     public void RestartRoute()
     {
-        waypointIndex=0;
+        waypointIndex = 0;
         //Debug.Log("target.display indexes = "+ trajectoryIndex + " " + waypointIndex_GlobalVar);
 
-        /*var pulledTransform = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex_GlobalVar].transform;
+        var pulledTransform = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform;
         if (pulledTransform == null)
         {
             Debug.Log("target.pulledTransform = Null");
-        }*/
-        //transform.position = ReturnWaypoont(trajectoryIndex, waypointIndex_GlobalVar).position;
-         
-        transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform.position;
-        nextWaypoint = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex+1].transform;
+        }
+        //transform.position = ReturnWaypoont(trajectoryIndex, waypointIndex).position;
+        //nextWaypoint = ReturnWaypoont(trajectoryIndex, waypointIndex);
+        
+        else
+        {
+            transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform.position;
+            nextWaypoint = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex + 1].transform;
+
+        }
     }
 
-    Transform ReturnWaypoont(int i, int j)
-    {
-
-        return trajectoryConfigCollection.configList[i].trajectoryWaypointTransformList[j].transform;
-        if (trajectoryConfigCollection == null)
+        Transform ReturnWaypoont(int i, int j)
         {
-            Debug.LogError("Collection is null. Make sure it is initialized before calling this method.");
-            return null;
+
+            //return trajectoryConfigCollection.configList[i].trajectoryWaypointTransformList[j].transform;
+            if (trajectoryConfigCollection == null)
+            {
+                Debug.LogError("Collection is null. Make sure it is initialized before calling this method.");
+                return null;
+            }
+
+            // Ensure the index i is within bounds of list1
+            if (i < 0 || i >= trajectoryConfigCollection.configList.Count)
+            {
+                Debug.LogError("Index i is out of range.");
+                return null;
+            }
+
+            // Ensure the index j is within bounds of the GameObject list in the selected ScriptableObject
+            var selectedContainer = trajectoryConfigCollection.configList[i];
+            if (selectedContainer == null)
+            {
+                Debug.LogError("Selected container is null.");
+                return null;
+            }
+            if (j < 0 || j >= selectedContainer.trajectoryWaypointTransformList.Count)
+            {
+                Debug.LogError("Index j is out of range.");
+                return null;
+            }
+
+            // Return the Transform of the specified GameObject
+            return selectedContainer.trajectoryWaypointTransformList[j].transform;
         }
 
-        // Ensure the index i is within bounds of list1
-        if (i < 0 || i >= trajectoryConfigCollection.configList.Count)
+        Transform GenerateNextWaypointTransform()
         {
-            Debug.LogError("Index i is out of range.");
-            return null;
+            waypointIndex++;
+            return trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform;
         }
-
-        // Ensure the index j is within bounds of the GameObject list in the selected ScriptableObject
-        var selectedContainer = trajectoryConfigCollection.configList[i];
-        if (selectedContainer == null)
-        {
-            Debug.LogError("Selected container is null.");
-            return null;
-        }
-        if (j < 0 || j >= selectedContainer.trajectoryWaypointTransformList.Count)
-        {
-            Debug.LogError("Index j is out of range.");
-            return null;
-        }
-
-        // Return the Transform of the specified GameObject
-        return selectedContainer.trajectoryWaypointTransformList[j].transform;
-    }
-
-    Transform GenerateNextWaypointTransform()
-    {
-        waypointIndex++;
-        return trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform;
-    }
+    
     
     public void OnTriggerEnter(Collider other)
     {

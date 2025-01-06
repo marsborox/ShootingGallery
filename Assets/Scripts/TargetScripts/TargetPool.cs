@@ -32,8 +32,10 @@ public class TargetPool : MonoBehaviour
     {
         Target target = Instantiate(targetPrefab);
         target.targetPoolInTarget = targetPoolPool;
-        //target.trajectoryConfigCollection =  this.gameObject.GetComponent<TrajectoryConfigCollection>();
+
+        target.trajectoryConfigCollection =  this.gameObject.GetComponent<TrajectoryConfigCollection>();
         return target;
+
     }
     void OnReleaseToPool(Target target)
     { 
@@ -42,9 +44,10 @@ public class TargetPool : MonoBehaviour
     }
     public void OnGetFromPool(Target target)
     {
-        target.gameObject.SetActive(true);
+        
         target.trajectoryIndex = trajectoryConfigCollection.ReturnRandomConfig();//must be that method random
         target.RestartRoute();
+        target.gameObject.SetActive(true);
     }
     
     private void OnDestroyTarget(Target target)

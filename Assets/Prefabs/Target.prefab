@@ -50,7 +50,7 @@ MonoBehaviour:
   trajectoryIndex: 0
   waypointIndex: 0
   nextWaypoint: {fileID: 0}
-  playerScore: {fileID: 0}
+  player: {fileID: 0}
 --- !u!212 &2596858563490581847
 SpriteRenderer:
   m_ObjectHideFlags: 0

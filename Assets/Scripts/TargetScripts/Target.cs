@@ -12,7 +12,7 @@ public class Target : MonoBehaviour
     Rigidbody2D rigidBody2D;
 
     
-    float movementSpeed = 0.1f;//0.01-0.1 ok
+    float movementSpeed = 0.01f;//0.01-0.1 ok
     [SerializeField] public int trajectoryIndex;
     [SerializeField] int waypointIndex;
 
@@ -70,8 +70,8 @@ public class Target : MonoBehaviour
     }
     private void OnEnable()
     {
-        RestartRoute();
-        SetGravity(aliveGravity);
+        Respawn();
+        
     }
     private void Move()
     {
@@ -176,7 +176,13 @@ public class Target : MonoBehaviour
             waypointIndex++;
             return trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform;
         }
-    
+    void Respawn()
+    {
+        alive = true;
+        RestartRoute();
+        SetGravity(aliveGravity);
+        this.transform.rotation=Quaternion.Euler(0,0,0);
+    }
     
     public void OnTriggerEnter(Collider other)
     {
@@ -198,6 +204,11 @@ public class Target : MonoBehaviour
 
         Die();
     }
+    IEnumerator DespawnRoutine()
+    {
+        yield return new WaitForSeconds(3f);
+        targetPool.Release(this);//remove when floor is introduced - whole routine
+    }
     public void Die()
     {
 
@@ -206,6 +217,8 @@ public class Target : MonoBehaviour
         alive = false;
         SetGravity(deadGravity);
         Throw();
+        StartCoroutine(DespawnRoutine());
+        
     }
     void SetGravity(float inputGravityScale)
     {
@@ -219,7 +232,7 @@ public class Target : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), transform.eulerAngles.z);
 
-        float speed = 5000;
+        float speed = 50;
         //rigidBody2D.isKinematic = false;
         Vector3 force = transform.forward;
         force = new Vector3(force.x, force.y, 1);

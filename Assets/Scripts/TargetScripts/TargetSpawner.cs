@@ -23,8 +23,8 @@ public class TargetSpawner : MonoBehaviour
         
         if (!spawningInProgress)
         {
-            SpawnOneEvery3Seconds();
-            //StartCoroutine(SpawnTargetEveryINPUTseconds());
+            //SpawnOneEvery3Seconds();
+            StartCoroutine(SpawnTargetEveryINPUTseconds());// ***** this one is real
             //Debug.Log("targetSpawner.spawning target");
         }
     }

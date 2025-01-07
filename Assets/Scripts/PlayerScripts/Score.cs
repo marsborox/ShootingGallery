@@ -11,6 +11,7 @@ public class Score : MonoBehaviour
     UIDisplay uIDisplay;
     public event Action OnDeath;
     // Start is called before the first frame update
+    
     private void Awake()
     {
         uIDisplay = ui.GetComponent<UIDisplay>();
@@ -29,17 +30,15 @@ public class Score : MonoBehaviour
     public void AddScore(int addScore)
     {
         playerScore=playerScore + addScore;
+        uIDisplay.SetScoretext(playerScore);
     }
     private void OnEnable()
     {
-        OnDeath += ScoreAdded;
+        
     }
     private void OnDisable()
     {
         
     }
-    void ScoreAdded()
-    {
-        uIDisplay.SetScoretext(playerScore);//refresh score on UI
-    }
+
 }

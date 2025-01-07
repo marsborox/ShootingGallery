@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetSpawner : MonoBehaviour
 {
     TargetPool targetPool;
-    List<Target> targets = new List<Target>();
+    
     float MaxRespawnTime = 2;
     bool spawningInProgress = false;
 
@@ -13,12 +13,18 @@ public class TargetSpawner : MonoBehaviour
     {
         targetPool = GetComponent<TargetPool>();
     }
+    private void Start()
+    {
+        targetPool.targetPoolPool.Get();
+    }
+    
     private void Update()
     {
         
         if (!spawningInProgress)
         {
-            StartCoroutine(SpawnTargetEveryINPUTseconds());
+            SpawnOneEvery3Seconds();
+            //StartCoroutine(SpawnTargetEveryINPUTseconds());
             //Debug.Log("targetSpawner.spawning target");
         }
     }
@@ -36,5 +42,19 @@ public class TargetSpawner : MonoBehaviour
         targetPool.targetPoolPool.Get();
 
         spawningInProgress = false;
+    }
+    IEnumerator SpawnOneEvery3Seconds()
+    {
+        spawningInProgress = true;
+        //Debug.Log("targetSpawner.WaitingForSpawn");
+        yield return new WaitForSeconds(3f);
+        //Debug.Log("targetSpawner.DoingSpawn");
+        targetPool.targetPoolPool.Get();
+
+        spawningInProgress = false;
+    }
+    public void SpawnOneTarget()
+    {
+        targetPool.targetPoolPool.Get();
     }
 }

@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class UIDisplay : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText { private get; set; }
+    [SerializeField] TextMeshProUGUI scoreText;
+    
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        scoreText.text = "0";
     }
 
     // Update is called once per frame

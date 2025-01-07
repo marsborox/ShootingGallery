@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
     //int damage = 10;
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         if (other.gameObject.GetComponent<Target>())
         {
             //other.gameObject.GetComponent<Target>().Die();
@@ -28,6 +29,7 @@ public class Projectile : MonoBehaviour
             //Do Damage
             //Debug.Log("projectile.Doing Le Damage");
         }
+
     }
     private void OnEnable()
     {

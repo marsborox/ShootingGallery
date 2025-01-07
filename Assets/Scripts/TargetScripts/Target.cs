@@ -9,7 +9,10 @@ using UnityEngine.UIElements;
 
 public class Target : MonoBehaviour
 {
-    float movementSpeed = 0.01f;
+    Rigidbody2D rigidBody2D;
+
+    
+    float movementSpeed = 0.1f;//0.01-0.1 ok
     [SerializeField] public int trajectoryIndex;
     [SerializeField] int waypointIndex;
 
@@ -22,13 +25,12 @@ public class Target : MonoBehaviour
     //public GameObject trajectoryPrefab;
     public int SO_index{ private get; set; }
     int targetScore = 1;
-    Rigidbody2D rigidBody2D;
 
-    public Transform nextWaypoint;
     private Score score;
 
     
-    public event Action OnDeath;
+    public Transform nextWaypoint;
+    
 
     public TrajectoryConfigCollection trajectoryConfigCollection { private get; set; }
     [SerializeField] GameObject player;
@@ -37,9 +39,11 @@ public class Target : MonoBehaviour
     public IObjectPool<Target> targetPool { private get; set; }
     public IObjectPool<Target> targetPoolInTarget { set => targetPool = value; }
 
+    
+    //[SerializeField] GameObject scoreObject;
     private void Awake()
     {
-        //score=player.GetComponent<Score>();
+        score=FindObjectOfType<Score>();
         //trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();for some reason wont work
 
         rigidBody2D = GetComponent<Rigidbody2D>();
@@ -48,6 +52,7 @@ public class Target : MonoBehaviour
     {
         waypointIndex = 0;
         RestartRoute();
+        
     }
 
     // Update is called once per frame
@@ -70,7 +75,7 @@ public class Target : MonoBehaviour
     }
     private void Move()
     {
-        //Debug.Log("target.Moving");
+        Debug.Log("target.Moving");
         transform.position= Vector2.MoveTowards(transform.position,nextWaypoint.position,movementSpeed);// *Time.deltaTime
         //Debug.Log(Vector2.Distance(transform.position, nextWaypoint.transform.position));
     }
@@ -98,8 +103,11 @@ public class Target : MonoBehaviour
         
         if (maxWaypointIndex == waypointIndex)
         {
+            waypointIndex = 0;
+            
+            targetPool.Release(this);
             //Debug.Log("target.trajectoryWaypointTransformList.Count = " + trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList.Count);
-            RestartRoute();
+            //RestartRoute();
         }
         else
         {
@@ -124,8 +132,8 @@ public class Target : MonoBehaviour
         else
         {
             transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform.position;
-            nextWaypoint = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex + 1].transform;
-
+            nextWaypoint = GenerateNextWaypointTransform();
+            
         }
     }
 
@@ -194,7 +202,6 @@ public class Target : MonoBehaviour
     {
 
         score.AddScore(targetScore);
-        OnDeath?.Invoke();
         //falling down
         alive = false;
         SetGravity(deadGravity);

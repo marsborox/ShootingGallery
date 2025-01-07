@@ -530,6 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa98b42b0dc15643ae3de2a3fc39ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 1379297482}
 --- !u!1 &742780742
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +608,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742780742}
   m_CullTransparentMesh: 1
+--- !u!1 &767614005 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1694234318040892575, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+  m_PrefabInstance: {fileID: 4215411040365421133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &779699649
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,6 +1184,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2147300119986146043, guid: 04a3b39060ce7ae47ac89aa51b84e1ed, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 767614005}
     - target: {fileID: 2276248003745736708, guid: 04a3b39060ce7ae47ac89aa51b84e1ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.32
@@ -1221,10 +1231,6 @@ PrefabInstance:
     - target: {fileID: 5647534638965689937, guid: 04a3b39060ce7ae47ac89aa51b84e1ed, type: 3}
       propertyPath: m_Name
       value: Target
-      objectReference: {fileID: 0}
-    - target: {fileID: 5647534638965689937, guid: 04a3b39060ce7ae47ac89aa51b84e1ed, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

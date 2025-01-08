@@ -11,12 +11,12 @@ public class Target : MonoBehaviour
 {
     Rigidbody2D rigidBody2D;
 
-    
-    float movementSpeed = 0.01f;//0.01-0.1 ok
+    public bool directionIsLeft;
+    float movementSpeed = 0.02f;//0.01-0.1 ok
     [SerializeField] public int trajectoryIndex;
     [SerializeField] int waypointIndex;
 
-    float deadGravity = 10f;//10 is good
+    float deadGravity = 3f;//10 is good
     float aliveGravity = 0f;
 
     string floorTag = "Floor";
@@ -27,11 +27,7 @@ public class Target : MonoBehaviour
     int targetScore = 1;
 
     private Score score;
-
-    
     public Transform nextWaypoint;
-    
-
     public TrajectoryConfigCollection trajectoryConfigCollection { private get; set; }
     [SerializeField] GameObject player;
     // Start is called before the first frame update
@@ -133,10 +129,18 @@ public class Target : MonoBehaviour
         {
             transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform.position;
             nextWaypoint = GenerateNextWaypointTransform();
-            
+            directionIsLeft = DirectionChecker();
         }
     }
 
+    bool DirectionChecker()
+    {
+        if (transform.position.x > nextWaypoint.transform.position.x)
+        {
+            return true;
+        }
+        else return false;
+    }
         Transform ReturnWaypoont(int i, int j)
         {
 
@@ -182,6 +186,7 @@ public class Target : MonoBehaviour
         RestartRoute();
         SetGravity(aliveGravity);
         this.transform.rotation=Quaternion.Euler(0,0,0);
+
     }
     
     public void OnTriggerEnter(Collider other)
@@ -201,7 +206,6 @@ public class Target : MonoBehaviour
     }
     public void TakeDamage()
     {
-
         Die();
     }
     IEnumerator DespawnRoutine()
@@ -213,9 +217,10 @@ public class Target : MonoBehaviour
     {
 
         score.AddScore(targetScore);
-        //falling down
         alive = false;
+        //falling down
         SetGravity(deadGravity);
+        //set direction of kick
         Throw();
         StartCoroutine(DespawnRoutine());
         
@@ -230,13 +235,14 @@ public class Target : MonoBehaviour
     }
     private void Throw()
     {
-        transform.eulerAngles = new Vector3(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), transform.eulerAngles.z);
+        //transform.eulerAngles = new Vector3(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), transform.eulerAngles.z);
 
         float speed = 50;
         //rigidBody2D.isKinematic = false;
-        Vector3 force = transform.forward;
-        force = new Vector3(force.x, force.y, 1);
-        rigidBody2D.AddForce(force * speed);
+        Vector3 forceVector = transform.forward;
+        forceVector = new Vector3(forceVector.x, forceVector.y, 1);
+        rigidBody2D.AddForce(forceVector * speed);
+
     }
     private void RandomThrow()
     {

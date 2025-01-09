@@ -18,13 +18,14 @@ public class Target : MonoBehaviour
 
     float deadGravity = 3f;//10 is good
     float aliveGravity = 0f;
+    int targetScore = 1;
+    float throwSpeed = 500f;
 
     string floorTag = "Floor";
     string projectileTag = "Projectile";
     public bool alive { private get; set; } = true;
     //public GameObject trajectoryPrefab;
     public int SO_index{ private get; set; }
-    int targetScore = 1;
 
     private Score score;
     public Transform nextWaypoint;
@@ -129,11 +130,11 @@ public class Target : MonoBehaviour
         {
             transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform.position;
             nextWaypoint = GenerateNextWaypointTransform();
-            directionIsLeft = DirectionChecker();
+            directionIsLeft = CheckDirection();
         }
     }
 
-    bool DirectionChecker()
+    bool CheckDirection()
     {
         if (transform.position.x > nextWaypoint.transform.position.x)
         {
@@ -208,11 +209,6 @@ public class Target : MonoBehaviour
     {
         Die();
     }
-    IEnumerator DespawnRoutine()
-    {
-        yield return new WaitForSeconds(3f);
-        targetPool.Release(this);//remove when floor is introduced - whole routine
-    }
     public void Die()
     {
 
@@ -224,6 +220,11 @@ public class Target : MonoBehaviour
         Throw();
         StartCoroutine(DespawnRoutine());
         
+    }
+    IEnumerator DespawnRoutine()
+    {
+        yield return new WaitForSeconds(3f);
+        targetPool.Release(this);//remove when floor is introduced - whole routine
     }
     void SetGravity(float inputGravityScale)
     {
@@ -237,11 +238,16 @@ public class Target : MonoBehaviour
     {
         //transform.eulerAngles = new Vector3(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), transform.eulerAngles.z);
 
-        float speed = 50;
+        
         //rigidBody2D.isKinematic = false;
-        Vector3 forceVector = transform.forward;
-        forceVector = new Vector3(forceVector.x, forceVector.y, 1);
-        rigidBody2D.AddForce(forceVector * speed);
+        //Vector3 forceVector = transform.forward;
+        /*Transform transformGameObject = transform.position;
+        float xAxis = transform.position.x;*/
+
+        /*float directionVectorX;
+        if (directionIsLeft) { directionVectorX = nextWaypoint.transform.position.y; }*/
+        Vector3 forceVector = new Vector3(nextWaypoint.transform.position.x, nextWaypoint.transform.position.y);
+        rigidBody2D.AddForce(forceVector * throwSpeed);
 
     }
     private void RandomThrow()

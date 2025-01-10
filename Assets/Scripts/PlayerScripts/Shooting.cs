@@ -11,7 +11,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] Projectile projectilePrefab;
     Action shoot;
     Action reload;
-
+    public Weapon currentWeapon;
     private IObjectPool<Projectile> projectilePool;
 
     [SerializeField] private bool collectionCheck = true;

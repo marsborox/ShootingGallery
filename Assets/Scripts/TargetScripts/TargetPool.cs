@@ -49,7 +49,6 @@ public class TargetPool : MonoBehaviour
         target.RestartRoute();
         target.gameObject.SetActive(true);
     }
-    
     private void OnDestroyTarget(Target target)
     {
         Destroy(target.gameObject);

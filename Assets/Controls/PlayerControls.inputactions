@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AutoShoot",
+                    "type": "Button",
+                    "id": "68cab590-3573-432c-8e56-e5bf07eb3d27",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -55,6 +64,85 @@
                     "processors": "",
                     "groups": "",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "762ce5ec-e7c1-4c54-a7cb-6ea390d52f68",
+                    "path": "<Mouse>/{PrimaryTrigger}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AutoShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "WeaponSwitch",
+            "id": "1b327678-08cb-495e-97db-6f8800b8ab33",
+            "actions": [
+                {
+                    "name": "SetPistol",
+                    "type": "Button",
+                    "id": "89f2d6f0-40e0-48d5-8913-19715d811760",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SetShotgun",
+                    "type": "Button",
+                    "id": "84aa4292-00ac-4dc6-a3f0-23928030f51d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SetMachineGun",
+                    "type": "Button",
+                    "id": "dfadbe25-021a-46c2-bb0b-d23a2aa0f037",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9019ee4d-3d54-4389-824d-e87960fbb4a8",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetPistol",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71121bf2-c7e7-4668-9833-85478bf0cb10",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetShotgun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4162a6e2-f590-4836-a23d-6f5415473e13",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetMachineGun",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -44,6 +44,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AutoShoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""68cab590-3573-432c-8e56-e5bf07eb3d27"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -79,6 +88,85 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""762ce5ec-e7c1-4c54-a7cb-6ea390d52f68"",
+                    ""path"": ""<Mouse>/{PrimaryTrigger}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AutoShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""WeaponSwitch"",
+            ""id"": ""1b327678-08cb-495e-97db-6f8800b8ab33"",
+            ""actions"": [
+                {
+                    ""name"": ""SetPistol"",
+                    ""type"": ""Button"",
+                    ""id"": ""89f2d6f0-40e0-48d5-8913-19715d811760"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SetShotgun"",
+                    ""type"": ""Button"",
+                    ""id"": ""84aa4292-00ac-4dc6-a3f0-23928030f51d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SetMachineGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""dfadbe25-021a-46c2-bb0b-d23a2aa0f037"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9019ee4d-3d54-4389-824d-e87960fbb4a8"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SetPistol"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71121bf2-c7e7-4668-9833-85478bf0cb10"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SetShotgun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4162a6e2-f590-4836-a23d-6f5415473e13"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SetMachineGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -89,6 +177,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Shooting = asset.FindActionMap("Shooting", throwIfNotFound: true);
         m_Shooting_Shoot = m_Shooting.FindAction("Shoot", throwIfNotFound: true);
         m_Shooting_Reload = m_Shooting.FindAction("Reload", throwIfNotFound: true);
+        m_Shooting_AutoShoot = m_Shooting.FindAction("AutoShoot", throwIfNotFound: true);
+        // WeaponSwitch
+        m_WeaponSwitch = asset.FindActionMap("WeaponSwitch", throwIfNotFound: true);
+        m_WeaponSwitch_SetPistol = m_WeaponSwitch.FindAction("SetPistol", throwIfNotFound: true);
+        m_WeaponSwitch_SetShotgun = m_WeaponSwitch.FindAction("SetShotgun", throwIfNotFound: true);
+        m_WeaponSwitch_SetMachineGun = m_WeaponSwitch.FindAction("SetMachineGun", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -152,12 +246,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IShootingActions> m_ShootingActionsCallbackInterfaces = new List<IShootingActions>();
     private readonly InputAction m_Shooting_Shoot;
     private readonly InputAction m_Shooting_Reload;
+    private readonly InputAction m_Shooting_AutoShoot;
     public struct ShootingActions
     {
         private @PlayerControls m_Wrapper;
         public ShootingActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Shoot => m_Wrapper.m_Shooting_Shoot;
         public InputAction @Reload => m_Wrapper.m_Shooting_Reload;
+        public InputAction @AutoShoot => m_Wrapper.m_Shooting_AutoShoot;
         public InputActionMap Get() { return m_Wrapper.m_Shooting; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -173,6 +269,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
+            @AutoShoot.started += instance.OnAutoShoot;
+            @AutoShoot.performed += instance.OnAutoShoot;
+            @AutoShoot.canceled += instance.OnAutoShoot;
         }
 
         private void UnregisterCallbacks(IShootingActions instance)
@@ -183,6 +282,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
+            @AutoShoot.started -= instance.OnAutoShoot;
+            @AutoShoot.performed -= instance.OnAutoShoot;
+            @AutoShoot.canceled -= instance.OnAutoShoot;
         }
 
         public void RemoveCallbacks(IShootingActions instance)
@@ -200,9 +302,78 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public ShootingActions @Shooting => new ShootingActions(this);
+
+    // WeaponSwitch
+    private readonly InputActionMap m_WeaponSwitch;
+    private List<IWeaponSwitchActions> m_WeaponSwitchActionsCallbackInterfaces = new List<IWeaponSwitchActions>();
+    private readonly InputAction m_WeaponSwitch_SetPistol;
+    private readonly InputAction m_WeaponSwitch_SetShotgun;
+    private readonly InputAction m_WeaponSwitch_SetMachineGun;
+    public struct WeaponSwitchActions
+    {
+        private @PlayerControls m_Wrapper;
+        public WeaponSwitchActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SetPistol => m_Wrapper.m_WeaponSwitch_SetPistol;
+        public InputAction @SetShotgun => m_Wrapper.m_WeaponSwitch_SetShotgun;
+        public InputAction @SetMachineGun => m_Wrapper.m_WeaponSwitch_SetMachineGun;
+        public InputActionMap Get() { return m_Wrapper.m_WeaponSwitch; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(WeaponSwitchActions set) { return set.Get(); }
+        public void AddCallbacks(IWeaponSwitchActions instance)
+        {
+            if (instance == null || m_Wrapper.m_WeaponSwitchActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_WeaponSwitchActionsCallbackInterfaces.Add(instance);
+            @SetPistol.started += instance.OnSetPistol;
+            @SetPistol.performed += instance.OnSetPistol;
+            @SetPistol.canceled += instance.OnSetPistol;
+            @SetShotgun.started += instance.OnSetShotgun;
+            @SetShotgun.performed += instance.OnSetShotgun;
+            @SetShotgun.canceled += instance.OnSetShotgun;
+            @SetMachineGun.started += instance.OnSetMachineGun;
+            @SetMachineGun.performed += instance.OnSetMachineGun;
+            @SetMachineGun.canceled += instance.OnSetMachineGun;
+        }
+
+        private void UnregisterCallbacks(IWeaponSwitchActions instance)
+        {
+            @SetPistol.started -= instance.OnSetPistol;
+            @SetPistol.performed -= instance.OnSetPistol;
+            @SetPistol.canceled -= instance.OnSetPistol;
+            @SetShotgun.started -= instance.OnSetShotgun;
+            @SetShotgun.performed -= instance.OnSetShotgun;
+            @SetShotgun.canceled -= instance.OnSetShotgun;
+            @SetMachineGun.started -= instance.OnSetMachineGun;
+            @SetMachineGun.performed -= instance.OnSetMachineGun;
+            @SetMachineGun.canceled -= instance.OnSetMachineGun;
+        }
+
+        public void RemoveCallbacks(IWeaponSwitchActions instance)
+        {
+            if (m_Wrapper.m_WeaponSwitchActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IWeaponSwitchActions instance)
+        {
+            foreach (var item in m_Wrapper.m_WeaponSwitchActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_WeaponSwitchActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public WeaponSwitchActions @WeaponSwitch => new WeaponSwitchActions(this);
     public interface IShootingActions
     {
         void OnShoot(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnAutoShoot(InputAction.CallbackContext context);
+    }
+    public interface IWeaponSwitchActions
+    {
+        void OnSetPistol(InputAction.CallbackContext context);
+        void OnSetShotgun(InputAction.CallbackContext context);
+        void OnSetMachineGun(InputAction.CallbackContext context);
     }
 }

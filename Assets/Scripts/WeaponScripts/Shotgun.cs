@@ -5,11 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Shotgun",menuName = "Weapon/Shotgun")]
 public class Shotgun : Weapon
 {
+    void Awake()
+    { 
     
+    }
 
-    public override void Shoot(GameObject gameObject)
+    public override void Shoot()
     {
         { Debug.Log("Shotgun Shot"); }
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }

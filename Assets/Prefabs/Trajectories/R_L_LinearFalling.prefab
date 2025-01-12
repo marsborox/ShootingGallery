@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 537758116551394142, guid: bce9a5d9cc536ff41b7080588cedad94, type: 3}
       propertyPath: m_Name
-      value: LinearRising
+      value: R_L_LinearFalling
       objectReference: {fileID: 0}
     - target: {fileID: 1388262860294786673, guid: bce9a5d9cc536ff41b7080588cedad94, type: 3}
       propertyPath: m_LocalPosition.y
@@ -38,7 +38,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3345150409240344259, guid: bce9a5d9cc536ff41b7080588cedad94, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.55
       objectReference: {fileID: 0}
     - target: {fileID: 3345150409240344259, guid: bce9a5d9cc536ff41b7080588cedad94, type: 3}
       propertyPath: m_LocalPosition.z

@@ -11,8 +11,13 @@ public class Shooting : MonoBehaviour
     [SerializeField] Projectile projectilePrefab;
     Action shoot;
     Action reload;
-    public Weapon currentWeapon;
     private IObjectPool<Projectile> projectilePool;
+
+    public Weapon currentWeapon;
+    [SerializeField] Weapon pistol;
+    [SerializeField] Weapon shotgun;
+    [SerializeField] Weapon machineGun;
+    [SerializeField] UIWeapons uiWeapons;
 
     [SerializeField] private bool collectionCheck = true;
     [SerializeField] private int defaultCapacity = 10;
@@ -22,10 +27,13 @@ public class Shooting : MonoBehaviour
     {
         projectilePool = new ObjectPool<Projectile>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxSize);
         playerControls=new PlayerControls();
+        
     }
+
     void Start()
     {
         PlayerInput();
+        SetPistol();
     }
 
     // Update is called once per frame
@@ -38,12 +46,17 @@ public class Shooting : MonoBehaviour
         //shoot = playerControls.Shooting.Shoot();
         playerControls.Shooting.Shoot.started+= _ =>Shoot();
         playerControls.Shooting.Reload.started+= _ =>Reload();
+        playerControls.WeaponSwitch.SetPistol.started += _ => SetPistol();
+        playerControls.WeaponSwitch.SetShotgun.started += _ => SetShotgun();
+        playerControls.WeaponSwitch.SetMachineGun.started += _ => SetMachineGun();
     }
     void Shoot()
     {
+        /*
         Debug.Log("Shooting. pew pew");
         projectilePool.Get();
-        
+        */
+        currentWeapon.Shoot();
     }
 
     #region ProjectilePooling
@@ -51,7 +64,6 @@ public class Shooting : MonoBehaviour
     { 
         Projectile projectileInstance = Instantiate(projectilePrefab);
         projectileInstance.projectilePoolPublic = projectilePool;
-
         return projectileInstance;
     }
     private void OnGetFromPool(Projectile projectile)
@@ -66,10 +78,7 @@ public class Shooting : MonoBehaviour
     {
         Destroy(projectile.gameObject);
     }
-
     #endregion
-
-
     private void Reload()
     {
         Debug.Log("Shooting.Reloading");
@@ -77,9 +86,31 @@ public class Shooting : MonoBehaviour
     void OnEnable()
     {
         playerControls.Enable();
+        
     }
     void OnDisable()
     {
         playerControls.Disable();
+    }
+    public void SetPistol()
+    { 
+        Debug.Log("shooting.pistol set");
+        currentWeapon=pistol;
+        uiWeapons.DisableImages();
+        uiWeapons.PistolSetActiveUI();
+    }
+    public void SetShotgun()
+    { 
+        Debug.Log("shooting.shotgun set");
+        currentWeapon=shotgun;
+        uiWeapons.DisableImages();
+        uiWeapons.ShotgunSetActiveUI();
+    }
+    public void SetMachineGun()
+    {
+        Debug.Log("shooting.machinegun set");
+        currentWeapon=machineGun;
+        uiWeapons.DisableImages();
+        uiWeapons.MachineGunSetActiveUI();
     }
 }

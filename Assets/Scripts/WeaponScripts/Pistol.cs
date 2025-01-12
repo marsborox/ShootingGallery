@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Pistol", menuName = "Weapon/Pistol")]
 public class Pistol : Weapon
 {
-    public override void Shoot(GameObject gameObject)
+    public override void Shoot()
     {
         { Debug.Log("Pistol Shot"); }
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }

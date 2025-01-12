@@ -48,6 +48,7 @@ public class TargetPool : MonoBehaviour
         target.trajectoryIndex = trajectoryConfigCollection.ReturnRandomConfig();//must be that method random
         target.RestartRoute();
         target.gameObject.SetActive(true);
+
     }
     private void OnDestroyTarget(Target target)
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
@@ -44,19 +45,30 @@ public class Shooting : MonoBehaviour
     void PlayerInput()
     {
         //shoot = playerControls.Shooting.Shoot();
-        playerControls.Shooting.Shoot.started+= _ =>Shoot();
+        playerControls.Shooting.Shoot.started+= Shoot;
         playerControls.Shooting.Reload.started+= _ =>Reload();
         playerControls.WeaponSwitch.SetPistol.started += _ => SetPistol();
         playerControls.WeaponSwitch.SetShotgun.started += _ => SetShotgun();
         playerControls.WeaponSwitch.SetMachineGun.started += _ => SetMachineGun();
     }
-    void Shoot()
+    void Shoot(InputAction.CallbackContext context)
     {
         /*
         Debug.Log("Shooting. pew pew");
         projectilePool.Get();
         */
-        currentWeapon.Shoot();
+
+        if (currentWeapon.shootReady)
+        { 
+            currentWeapon.shootReady = false;
+            currentWeapon.Shoot();
+            StartCoroutine(ShootingRoutine());
+        }
+    }
+    IEnumerator ShootingRoutine()
+    {
+        yield return new WaitForSeconds(currentWeapon.cooldown);
+        currentWeapon.shootReady = true;
     }
 
     #region ProjectilePooling

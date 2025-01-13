@@ -14,7 +14,7 @@ public class UIWeapons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DisableImages();
+        
     }
 
     // Update is called once per frame

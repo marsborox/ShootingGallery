@@ -33,7 +33,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""597ccb2d-c458-45dd-a0f6-413e3c9183ab"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.02)"",
                     ""initialStateCheck"": false
                 },
                 {

@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7151316937a2b1648a18efb826ced34d, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
+  cooldown: 0.7
+  cooldownToReduce: 0
+  shootReady: 0

@@ -8,9 +8,14 @@ public class UIWeapons : MonoBehaviour
 
     [SerializeField] GameObject uiPistolActive;
     [SerializeField] GameObject uiShotgunActive;
-    [SerializeField] GameObject machineGunActive;
+    [SerializeField] GameObject uiMachineGunActive;
 
-    
+    [SerializeField] GameObject uiPistol;
+    [SerializeField] GameObject uiShotgun;
+    [SerializeField] GameObject uimachineGun;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +31,9 @@ public class UIWeapons : MonoBehaviour
     {
         uiPistolActive.SetActive(false);
         uiShotgunActive.SetActive(false);
-        machineGunActive.SetActive(false);
+        uiMachineGunActive.SetActive(false);
+
+        //uiPistol.GetComponent<UIWeapon>().activeBackground.SetActive(false);
     }
     public void PistolSetActiveUI()
     {
@@ -38,6 +45,6 @@ public class UIWeapons : MonoBehaviour
     }
     public void MachineGunSetActiveUI()
     {
-        machineGunActive.SetActive(true);
+        uiMachineGunActive.SetActive(true);
     }
 }

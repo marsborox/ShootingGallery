@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+
+//using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
@@ -20,10 +22,14 @@ public class Shooting : MonoBehaviour
     [SerializeField] Weapon machineGun;
     [SerializeField] UIWeapons uiWeapons;
 
+    
+
     [SerializeField] private bool collectionCheck = true;
     [SerializeField] private int defaultCapacity = 10;
     [SerializeField] private int maxSize = 30;
     // Start is called before the first frame update
+
+    List <Weapon> weapons = new List<Weapon>();
     private void Awake()
     {
         projectilePool = new ObjectPool<Projectile>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxSize);
@@ -35,12 +41,14 @@ public class Shooting : MonoBehaviour
     {
         PlayerInput();
         SetPistol();
+        CreateWeaponArray();
     }
 
     // Update is called once per frame
     void Update()
     {
         //PlayerInput();
+        WeaponCooldownChecker();
     }
     void PlayerInput()
     {
@@ -50,6 +58,14 @@ public class Shooting : MonoBehaviour
         playerControls.WeaponSwitch.SetPistol.started += _ => SetPistol();
         playerControls.WeaponSwitch.SetShotgun.started += _ => SetShotgun();
         playerControls.WeaponSwitch.SetMachineGun.started += _ => SetMachineGun();
+    }
+    void CreateWeaponArray()
+    { 
+        
+        weapons.Add(pistol) ;
+        weapons.Add(shotgun) ;
+        weapons.Add(machineGun) ;
+
     }
     void Shoot(InputAction.CallbackContext context)
     {
@@ -63,11 +79,14 @@ public class Shooting : MonoBehaviour
             currentWeapon.shootReady = false;
             currentWeapon.Shoot();
             StartCoroutine(ShootingRoutine());
+
         }
     }
     IEnumerator ShootingRoutine()
     {
-        yield return new WaitForSeconds(currentWeapon.cooldown);
+        Weapon usedWeapon=currentWeapon;
+        Debug.Log("shooting.ShootingRoutine"+usedWeapon.cooldown.ToString());
+        yield return new WaitForSeconds(usedWeapon.cooldown);
         currentWeapon.shootReady = true;
     }
 
@@ -107,6 +126,7 @@ public class Shooting : MonoBehaviour
     public void SetPistol()
     { 
         Debug.Log("shooting.pistol set");
+
         currentWeapon=pistol;
         uiWeapons.DisableImages();
         uiWeapons.PistolSetActiveUI();
@@ -114,6 +134,7 @@ public class Shooting : MonoBehaviour
     public void SetShotgun()
     { 
         Debug.Log("shooting.shotgun set");
+
         currentWeapon=shotgun;
         uiWeapons.DisableImages();
         uiWeapons.ShotgunSetActiveUI();
@@ -121,8 +142,42 @@ public class Shooting : MonoBehaviour
     public void SetMachineGun()
     {
         Debug.Log("shooting.machinegun set");
+
         currentWeapon=machineGun;
         uiWeapons.DisableImages();
         uiWeapons.MachineGunSetActiveUI();
+
     }
+    public void WeaponCooldownChecker()
+    {
+        foreach (Weapon weapon in weapons)
+        {
+            if (!weapon.shootReady)
+            {
+                //UpdateCoolDownProgres(weapon)
+                if (weapon.cooldownToReduce > 0)
+                {
+                    weapon.cooldownToReduce = weapon.cooldownToReduce - weapon.cooldown * Time.deltaTime;
+                }
+                else
+                {
+                    weapon.shootReady = true;
+                }
+                    //here update interface
+
+            }
+        }
+    }
+    void UpdateCoolDownProgres(Weapon weapon)
+    {
+        if (weapon.cooldownToReduce > 0)
+        {
+            weapon.cooldownToReduce = weapon.cooldownToReduce - weapon.cooldown * Time.deltaTime;
+        }
+        else 
+        {
+            weapon.shootReady = true;
+        }
+    }
+ 
 }

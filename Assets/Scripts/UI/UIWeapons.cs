@@ -27,7 +27,7 @@ public class UIWeapons : MonoBehaviour
     {
         
     }
-    public void DisableImages()
+    public void DisableActiveUIs()
     {
         uiPistolActive.SetActive(false);
         uiShotgunActive.SetActive(false);

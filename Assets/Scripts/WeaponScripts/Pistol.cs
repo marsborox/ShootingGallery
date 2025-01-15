@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Pistol", menuName = "Weapon/Pistol")]
+
 public class Pistol : Weapon
 {
-    private void Awake()
+
+    
+    private void Start()
     {
         cooldown = 0.7f;
     }

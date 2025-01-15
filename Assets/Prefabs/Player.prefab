@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 6204931447622664294}
   - component: {fileID: 3586135280891037503}
   - component: {fileID: 1939684547893671898}
+  - component: {fileID: 3134058008044287455}
+  - component: {fileID: 7093930168627182722}
+  - component: {fileID: 7646088224482738283}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -77,6 +80,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: -6520004094155727759, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
+  currentWeapon: {fileID: 0}
+  pistol: {fileID: 11400000, guid: 4e6c2d624922b8845b01a4b4ecc376bb, type: 2}
+  shotgun: {fileID: 11400000, guid: 3e96459ba741cdc4b8d4ddb80ba60caf, type: 2}
+  machineGun: {fileID: 11400000, guid: c02bf94804d12d740807680ac8bb90e3, type: 2}
+  uiWeapons: {fileID: 0}
   collectionCheck: 1
   defaultCapacity: 10
   maxSize: 30
@@ -94,3 +102,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScore: 0
   ui: {fileID: 0}
+--- !u!114 &3134058008044287455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694234318040892575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7151316937a2b1648a18efb826ced34d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  cooldownToReduce: 0
+  shootReady: 1
+--- !u!114 &7093930168627182722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694234318040892575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd8d75e7b8bea14c996c1810c8e9fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  cooldownToReduce: 0
+  shootReady: 1
+--- !u!114 &7646088224482738283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694234318040892575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18bdd31ac1790a241ac8ec06055473c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  cooldownToReduce: 0
+  shootReady: 1

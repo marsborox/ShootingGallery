@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public abstract class Weapon : ScriptableObject
+public abstract class Weapon : MonoBehaviour
 {
     public float cooldown;
     public float cooldownToReduce;

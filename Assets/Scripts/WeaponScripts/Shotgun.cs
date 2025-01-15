@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Shotgun",menuName = "Weapon/Shotgun")]
 public class Shotgun : Weapon
 {
-    private void Awake()
+    private void Start()
     {
         cooldown = 0.7f;
     }

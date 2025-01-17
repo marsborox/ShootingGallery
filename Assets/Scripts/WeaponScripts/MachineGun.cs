@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MachineGun", menuName = "Weapon/MachineGun")]
+
 public class MachineGun : Weapon
 {
     private void Start()
     {
         cooldown = 0.2f;
     }
-    public override void Shoot()
+    public override void WeaponShoots()
     {
         { Debug.Log("MachineGun"); }
         //throw new System.NotImplementedException();
+        base.WeaponPostShoot();
     }
 }

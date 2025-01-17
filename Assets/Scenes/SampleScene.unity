@@ -901,6 +901,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 558774693}
     m_Modifications:
+    - target: {fileID: 3400019913528327929, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
+      propertyPath: cooldownReady
+      value: 
+      objectReference: {fileID: 739753281}
     - target: {fileID: 3916044051633354304, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1007,6 +1011,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5803436282889356614, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
   m_PrefabInstance: {fileID: 739753279}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &739753281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5406177059745555520, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
+  m_PrefabInstance: {fileID: 739753279}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &742780742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,51 +1104,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1694234318040892575, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
   m_PrefabInstance: {fileID: 4215411040365421133}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &767614010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767614005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18bdd31ac1790a241ac8ec06055473c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  cooldownToReduce: 0
-  shootReady: 1
---- !u!114 &767614011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767614005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd8d75e7b8bea14c996c1810c8e9fdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  cooldownToReduce: 0
-  shootReady: 1
---- !u!114 &767614012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767614005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7151316937a2b1648a18efb826ced34d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  cooldownToReduce: 0
-  shootReady: 1
 --- !u!1 &779699649
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,6 +1659,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 558774693}
     m_Modifications:
+    - target: {fileID: 3400019913528327929, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
+      propertyPath: cooldownReady
+      value: 
+      objectReference: {fileID: 1844738611}
     - target: {fileID: 3916044051633354304, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1795,6 +1769,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5803436282889356614, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
   m_PrefabInstance: {fileID: 1844738609}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1844738611 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5406177059745555520, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
+  m_PrefabInstance: {fileID: 1844738609}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1887439855 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2883878350153069451, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
@@ -1883,23 +1868,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 575290055}
     - target: {fileID: 3586135280891037503, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
-      propertyPath: pistol
-      value: 
-      objectReference: {fileID: 11400000, guid: 4e6c2d624922b8845b01a4b4ecc376bb, type: 2}
-    - target: {fileID: 3586135280891037503, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
-      propertyPath: shotgun
-      value: 
-      objectReference: {fileID: 11400000, guid: 3e96459ba741cdc4b8d4ddb80ba60caf, type: 2}
-    - target: {fileID: 3586135280891037503, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
       propertyPath: uiWeapons
-      value: 
-      objectReference: {fileID: 558774694}
-    - target: {fileID: 3586135280891037503, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
-      propertyPath: machineGun
-      value: 
-      objectReference: {fileID: 11400000, guid: c02bf94804d12d740807680ac8bb90e3, type: 2}
-    - target: {fileID: 3586135280891037503, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
-      propertyPath: uiWeapones
       value: 
       objectReference: {fileID: 558774694}
     - target: {fileID: 9084044205488662614, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
@@ -1945,16 +1914,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1694234318040892575, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 767614012}
-    - targetCorrespondingSourceObject: {fileID: 1694234318040892575, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 767614011}
-    - targetCorrespondingSourceObject: {fileID: 1694234318040892575, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 767614010}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
 --- !u!1001 &7693133376328954291
 PrefabInstance:
@@ -1964,6 +1924,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 558774693}
     m_Modifications:
+    - target: {fileID: 3400019913528327929, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
+      propertyPath: cooldownReady
+      value: 
+      objectReference: {fileID: 7693133376328954292}
     - target: {fileID: 3916044051633354304, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2065,6 +2029,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
+--- !u!114 &7693133376328954292 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5406177059745555520, guid: ac67a3b28fedf6243ad6ac670675b2e1, type: 3}
+  m_PrefabInstance: {fileID: 7693133376328954291}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

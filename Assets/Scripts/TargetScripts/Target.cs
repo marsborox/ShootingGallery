@@ -211,7 +211,7 @@ public class Target : MonoBehaviour
     }
     public void Die()
     {
-
+        
         score.AddScore(targetScore);
         alive = false;
         //falling down

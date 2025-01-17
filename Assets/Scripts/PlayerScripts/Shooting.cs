@@ -77,10 +77,14 @@ public class Shooting : MonoBehaviour
         */
 
         if (currentWeapon.shootReady)
-        { 
+        {
+
+            currentWeapon.WeaponShoots();
+            currentWeapon.cooldownToReduce = currentWeapon.cooldown;
             currentWeapon.shootReady = false;
+            /*currentWeapon.shootReady = false;
             currentWeapon.Shoot();
-            StartCoroutine(ShootingRoutine());
+            StartCoroutine(ShootingRoutine());*/
 
         }
     }
@@ -146,10 +150,14 @@ public class Shooting : MonoBehaviour
         Debug.Log("shooting.machinegun set");
 
         currentWeapon=machineGun;
+
+
         uiWeapons.DisableActiveUIs();
         uiWeapons.MachineGunSetActiveUI();
 
     }
+
+
     public void WeaponCooldownChecker()
     {
         foreach (Weapon weapon in weapons)
@@ -165,8 +173,7 @@ public class Shooting : MonoBehaviour
                 {
                     weapon.shootReady = true;
                 }
-                    //here update interface
-
+                    
             }
         }
     }

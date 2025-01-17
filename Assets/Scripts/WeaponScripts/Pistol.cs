@@ -12,12 +12,12 @@ public class Pistol : Weapon
     {
         cooldown = 0.7f;
     }
-    public override void Shoot()
+    public override void WeaponShoots()
     {
 
             { Debug.Log("Pistol Shot"); }
             //throw new System.NotImplementedException();
-       
+            base.WeaponPostShoot();
     }
 
 }

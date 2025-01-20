@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6204931447622664294}
   - component: {fileID: 3586135280891037503}
   - component: {fileID: 1939684547893671898}
-  - component: {fileID: 3134058008044287455}
+  - component: {fileID: 4470850923447555488}
   - component: {fileID: 7093930168627182722}
   - component: {fileID: 7646088224482738283}
   m_Layer: 0
@@ -81,9 +81,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: -6520004094155727759, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
   currentWeapon: {fileID: 0}
-  pistol: {fileID: 11400000, guid: 4e6c2d624922b8845b01a4b4ecc376bb, type: 2}
-  shotgun: {fileID: 11400000, guid: 3e96459ba741cdc4b8d4ddb80ba60caf, type: 2}
-  machineGun: {fileID: 11400000, guid: c02bf94804d12d740807680ac8bb90e3, type: 2}
   uiWeapons: {fileID: 0}
   collectionCheck: 1
   defaultCapacity: 10
@@ -102,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerScore: 0
   ui: {fileID: 0}
---- !u!114 &3134058008044287455
+--- !u!114 &4470850923447555488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,6 +114,7 @@ MonoBehaviour:
   cooldown: 0
   cooldownToReduce: 0
   shootReady: 1
+  weaponActive: 0
 --- !u!114 &7093930168627182722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +130,7 @@ MonoBehaviour:
   cooldown: 0
   cooldownToReduce: 0
   shootReady: 1
+  weaponActive: 0
 --- !u!114 &7646088224482738283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +146,4 @@ MonoBehaviour:
   cooldown: 0
   cooldownToReduce: 0
   shootReady: 1
+  weaponActive: 0

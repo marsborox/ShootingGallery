@@ -17,7 +17,7 @@ public class Shooting : MonoBehaviour
     private IObjectPool<Projectile> projectilePool;
 
     public Weapon currentWeapon;
-    Weapon pistol;
+    Weapon rifle;
     Weapon shotgun;
     Weapon machineGun;
     [SerializeField] UIWeapons uiWeapons;
@@ -34,7 +34,7 @@ public class Shooting : MonoBehaviour
     {
         projectilePool = new ObjectPool<Projectile>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxSize);
         playerControls=new PlayerControls();
-        pistol = GetComponent<Pistol>();
+        rifle = GetComponent<Rifle>();
         shotgun = GetComponent<Shotgun>();
         machineGun = GetComponent<MachineGun>();
     }
@@ -64,7 +64,7 @@ public class Shooting : MonoBehaviour
     void CreateWeaponArray()
     { 
         
-        weapons.Add(pistol) ;
+        weapons.Add(rifle) ;
         weapons.Add(shotgun) ;
         weapons.Add(machineGun) ;
 
@@ -131,9 +131,9 @@ public class Shooting : MonoBehaviour
     }
     public void SetPistol()
     { 
-        Debug.Log("shooting.pistol set");
+        Debug.Log("shooting.rifle set");
 
-        currentWeapon=pistol;
+        currentWeapon=rifle;
         uiWeapons.DisableActiveUIs();
         uiWeapons.PistolSetActiveUI();
     }

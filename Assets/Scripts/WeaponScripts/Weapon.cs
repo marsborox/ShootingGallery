@@ -9,15 +9,14 @@ public abstract class Weapon : MonoBehaviour
     public float cooldownToReduce;
     public bool shootReady=true;
 
+    [SerializeField] public Projectile projectilePrefab;
     [SerializeField] public bool weaponActive = false;
-    [SerializeField] 
+    
     public abstract void WeaponShoots();
 
     private void Update()
     {
         CooldownChecker();
-
-
     }
 
     void CooldownChecker()

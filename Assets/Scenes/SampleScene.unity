@@ -1871,6 +1871,10 @@ PrefabInstance:
       propertyPath: uiWeapons
       value: 
       objectReference: {fileID: 558774694}
+    - target: {fileID: 4470850923447555488, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 4055800372496051109, guid: 7949b6fc94fe0474b9fb1ab6ff675bed, type: 3}
     - target: {fileID: 9084044205488662614, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

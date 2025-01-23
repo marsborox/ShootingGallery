@@ -62,6 +62,5 @@ public class Projectile : MonoBehaviour
         Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pz.z = 0;
         gameObject.transform.position = pz;
-  
     }
 }

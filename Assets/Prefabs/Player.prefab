@@ -114,7 +114,11 @@ MonoBehaviour:
   cooldown: 0
   cooldownToReduce: 0
   shootReady: 1
+  projectilePrefab: {fileID: -6520004094155727759, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
   weaponActive: 0
+  collectionCheck: 1
+  defaultCapacity: 10
+  maxSize: 30
 --- !u!114 &7093930168627182722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,6 +134,7 @@ MonoBehaviour:
   cooldown: 0
   cooldownToReduce: 0
   shootReady: 1
+  projectilePrefab: {fileID: -6520004094155727759, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
   weaponActive: 0
 --- !u!114 &7646088224482738283
 MonoBehaviour:
@@ -146,4 +151,5 @@ MonoBehaviour:
   cooldown: 0
   cooldownToReduce: 0
   shootReady: 1
+  projectilePrefab: {fileID: -6520004094155727759, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
   weaponActive: 0

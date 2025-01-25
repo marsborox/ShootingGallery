@@ -5,13 +5,16 @@ using UnityEngine.Pool;
 
 public abstract class Weapon : MonoBehaviour
 {
-    public float cooldown;
-    public float cooldownToReduce;
+    [SerializeField] public float cooldown;
+    [SerializeField] public float cooldownToReduce;
     public bool shootReady=true;
 
     [SerializeField] public Projectile projectilePrefab;
     [SerializeField] public bool weaponActive = false;
-    
+
+    [SerializeField] public bool collectionCheck = true;
+    [SerializeField] public int defaultCapacity = 10;
+    [SerializeField] public int maxSize = 30;
     public abstract void WeaponShoots();
 
     private void Update()
@@ -39,5 +42,24 @@ public abstract class Weapon : MonoBehaviour
     {
         cooldownToReduce = cooldown;
         shootReady = false;
+    }
+
+    public Projectile CreateProjectile(ObjectPool<Projectile> pool)
+    {
+        Projectile projectileInstance = Instantiate(projectilePrefab);
+        projectileInstance.projectilePoolPublic = pool;
+        return projectileInstance;
+    }
+    public void OnGetFromPool(Projectile projectile)
+    {
+        projectile.gameObject.SetActive(true);
+    }
+    public void OnReleaseToPool(Projectile projectile)
+    {
+        projectile.gameObject.SetActive(false);
+    }
+    public void OnDestroyPooledObject(Projectile projectile)
+    {
+        Destroy(projectile.gameObject);
     }
 }

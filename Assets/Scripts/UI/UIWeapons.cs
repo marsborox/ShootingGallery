@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class UIWeapons : MonoBehaviour
 {
 
-    [SerializeField] GameObject uiPistolActive;
+    [SerializeField] GameObject uiRifleActive;
     [SerializeField] GameObject uiShotgunActive;
     [SerializeField] GameObject uiMachineGunActive;
 
-    [SerializeField] GameObject uiPistol;
-    [SerializeField] GameObject uiShotgun;
-    [SerializeField] GameObject uimachineGun;
+    [SerializeField] UIWeapon uiRifle;
+    [SerializeField] UIWeapon uiShotgun;
+    [SerializeField] UIWeapon uimachineGun;
 
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -22,14 +22,16 @@ public class UIWeapons : MonoBehaviour
         
     }
 
+
     // Update is called once per frame
     void Update()
     {
         
     }
+
     public void DisableActiveUIs()
     {
-        uiPistolActive.SetActive(false);
+        uiRifleActive.SetActive(false);
         uiShotgunActive.SetActive(false);
         uiMachineGunActive.SetActive(false);
 
@@ -37,7 +39,7 @@ public class UIWeapons : MonoBehaviour
     }
     public void PistolSetActiveUI()
     {
-        uiPistolActive.SetActive(true);
+        uiRifleActive.SetActive(true);
     }
     public void ShotgunSetActiveUI()
     {

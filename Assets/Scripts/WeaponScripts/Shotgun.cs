@@ -6,16 +6,32 @@ using UnityEngine.Pool;
 
 public class Shotgun : Weapon
 {
-    private IObjectPool<Projectile> shotgunShellPool;
+    private IObjectPool<Projectile> shotGunShotPool;
+    [SerializeField] int numberOfShots = 5; 
+
+    private void Awake()
+    {
+
+        shotGunShotPool = new ObjectPool<Projectile>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxSize);//
+    }
     private void Start()
     {
-        cooldown = 0.7f;
-    }
 
+    }
     public override void WeaponShoots()
     {
-        { Debug.Log("Shotgun Shot"); }
+        Debug.Log("Rifle Shot");
         //throw new System.NotImplementedException();
+        shotGunShotPool.Get();
+        Debug.Log("Rifle PostShot");
+        //projectileInstance.transform.position= 
         base.WeaponPostShoot();
+    }
+
+    Projectile CreateProjectile()
+    {
+        Projectile projectileInstance = Instantiate(projectilePrefab);
+        projectileInstance.projectilePoolPublic = shotGunShotPool;
+        return projectileInstance;
     }
 }

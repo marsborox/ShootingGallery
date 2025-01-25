@@ -41,7 +41,7 @@ public class Shooting : MonoBehaviour
 
     void Start()
     {
-        PlayerInput();
+        EnablePlayerInput();
         SetPistol();
         CreateWeaponArray();
     }
@@ -52,7 +52,7 @@ public class Shooting : MonoBehaviour
         //PlayerInput();
         WeaponCooldownChecker();
     }
-    void PlayerInput()
+    void EnablePlayerInput()
     {
         //shoot = playerControls.Shooting.Shoot();
         playerControls.Shooting.Shoot.started+= Shoot;
@@ -60,6 +60,15 @@ public class Shooting : MonoBehaviour
         playerControls.WeaponSwitch.SetPistol.started += _ => SetPistol();
         playerControls.WeaponSwitch.SetShotgun.started += _ => SetShotgun();
         playerControls.WeaponSwitch.SetMachineGun.started += _ => SetMachineGun();
+    }
+    void DisablePlayerInput()
+    {
+        //shoot = playerControls.Shooting.Shoot();
+        playerControls.Shooting.Shoot.started -= Shoot;
+        playerControls.Shooting.Reload.started -= _ => Reload();
+        playerControls.WeaponSwitch.SetPistol.started -= _ => SetPistol();
+        playerControls.WeaponSwitch.SetShotgun.started -= _ => SetShotgun();
+        playerControls.WeaponSwitch.SetMachineGun.started -= _ => SetMachineGun();
     }
     void CreateWeaponArray()
     { 

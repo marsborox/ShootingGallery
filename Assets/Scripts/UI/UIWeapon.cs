@@ -9,15 +9,7 @@ public class UIWeapon : MonoBehaviour
 
     [SerializeField] public Image cooldownReady;// why not see
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Start is called before the first frame update
+
 }

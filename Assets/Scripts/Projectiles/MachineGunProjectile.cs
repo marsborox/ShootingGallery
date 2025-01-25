@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class MachineGunProjectile : Projectile
 {
-    float dispersion = 20;
-    public void SetPosition()
+    
+    public override void SetPosition()
     {
-        Debug.Log("projectile. mouse posiiton");
+        Debug.Log("MachineGun.projectile. mouse posiiton");
 
         Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pz.z = 0;
         //gameObject.transform.position = pz;
-        gameObject.transform.position = Disperze(pz);
+        Vector2 position = Disperze(pz);
+        gameObject.transform.position = position;
     }
 }

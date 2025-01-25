@@ -20,10 +20,13 @@ public class Shotgun : Weapon
     }
     public override void WeaponShoots()
     {
-        Debug.Log("Rifle Shot");
+        Debug.Log("Shotgun Shot");
         //throw new System.NotImplementedException();
-        shotGunShotPool.Get();
-        Debug.Log("Rifle PostShot");
+        for (int i = 0; i < numberOfShots; i++)
+        {
+            shotGunShotPool.Get();
+        }
+        Debug.Log("Shotgun PostShot");
         //projectileInstance.transform.position= 
         base.WeaponPostShoot();
     }

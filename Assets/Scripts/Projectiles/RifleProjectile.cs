@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RifleProjectile : Projectile
 {
-    void SetPosition()
+    public override void SetPosition()
     {
-        Debug.Log("projectile. mouse posiiton");
+        Debug.Log("Rifle.projectile. mouse posiiton");
 
         Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         pz.z = 0;

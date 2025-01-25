@@ -4,7 +4,7 @@ using UnityEngine.Pool;
 
 public class Projectile : MonoBehaviour
 {
-    float dispersion = 0;
+    [SerializeField] float dispersion = 0;
     Collider2D collider;
     private IObjectPool<Projectile> projectilePoolPrivate;
     public IObjectPool<Projectile> projectilePoolPublic { set => projectilePoolPrivate = value; }
@@ -56,7 +56,7 @@ public class Projectile : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.02f);
         collider.enabled = false;
     }
-    void SetPosition() 
+    public virtual void SetPosition() 
     {
         Debug.Log("projectile. mouse posiiton");
         
@@ -68,11 +68,12 @@ public class Projectile : MonoBehaviour
 
     public Vector2 Disperze(Vector2 inputVector)
     {
-        float moveDistance=Random.RandomRange(0,dispersion);
+        float moveDistance=Random.Range(0,dispersion);
 
-        Vector2 randomDirection = Random.insideUnitCircle;
+        Debug.Log("projectile. dispersion distance = "+moveDistance);
+        Vector2 randomDirection = Random.insideUnitCircle.normalized;
 
-        Vector2 newPosition = inputVector + randomDirection.normalized * moveDistance;
+        Vector2 newPosition = inputVector + randomDirection * moveDistance;
         return newPosition;
     }
 }

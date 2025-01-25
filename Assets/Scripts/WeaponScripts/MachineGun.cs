@@ -19,10 +19,10 @@ public class MachineGun : Weapon
     }
     public override void WeaponShoots()
     {
-        Debug.Log("Rifle Shot");
+        Debug.Log("MachineGun Shot");
         //throw new System.NotImplementedException();
         machineGunShotPool.Get();
-        Debug.Log("Rifle PostShot");
+        Debug.Log("MachineGun PostShot");
         //projectileInstance.transform.position= 
         base.WeaponPostShoot();
     }

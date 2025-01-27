@@ -29,6 +29,7 @@ public class Target : MonoBehaviour
 
     private Score score;
     public Transform nextWaypoint;
+    TargetHealth targetHealth;
     public TrajectoryConfigCollection trajectoryConfigCollection { private get; set; }
     [SerializeField] GameObject player;
     // Start is called before the first frame update
@@ -44,6 +45,7 @@ public class Target : MonoBehaviour
         //trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();for some reason wont work
 
         rigidBody2D = GetComponent<Rigidbody2D>();
+        targetHealth = GetComponent<TargetHealth>();
     }
     void Start()
     {
@@ -198,16 +200,16 @@ public class Target : MonoBehaviour
         }
         if (alive && other.tag==projectileTag)
         {
-            TakeDamage();
+            Die();
         }
         //if floor collider hits this object
         /*{
         Deactivate
             }*/
     }
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        Die();
+        targetHealth.TakeDamage(damage);
     }
     public void Die()
     {

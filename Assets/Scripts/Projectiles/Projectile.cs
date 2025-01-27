@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float dispersion = 0;
+    int damage;
     Collider2D collider;
     private IObjectPool<Projectile> projectilePoolPrivate;
     public IObjectPool<Projectile> projectilePoolPublic { set => projectilePoolPrivate = value; }
@@ -21,16 +22,16 @@ public class Projectile : MonoBehaviour
     //int damage = 10;
     private void OnTriggerEnter2D(Collider2D other)
     {
-
-        if (other.gameObject.GetComponent<Target>())
+        Target target = other.gameObject.GetComponent<Target>();
+        if (target !=null)
         {
             //other.gameObject.GetComponent<Target>().Die();
-
-            other.gameObject.GetComponent<Target>().TakeDamage();
+            target.TakeDamage(damage);
             //Do Damage
             //Debug.Log("projectile.Doing Le Damage");
+            target = null;
         }
-
+        
     }
     private void OnEnable()
     {
@@ -38,7 +39,6 @@ public class Projectile : MonoBehaviour
         StartCoroutine(SpawnRoutine());
         StartCoroutine(ColliderShutdownRoutine());
         collider.enabled = true;
-        
     }
 
     public void Deactivate()
@@ -63,7 +63,6 @@ public class Projectile : MonoBehaviour
         Vector2 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
         gameObject.transform.position = pz;
-        
     }
 
     public Vector2 Disperze(Vector2 inputVector)

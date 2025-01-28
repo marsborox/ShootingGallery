@@ -11,7 +11,6 @@ public class Projectile : MonoBehaviour
     public IObjectPool<Projectile> projectilePoolPublic { set => projectilePoolPrivate = value; }
     private void Awake()
     {
-        
         collider = GetComponent<Collider2D>();
     }
     private void Start()

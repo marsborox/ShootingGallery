@@ -5,13 +5,13 @@ using UnityEngine;
 public class TargetSpawner : MonoBehaviour
 {
     TargetPool targetPool;
-    
     float MaxRespawnTime = 2;
     bool spawningInProgress = false;
 
     private void Awake()
     {
         targetPool = GetComponent<TargetPool>();
+
     }
     private void Start()
     {

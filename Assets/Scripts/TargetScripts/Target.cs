@@ -16,7 +16,7 @@ public class Target : MonoBehaviour
     float deadGravity = 3f;//10 is good
     float aliveGravity = 0f;
     int targetScore = 1;
-    
+
     string floorTag = "Floor";
     string projectileTag = "Projectile";
     //public GameObject trajectoryPrefab;
@@ -36,23 +36,35 @@ public class Target : MonoBehaviour
     //[SerializeField] GameObject scoreObject;
     private void Awake()
     {
-        score=FindObjectOfType<Score>();
+
+    }
+    private void Start()
+    {
+    }
+    public void Initialize()
+    {
+        Debug.Log("target.Initialize has run");
+        score = FindObjectOfType<Score>();
         //trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();for some reason wont work
         rigidBody2D = GetComponent<Rigidbody2D>();
-        targetMovement = GetComponent<TargetMovement>();
         targetHealth = GetComponent<TargetHealth>();
+        targetMovement = GetComponent<TargetMovement>();
+        Debug.Log("targetMovement assigned in Awake: " + (targetMovement != null ? "YES" : "NO"));
+
     }
- 
     private void OnEnable()
     {
+        Debug.Log("target. Enabled");
         Respawn();
         targetMovement.trajectoryIndex = targetMovement.trajectoryConfigCollection.ReturnRandomConfig();//must be that method random
-        targetMovement.RestartRoute();
+        //targetMovement.RestartRoute();
     }
     void Respawn()
     {
+        //Debug.Log("target. Respawned");
         alive = true;
         targetMovement.RestartRoute();
+        //Debug.Log("target. routeRestarted");
         SetGravity(aliveGravity);
         this.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
@@ -97,12 +109,17 @@ public class Target : MonoBehaviour
         this.rigidBody2D.gravityScale = inputGravityScale;
     }
     public void SetTrajectoryConfingCollection(TrajectoryConfigCollection cfgCollection)
-    { 
-        targetMovement.trajectoryConfigCollection= cfgCollection;
+    {
+        Debug.Log("target.SetTrajectoryConfigColelction is running");
+        Debug.Log("target.targetMovement is " + (targetMovement != null ? "NOT NULL" : "NULL"));
+        Debug.Log("target.cfgCollection is " + (cfgCollection != null ? "NOT NULL" : "NULL"));
+        Debug.Log("target.targetMovement.trajectoryConfigCollection is " + (targetMovement.trajectoryConfigCollection != null ? "NOT NULL" : "NULL"));
+        targetMovement.trajectoryConfigCollection= cfgCollection;// this is broken
         if (targetMovement.trajectoryConfigCollection = null)
         {
             Debug.Log("target.cfgColelction null");
         }
+        Debug.Log("target.targetMovement.trajectoryConfigCollection end of Method is " + (targetMovement.trajectoryConfigCollection != null ? "NOT NULL" : "NULL"));
     }
 
 }

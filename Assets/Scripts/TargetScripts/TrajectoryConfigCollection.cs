@@ -5,7 +5,7 @@ using UnityEngine;
 public class TrajectoryConfigCollection : MonoBehaviour
 {
     GameObject route;
-
+    
     [SerializeField] public SO_TrajectoryConfig R_L_GaussCurve /*{ get; private set; }*/;
     public SO_TrajectoryConfig L_R_GaussCurve /*{ get; private set; }*/;
     [SerializeField] public SO_TrajectoryConfig R_L_LinearFalling;

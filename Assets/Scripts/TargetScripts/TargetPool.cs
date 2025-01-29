@@ -19,17 +19,35 @@ public class TargetPool : MonoBehaviour
     {
         trajectoryConfigCollection=GetComponent<TrajectoryConfigCollection>();
         targetPoolPool = new ObjectPool<Target>(CreateTarget,OnGetFromPool,OnReleaseToPool, OnDestroyTarget, targetPoolCollectionCheck, targetPoolDefaultCapacity, targetPoolMaxSize);
-        
+        Debug.Log("targetPool. trajectoryConfigCollection is: " +  (trajectoryConfigCollection == null ? "NULL": "NOT NULL")) ;
     }
 
     Target CreateTarget()
     {
+        Debug.Log("TargetPool. Creating Target");
         Target target = Instantiate(targetPrefab);
+        target.Initialize();
 
         target.targetPoolInTarget = targetPoolPool;
+        //Debug.Log("targetPool.trajectoryConfigCollection is  " + (trajectoryConfigCollection != null ? "NULL" : "NOTNULL"));
 
-        target.SetTrajectoryConfingCollection(this.gameObject.GetComponent<TrajectoryConfigCollection>());
-        
+        //target.SetTrajectoryConfingCollection(this.gameObject.GetComponent<TrajectoryConfigCollection>());
+        Debug.Log("targetPool setting traectory cfg ocllection");
+        if (this.GetComponent<TrajectoryConfigCollection>() != null)
+        {
+            Debug.Log("targetPool trajecotry cfg collection is not null");
+        }
+        if (target.GetComponent<TargetMovement>() != null) 
+        {
+            Debug.Log("targetPool target.GetComponent<TargetMovement>() is not null ");
+        }
+        if (target.GetComponent<TargetMovement>().trajectoryConfigCollection != null)
+        {
+            Debug.Log("targetPool target.GetComponent<TargetMovement>().trajectoryConfigCollection is not null ");
+        }
+
+        target.SetTrajectoryConfingCollection(this.GetComponent<TrajectoryConfigCollection>());//***
+        Debug.Log("targetPool. target.trajectory cfg is:"+ (target.GetComponent<TargetMovement>().trajectoryConfigCollection==null? "NULL" : "NOTNULL"));
         return target;
     }
     void OnReleaseToPool(Target target)
@@ -39,8 +57,6 @@ public class TargetPool : MonoBehaviour
     }
     public void OnGetFromPool(Target target)
     {
-        
-        
         target.gameObject.SetActive(true);
     }
     private void OnDestroyTarget(Target target)

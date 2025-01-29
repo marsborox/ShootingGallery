@@ -8,7 +8,6 @@ public class TargetMovement : MonoBehaviour
     //public bool alive = true;
     [SerializeField] int waypointIndex;
     public bool directionIsLeft;
-
     float throwSpeed = 500f;
     float movementSpeed = 0.02f;//0.01-0.1 ok
     public int trajectoryIndex;
@@ -88,19 +87,21 @@ public class TargetMovement : MonoBehaviour
     }
     public void RestartRoute()
     {
+        Debug.Log("targetMovement. RestartingRoute");
         waypointIndex = 0;
-        //Debug.Log("target.display indexes = "+ trajectoryIndex + " " + waypointIndex_GlobalVar);
+        //Debug.Log("target.display indexes = trajectory"+ trajectoryIndex + "waypoint " + waypointIndex);
 
         var pulledTransform = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform;
         if (pulledTransform == null)
         {
-            Debug.Log("target.pulledTransform = Null");
+            Debug.Log("targetMovement.pulledTransform = Null");
         }
         //transform.position = ReturnWaypoont(trajectoryIndex, waypointIndex).position;
         //nextWaypoint = ReturnWaypoont(trajectoryIndex, waypointIndex);
 
         else
         {
+            Debug.Log("targetMovement.pulledTransform != Null");
             transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform.position;
             nextWaypoint = GenerateNextWaypointTransform();
             directionIsLeft = CheckDirection();

@@ -114,7 +114,9 @@ public class Target : MonoBehaviour
         Debug.Log("target.targetMovement is " + (targetMovement != null ? "NOT NULL" : "NULL"));
         Debug.Log("target.cfgCollection is " + (cfgCollection != null ? "NOT NULL" : "NULL"));
         Debug.Log("target.targetMovement.trajectoryConfigCollection is " + (targetMovement.trajectoryConfigCollection != null ? "NOT NULL" : "NULL"));
-        targetMovement.trajectoryConfigCollection= cfgCollection;// this is broken
+
+        
+        targetMovement.trajectoryConfigCollection= cfgCollection;// this is broken*********************************
         if (targetMovement.trajectoryConfigCollection = null)
         {
             Debug.Log("target.cfgColelction null");

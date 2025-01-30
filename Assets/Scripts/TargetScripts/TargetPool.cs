@@ -46,7 +46,9 @@ public class TargetPool : MonoBehaviour
             Debug.Log("targetPool target.GetComponent<TargetMovement>().trajectoryConfigCollection is not null ");
         }
 
-        target.SetTrajectoryConfingCollection(this.GetComponent<TrajectoryConfigCollection>());//***
+        //fucking bullshit why?????
+        target.gameObject.GetComponent<TargetMovement>().trajectoryConfigCollection=this.GetComponent<TrajectoryConfigCollection>();//***
+        //target.SetTrajectoryConfingCollection(this.GetComponent<TrajectoryConfigCollection>());//***
         Debug.Log("targetPool. target.trajectory cfg is:"+ (target.GetComponent<TargetMovement>().trajectoryConfigCollection==null? "NULL" : "NOTNULL"));
         return target;
     }

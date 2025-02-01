@@ -29,10 +29,6 @@ public class TargetSpawner : MonoBehaviour
         }
     }
 
-    float RandomRespawnTime()
-    {
-        return Random.Range(0, MaxRespawnTime);
-    }
     IEnumerator SpawnTargetEveryINPUTseconds()
     {
         spawningInProgress = true;
@@ -42,6 +38,10 @@ public class TargetSpawner : MonoBehaviour
         targetPool.targetPoolPool.Get();
 
         spawningInProgress = false;
+    }
+    float RandomRespawnTime()
+    {
+        return Random.Range(0, MaxRespawnTime);
     }
     IEnumerator SpawnOneEvery3Seconds()
     {

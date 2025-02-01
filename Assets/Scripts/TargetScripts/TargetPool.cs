@@ -3,25 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+using static UnityEngine.GraphicsBuffer;
+
 public class TargetPool : MonoBehaviour
 {
     [SerializeField] Target targetPrefab;
-
-
     TrajectoryConfigCollection trajectoryConfigCollection;
-
     public IObjectPool<Target> targetPoolPool;
     [SerializeField] private bool targetPoolCollectionCheck = true;
     [SerializeField] private int targetPoolDefaultCapacity = 20;
     [SerializeField] private int targetPoolMaxSize = 100;
-
     private void Awake()
     {
         trajectoryConfigCollection=GetComponent<TrajectoryConfigCollection>();
         targetPoolPool = new ObjectPool<Target>(CreateTarget,OnGetFromPool,OnReleaseToPool, OnDestroyTarget, targetPoolCollectionCheck, targetPoolDefaultCapacity, targetPoolMaxSize);
         Debug.Log("targetPool. trajectoryConfigCollection is: " +  (trajectoryConfigCollection == null ? "NULL": "NOT NULL")) ;
     }
-
     Target CreateTarget()
     {
         Debug.Log("TargetPool. Creating Target");
@@ -30,8 +27,8 @@ public class TargetPool : MonoBehaviour
 
         target.targetPoolInTarget = targetPoolPool;
         //Debug.Log("targetPool.trajectoryConfigCollection is  " + (trajectoryConfigCollection != null ? "NULL" : "NOTNULL"));
-
         //target.SetTrajectoryConfingCollection(this.gameObject.GetComponent<TrajectoryConfigCollection>());
+        /*
         Debug.Log("targetPool setting traectory cfg ocllection");
         if (this.GetComponent<TrajectoryConfigCollection>() != null)
         {
@@ -44,16 +41,17 @@ public class TargetPool : MonoBehaviour
         if (target.GetComponent<TargetMovement>().trajectoryConfigCollection != null)
         {
             Debug.Log("targetPool target.GetComponent<TargetMovement>().trajectoryConfigCollection is not null ");
-        }
-
-        //fucking bullshit why?????
-        target.gameObject.GetComponent<TargetMovement>().trajectoryConfigCollection=this.GetComponent<TrajectoryConfigCollection>();//***
-        //target.SetTrajectoryConfingCollection(this.GetComponent<TrajectoryConfigCollection>());//***
+        }*/
+        //fucking bullshit why?????oh thats why
+        //target.gameObject.GetComponent<TargetMovement>().trajectoryConfigCollection=this.GetComponent<TrajectoryConfigCollection>();//this works
+        target.targetMovement.trajectoryConfigCollection = trajectoryConfigCollection/*this.GetComponent<TrajectoryConfigCollection>()*/;
+        //target.SetTrajectoryConfingCollection(this.GetComponent<TrajectoryConfigCollection>());//*** this doesnt
         Debug.Log("targetPool. target.trajectory cfg is:"+ (target.GetComponent<TargetMovement>().trajectoryConfigCollection==null? "NULL" : "NOTNULL"));
         return target;
     }
+
     void OnReleaseToPool(Target target)
-    { 
+    {
         target.gameObject.SetActive(false);
         target.alive = false;
     }

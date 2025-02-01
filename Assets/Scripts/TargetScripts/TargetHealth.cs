@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 
 public class TargetHealth : MonoBehaviour
 {
-    int healthMax=20;
-    int healthCurrent;
+    public int healthMax=20;
+    public int healthCurrent;
     Target target;
 
 
@@ -38,7 +38,7 @@ public class TargetHealth : MonoBehaviour
     public void TakeDamage(int damage)
     { 
         healthCurrent-=damage;
-        if (healthCurrent < 0)
+        if (healthCurrent <= 0)
         { 
             target.Die();
         }

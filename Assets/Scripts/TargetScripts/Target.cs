@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UIElements;
 
-using static UnityEngine.GraphicsBuffer;
+
 
 public class Target : MonoBehaviour
 {
@@ -25,8 +25,8 @@ public class Target : MonoBehaviour
     
     Score score;
     public Rigidbody2D rigidBody2D;
-    TargetMovement targetMovement;
-    TargetHealth targetHealth;
+    public TargetMovement targetMovement;
+    public TargetHealth targetHealth;
     [SerializeField] GameObject player;
     // Start is called before the first frame update
 
@@ -36,7 +36,7 @@ public class Target : MonoBehaviour
     //[SerializeField] GameObject scoreObject;
     private void Awake()
     {
-
+        
     }
     private void Start()
     {
@@ -49,14 +49,14 @@ public class Target : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         targetHealth = GetComponent<TargetHealth>();
         targetMovement = GetComponent<TargetMovement>();
-        Debug.Log("targetMovement assigned in Awake: " + (targetMovement != null ? "YES" : "NO"));
+        Debug.Log("targetMovement assigned in Initialize: " + (targetMovement != null ? "YES" : "NO"));
 
     }
     private void OnEnable()
     {
         Debug.Log("target. Enabled");
-        Respawn();
         targetMovement.trajectoryIndex = targetMovement.trajectoryConfigCollection.ReturnRandomConfig();//must be that method random
+        Respawn();
         //targetMovement.RestartRoute();
     }
     void Respawn()
@@ -67,6 +67,7 @@ public class Target : MonoBehaviour
         //Debug.Log("target. routeRestarted");
         SetGravity(aliveGravity);
         this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //this.transform.position
     }
 
     public void OnTriggerEnter(Collider other)
@@ -108,6 +109,8 @@ public class Target : MonoBehaviour
     {
         this.rigidBody2D.gravityScale = inputGravityScale;
     }
+
+    
     public void SetTrajectoryConfingCollection(TrajectoryConfigCollection cfgCollection)
     {
         Debug.Log("target.SetTrajectoryConfigColelction is running");

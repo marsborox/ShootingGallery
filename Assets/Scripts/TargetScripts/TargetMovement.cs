@@ -9,7 +9,7 @@ public class TargetMovement : MonoBehaviour
     [SerializeField] int waypointIndex;
     public bool directionIsLeft;
     float throwSpeed = 500f;
-    float movementSpeed = 0.02f;//0.01-0.1 ok
+    float movementSpeed = 0.01f;//0.01-0.1 ok //0.02 os fastish but ok
     public int trajectoryIndex;
     // Start is called before the first frame update
     public Transform nextWaypoint;

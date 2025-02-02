@@ -23,7 +23,7 @@ public class TargetPool : MonoBehaviour
     {
         Debug.Log("TargetPool. Creating Target");
         Target target = Instantiate(targetPrefab);
-        target.Initialize();
+        //target.Initialize();
 
         target.targetPoolInTarget = targetPoolPool;
         //Debug.Log("targetPool.trajectoryConfigCollection is  " + (trajectoryConfigCollection != null ? "NULL" : "NOTNULL"));

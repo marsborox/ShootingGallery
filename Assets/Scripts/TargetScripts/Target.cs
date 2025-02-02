@@ -37,27 +37,38 @@ public class Target : MonoBehaviour
     private void Awake()
     {
         
-    }
-    private void Start()
-    {
-    }
-    public void Initialize()
-    {
         Debug.Log("target.Initialize has run");
         score = FindObjectOfType<Score>();
         //trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();for some reason wont work
         rigidBody2D = GetComponent<Rigidbody2D>();
         targetHealth = GetComponent<TargetHealth>();
         targetMovement = GetComponent<TargetMovement>();
-        Debug.Log("targetMovement assigned in Initialize: " + (targetMovement != null ? "YES" : "NO"));
+        Debug.Log("targetMovement assigned in Initialize: " + (targetMovement == null ? "null" : "set"));
+        Debug.Log("targetHealth assigned in Initialize: " + (targetHealth == null ? "null" : "set"));
+        Debug.Log("rigidBody2D assigned in Initialize: " + (rigidBody2D == null ? "null" : "set"));
+        
+    }
+    private void Start()
+    {
+    }
+    public void Initialize()
+    {
 
     }
     private void OnEnable()
     {
         Debug.Log("target. Enabled");
-        targetMovement.trajectoryIndex = targetMovement.trajectoryConfigCollection.ReturnRandomConfig();//must be that method random
-        Respawn();
+
+        Debug.Log("targetMovement assigned in Initialize works in enabled: " + (targetMovement == null ? "null" : "set"));
+        Debug.Log("targetHealth assigned in Initialize works in enabled: " + (targetHealth == null ? "null" : "set"));
+
+        //targetMovement.StartRandomRoute();
         //targetMovement.RestartRoute();
+        Debug.Log("target.targetMovement. trajectoryIndex is " + ( targetMovement.trajectoryIndex != null ? "yes" :"no"));
+
+        Debug.Log("random route Config number: " + targetMovement.trajectoryConfigCollection.ReturnRandomConfig());
+        Respawn();
+        
     }
     void Respawn()
     {

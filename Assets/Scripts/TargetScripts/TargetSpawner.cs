@@ -15,7 +15,7 @@ public class TargetSpawner : MonoBehaviour
     }
     private void Start()
     {
-        targetPool.targetPoolPool.Get();
+        //targetPool.targetPoolPool.Get();
     }
     
     private void Update()

@@ -85,8 +85,14 @@ public class TargetMovement : MonoBehaviour
             nextWaypoint = GenerateNextWaypointTransform();
         }
     }
+    public void StartRandomRoute()
+    {
+        Debug.Log(".targetMovement. trajectoryConfigCollection is null? " + (trajectoryConfigCollection != null ? "yes" : "no"));
+        trajectoryIndex = trajectoryConfigCollection.ReturnRandomConfig();
+    }
     public void RestartRoute()
     {
+        StartRandomRoute();
         Debug.Log("targetMovement. RestartingRoute");
         waypointIndex = 0;
         //Debug.Log("target.display indexes = trajectory"+ trajectoryIndex + "waypoint " + waypointIndex);

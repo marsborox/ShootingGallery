@@ -83,9 +83,9 @@ public class TrajectoryConfigCollection : MonoBehaviour
     {
         Debug.Log("trajectoryConfigCollection.configList.Count is:  " + configList.Count.ToString());
         int randomConfigIndex;
-        randomConfigIndex = Random.Range(0, (configList.Count-1));
+        randomConfigIndex = Random.Range(0, (configList.Count/*-1*/));//shouldnt work with count but here we are
         //Debug.Log("TrajectoryConfigCollection.randomConfigIndex = "+randomConfigIndex);
-        
+        Debug.Log("trajectoryConfigCollection returning config with index "+ randomConfigIndex);
         return randomConfigIndex;
     }
     void TestDebug()

@@ -19,6 +19,7 @@ public class TargetMovement : MonoBehaviour
     private void Awake()
     {
         target = GetComponent<Target>();
+        trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();
     }
     void Start()
     {
@@ -87,8 +88,12 @@ public class TargetMovement : MonoBehaviour
     }
     public void StartRandomRoute()
     {
-        Debug.Log(".targetMovement. trajectoryConfigCollection is null? " + (trajectoryConfigCollection != null ? "yes" : "no"));
-        trajectoryIndex = trajectoryConfigCollection.ReturnRandomConfig();
+        Debug.Log(".targetMovement. trajectoryConfigCollection is null? " + (trajectoryConfigCollection == null ? "yes" : "no"));
+        Debug.Log(".targetMovement. trajectoryIndex pre assignment is null? " + (trajectoryIndex == null ? "yes" : "no"));
+        trajectoryIndex = trajectoryConfigCollection.ReturnRandomConfig();//** this is somewhat broken but method is working like trajectorz index is fcked up
+        //so even on awake it gets reference it returns null
+        Debug.Log(".targetMovement. trajectoryIndex post assignment is null? " + (trajectoryIndex == null ? "yes" : "no"));
+        Debug.Log("targetMovement. trajectory indes is: " + trajectoryIndex.ToString());
     }
     public void RestartRoute()
     {

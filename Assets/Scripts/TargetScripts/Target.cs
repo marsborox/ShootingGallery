@@ -36,27 +36,25 @@ public class Target : MonoBehaviour
     //[SerializeField] GameObject scoreObject;
     private void Awake()
     {
-        
-        Debug.Log("target.Initialize has run");
+        //Debug.Log("target.Initialize has run");
         score = FindObjectOfType<Score>();
         //trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();for some reason wont work
         rigidBody2D = GetComponent<Rigidbody2D>();
         targetHealth = GetComponent<TargetHealth>();
         targetMovement = GetComponent<TargetMovement>();
-        Debug.Log("targetMovement assigned in Initialize: " + (targetMovement == null ? "null" : "set"));
-        Debug.Log("targetHealth assigned in Initialize: " + (targetHealth == null ? "null" : "set"));
-        Debug.Log("rigidBody2D assigned in Initialize: " + (rigidBody2D == null ? "null" : "set"));
+        //Debug.Log("targetMovement assigned in Initialize: " + (targetMovement == null ? "null" : "set"));
+        //Debug.Log("targetHealth assigned in Initialize: " + (targetHealth == null ? "null" : "set"));
+        //Debug.Log("rigidBody2D assigned in Initialize: " + (rigidBody2D == null ? "null" : "set"));
         
     }
     private void Start()
     {
-    }
-    public void Initialize()
-    {
 
     }
+
     private void OnEnable()
     {
+        /*
         Debug.Log("target. Enabled");
 
         Debug.Log("targetMovement assigned in Initialize works in enabled: " + (targetMovement == null ? "null" : "set"));
@@ -65,14 +63,14 @@ public class Target : MonoBehaviour
         //targetMovement.StartRandomRoute();
         //targetMovement.RestartRoute();
         Debug.Log("target.targetMovement. trajectoryIndex is " + ( targetMovement.trajectoryIndex != null ? "yes" :"no"));
-
-        Debug.Log("random route Config number: " + targetMovement.trajectoryConfigCollection.ReturnRandomConfig());
+        */
         Respawn();
+        //Debug.Log("random route Config number: " + targetMovement.trajectoryConfigCollection.ReturnRandomConfig());
         
     }
     void Respawn()
     {
-        //Debug.Log("target. Respawned");
+        Debug.Log("target. Respawned");
         alive = true;
         targetMovement.RestartRoute();
         //Debug.Log("target. routeRestarted");

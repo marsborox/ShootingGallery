@@ -55,3 +55,6 @@ TagManager:
   - name: Projectile
     uniqueID: 3852075205
     locked: 0
+  - name: HealthBars
+    uniqueID: 3553026447
+    locked: 0

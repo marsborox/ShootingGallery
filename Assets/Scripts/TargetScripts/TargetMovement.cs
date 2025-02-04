@@ -169,7 +169,6 @@ public class TargetMovement : MonoBehaviour
     {
         //transform.eulerAngles = new Vector3(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), transform.eulerAngles.z);
 
-
         //rigidBody2D.isKinematic = false;
         //Vector3 forceVector = transform.forward;
         /*Transform transformGameObject = transform.position;

@@ -80,21 +80,18 @@ public class Shooting : MonoBehaviour
     }
     void Shoot(InputAction.CallbackContext context)
     {
-        /*
-        Debug.Log("Shooting. pew pew");
-        projectilePool.Get();
-        */
-
-        if (currentWeapon.shootReady)
+        if (currentWeapon.shootReady && !(currentWeapon is MachineGun))
         {
-
             currentWeapon.WeaponShoots();
             currentWeapon.cooldownToReduce = currentWeapon.cooldown;
             currentWeapon.shootReady = false;
             /*currentWeapon.shootReady = false;
             currentWeapon.Shoot();
             StartCoroutine(ShootingRoutine());*/
-
+        }
+        else if (currentWeapon.shootReady && (currentWeapon is MachineGun))
+        { 
+            
         }
     }
     IEnumerator ShootingRoutine()
@@ -138,6 +135,7 @@ public class Shooting : MonoBehaviour
     {
         playerControls.Disable();
     }
+    
     public void SetPistol()
     { 
         Debug.Log("shooting.rifle set");
@@ -165,7 +163,7 @@ public class Shooting : MonoBehaviour
         uiWeapons.MachineGunSetActiveUI();
 
     }
-
+    
 
     public void WeaponCooldownChecker()
     {

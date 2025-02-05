@@ -39,8 +39,8 @@ public class TargetHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         healthCurrent -= damage;
-        float fillAmount = (float) healthCurrent / (float)healthMax;
-        healthBar.fillAmount = fillAmount;
+        healthBar.fillAmount = (float) healthCurrent / (float)healthMax;
+        //healthBar.fillAmount = fillAmount;
         if (healthCurrent <= 0)
         { 
             target.Die();

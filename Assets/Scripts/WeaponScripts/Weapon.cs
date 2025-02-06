@@ -29,7 +29,7 @@ public abstract class Weapon : MonoBehaviour
             //UpdateCoolDownProgres(weapon)
             if (cooldownToReduce > 0)
             {
-                cooldownToReduce = cooldownToReduce - cooldown * Time.deltaTime;
+                cooldownToReduce = cooldownToReduce - /*cooldown * */ Time.deltaTime;
             }
             else
             {

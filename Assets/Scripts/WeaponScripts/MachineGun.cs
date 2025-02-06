@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 public class MachineGun : Weapon
 {
     private IObjectPool<Projectile> machineGunShotPool;
-
+    
     private void Awake()
     {
 

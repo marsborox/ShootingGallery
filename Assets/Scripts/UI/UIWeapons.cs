@@ -1,3 +1,5 @@
+using UnityEditor.ShaderKeywordFilter;
+
 using UnityEngine;
 public class UIWeapons : MonoBehaviour
 {
@@ -10,9 +12,16 @@ public class UIWeapons : MonoBehaviour
     [SerializeField] UIWeapon uiShotgun;
     [SerializeField] UIWeapon uimachineGun;
 
-    
-
+    [SerializeField] Rifle rifle;
+    [SerializeField] Shotgun shotgun;
+    [SerializeField] MachineGun machineGun;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        
+        
+    }
     void Start()
     {
         
@@ -22,7 +31,9 @@ public class UIWeapons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        RifleCooldownFraction();
+        ShotgunCooldownFraction();
+        MachineGunCooldownFraction();
     }
 
     public void DisableActiveUIs()
@@ -33,7 +44,7 @@ public class UIWeapons : MonoBehaviour
 
         //uiPistol.GetComponent<UIWeapon>().activeBackground.SetActive(false);
     }
-    public void PistolSetActiveUI()
+    public void RifleSetActiveUI()
     {
         uiRifleActive.SetActive(true);
     }
@@ -44,5 +55,19 @@ public class UIWeapons : MonoBehaviour
     public void MachineGunSetActiveUI()
     {
         uiMachineGunActive.SetActive(true);
+    }
+
+
+    public void RifleCooldownFraction()
+    {
+        uiRifle.CooldownFill(rifle.cooldownToReduce/rifle.cooldown);
+    }
+    public void ShotgunCooldownFraction()
+    {
+        uiShotgun.CooldownFill(shotgun.cooldownToReduce/shotgun.cooldown);
+    }
+    public void MachineGunCooldownFraction()
+    {
+        uimachineGun.CooldownFill(machineGun.cooldownToReduce/machineGun.cooldown);
     }
 }

@@ -28,7 +28,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""32570a18-dea7-40c6-adb7-e20ebc7fed64"",
             ""actions"": [
                 {
-                    ""name"": ""Shoot"",
+                    ""name"": ""Shooting"",
                     ""type"": ""Value"",
                     ""id"": ""597ccb2d-c458-45dd-a0f6-413e3c9183ab"",
                     ""expectedControlType"": ""Button"",
@@ -63,7 +63,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""Shooting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -175,7 +175,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 }");
         // Shooting
         m_Shooting = asset.FindActionMap("Shooting", throwIfNotFound: true);
-        m_Shooting_Shoot = m_Shooting.FindAction("Shoot", throwIfNotFound: true);
+        m_Shooting_Shoot = m_Shooting.FindAction("Shooting", throwIfNotFound: true);
         m_Shooting_Reload = m_Shooting.FindAction("Reload", throwIfNotFound: true);
         m_Shooting_AutoShoot = m_Shooting.FindAction("AutoShoot", throwIfNotFound: true);
         // WeaponSwitch

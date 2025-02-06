@@ -27,6 +27,8 @@ public class Shooting : MonoBehaviour
     [SerializeField] private bool collectionCheck = true;
     [SerializeField] private int defaultCapacity = 10;
     [SerializeField] private int maxSize = 30;
+
+    bool autoShooting = false;
     // Start is called before the first frame update
 
     List <Weapon> weapons = new List<Weapon>();
@@ -51,20 +53,27 @@ public class Shooting : MonoBehaviour
     {
         //PlayerInput();
         WeaponCooldownChecker();
+        if (currentWeapon is MachineGun&& currentWeapon.shootReady&&autoShooting)
+        {
+            currentWeapon.WeaponShoots();
+        }
     }
     void EnablePlayerInput()
     {
         //shoot = playerControls.Shooting.Shoot();
         playerControls.Shooting.Shoot.started+= Shoot;
+        playerControls.Shooting.Shoot.canceled+= StopShoot;
         playerControls.Shooting.Reload.started+= _ =>Reload();
         playerControls.WeaponSwitch.SetPistol.started += _ => SetPistol();
         playerControls.WeaponSwitch.SetShotgun.started += _ => SetShotgun();
         playerControls.WeaponSwitch.SetMachineGun.started += _ => SetMachineGun();
+
     }
     void DisablePlayerInput()
     {
         //shoot = playerControls.Shooting.Shoot();
         playerControls.Shooting.Shoot.started -= Shoot;
+        playerControls.Shooting.Shoot.canceled -= StopShoot;
         playerControls.Shooting.Reload.started -= _ => Reload();
         playerControls.WeaponSwitch.SetPistol.started -= _ => SetPistol();
         playerControls.WeaponSwitch.SetShotgun.started -= _ => SetShotgun();
@@ -91,8 +100,12 @@ public class Shooting : MonoBehaviour
         }
         else if (currentWeapon.shootReady && (currentWeapon is MachineGun))
         { 
-            
+            autoShooting = true;
         }
+    }
+    void StopShoot(InputAction.CallbackContext context)
+    {
+        autoShooting = false;
     }
     IEnumerator ShootingRoutine()
     {
@@ -142,7 +155,7 @@ public class Shooting : MonoBehaviour
 
         currentWeapon=rifle;
         uiWeapons.DisableActiveUIs();
-        uiWeapons.PistolSetActiveUI();
+        uiWeapons.RifleSetActiveUI();
     }
     public void SetShotgun()
     { 
@@ -157,8 +170,6 @@ public class Shooting : MonoBehaviour
         Debug.Log("shooting.machinegun set");
 
         currentWeapon=machineGun;
-
-
         uiWeapons.DisableActiveUIs();
         uiWeapons.MachineGunSetActiveUI();
 
@@ -180,7 +191,6 @@ public class Shooting : MonoBehaviour
                 {
                     weapon.shootReady = true;
                 }
-                    
             }
         }
     }

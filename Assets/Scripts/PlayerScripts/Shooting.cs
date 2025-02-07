@@ -137,7 +137,7 @@ public class Shooting : MonoBehaviour
     #endregion
     private void Reload()
     {
-        Debug.Log("Shooting.Reloading");
+        Debug.Log("Shooting.ReloadingChecker");
     }
     void OnEnable()
     {

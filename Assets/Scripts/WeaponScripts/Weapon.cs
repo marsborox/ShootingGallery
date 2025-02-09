@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 
-using Unity.VisualScripting;
+using System;
 
 using UnityEngine;
 using UnityEngine.Pool;
@@ -25,13 +23,14 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] public float reloadTime;
     [SerializeField] public float reloadTimeToReduce;
     public bool reloading = false;
+
     public abstract void WeaponShoots();
-    
 
-
-    private void Update()
+    public void Update()
     {
         CooldownChecker();
+        ReloadingChecker();
+
     }
 
     void CooldownChecker()
@@ -61,9 +60,34 @@ public abstract class Weapon : MonoBehaviour
             }
             else 
             {
+                ammo = ammoMax;
                 reloading = false;
             }
         }
+    }
+    public void Shoot(Action action) 
+    {
+        if (ammo <= 0)
+        {
+            shootReady = false;
+            return;
+        }
+
+        if (shootReady && !reloading)
+        {
+            action();
+            cooldownToReduce = cooldown;
+            shootReady = false;
+            ammo--;
+        }
+    }
+    void Shoot()
+    { 
+        
+    }
+    void DoShot()
+    { 
+    
     }
     public void WeaponPreShoot()
     { 
@@ -72,14 +96,16 @@ public abstract class Weapon : MonoBehaviour
             shootReady = false;
         }
     }
-    public void WeaponPostShoot()
-    {
-        cooldownToReduce = cooldown;
-        shootReady = false;
-    }
+
     public void WeaponReload()
-    { 
-        
+    {
+        Debug.Log("weapon.performingReload");
+        //will trigger reloading process actual reload is in Checker
+        if (!reloading)
+        {
+            reloading = true;
+            reloadTimeToReduce = reloadTime;
+        }
     }
 
     public Projectile CreateProjectile(ObjectPool<Projectile> pool)

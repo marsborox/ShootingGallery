@@ -65,7 +65,7 @@ public class Target : MonoBehaviour
     }
     void Respawn()
     {
-        Debug.Log("target. Respawned");
+        //Debug.Log("target. Respawned");
         alive = true;
         targetMovement.RestartRoute();
         //Debug.Log("target. routeRestarted");
@@ -117,18 +117,18 @@ public class Target : MonoBehaviour
     
     public void SetTrajectoryConfingCollection(TrajectoryConfigCollection cfgCollection)
     {
-        Debug.Log("target.SetTrajectoryConfigColelction is running");
-        Debug.Log("target.targetMovement is " + (targetMovement != null ? "NOT NULL" : "NULL"));
-        Debug.Log("target.cfgCollection is " + (cfgCollection != null ? "NOT NULL" : "NULL"));
-        Debug.Log("target.targetMovement.trajectoryConfigCollection is " + (targetMovement.trajectoryConfigCollection != null ? "NOT NULL" : "NULL"));
+        //Debug.Log("target.SetTrajectoryConfigColelction is running");
+        //Debug.Log("target.targetMovement is " + (targetMovement != null ? "NOT NULL" : "NULL"));
+        //Debug.Log("target.cfgCollection is " + (cfgCollection != null ? "NOT NULL" : "NULL"));
+        //Debug.Log("target.targetMovement.trajectoryConfigCollection is " + (targetMovement.trajectoryConfigCollection != null ? "NOT NULL" : "NULL"));
 
         
         targetMovement.trajectoryConfigCollection= cfgCollection;// this is broken*********************************
         if (targetMovement.trajectoryConfigCollection = null)
         {
-            Debug.Log("target.cfgColelction null");
+            //Debug.Log("target.cfgColelction null");
         }
-        Debug.Log("target.targetMovement.trajectoryConfigCollection end of Method is " + (targetMovement.trajectoryConfigCollection != null ? "NOT NULL" : "NULL"));
+        //Debug.Log("target.targetMovement.trajectoryConfigCollection end of Method is " + (targetMovement.trajectoryConfigCollection != null ? "NOT NULL" : "NULL"));
     }
 
 }

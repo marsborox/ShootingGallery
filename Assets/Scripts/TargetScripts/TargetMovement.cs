@@ -88,31 +88,31 @@ public class TargetMovement : MonoBehaviour
     }
     public void StartRandomRoute()
     {
-        Debug.Log(".targetMovement. trajectoryConfigCollection is null? " + (trajectoryConfigCollection == null ? "yes" : "no"));
-        Debug.Log(".targetMovement. trajectoryIndex pre assignment is null? " + (trajectoryIndex == null ? "yes" : "no"));
+        //Debug.Log(".targetMovement. trajectoryConfigCollection is null? " + (trajectoryConfigCollection == null ? "yes" : "no"));
+        //Debug.Log(".targetMovement. trajectoryIndex pre assignment is null? " + (trajectoryIndex == null ? "yes" : "no"));
         trajectoryIndex = trajectoryConfigCollection.ReturnRandomConfig();//** this is somewhat broken but method is working like trajectorz index is fcked up
         //so even on awake it gets reference it returns null
-        Debug.Log(".targetMovement. trajectoryIndex post assignment is null? " + (trajectoryIndex == null ? "yes" : "no"));
-        Debug.Log("targetMovement. trajectory indes is: " + trajectoryIndex.ToString());
+        //Debug.Log(".targetMovement. trajectoryIndex post assignment is null? " + (trajectoryIndex == null ? "yes" : "no"));
+        //Debug.Log("targetMovement. trajectory indes is: " + trajectoryIndex.ToString());
     }
     public void RestartRoute()
     {
         StartRandomRoute();
-        Debug.Log("targetMovement. RestartingRoute");
+        //Debug.Log("targetMovement. RestartingRoute");
         waypointIndex = 0;
         //Debug.Log("target.display indexes = trajectory"+ trajectoryIndex + "waypoint " + waypointIndex);
 
         var pulledTransform = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform;
         if (pulledTransform == null)
         {
-            Debug.Log("targetMovement.pulledTransform = Null");
+            //Debug.Log("targetMovement.pulledTransform = Null");
         }
         //transform.position = ReturnWaypoont(trajectoryIndex, waypointIndex).position;
         //nextWaypoint = ReturnWaypoont(trajectoryIndex, waypointIndex);
 
         else
         {
-            Debug.Log("targetMovement.pulledTransform != Null");
+            //Debug.Log("targetMovement.pulledTransform != Null");
             transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform.position;
             nextWaypoint = GenerateNextWaypointTransform();
             directionIsLeft = CheckDirection();

@@ -107,7 +107,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""1b327678-08cb-495e-97db-6f8800b8ab33"",
             ""actions"": [
                 {
-                    ""name"": ""SetPistol"",
+                    ""name"": ""SetRifle"",
                     ""type"": ""Button"",
                     ""id"": ""89f2d6f0-40e0-48d5-8913-19715d811760"",
                     ""expectedControlType"": ""Button"",
@@ -142,7 +142,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SetPistol"",
+                    ""action"": ""SetRifle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -180,7 +180,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Shooting_AutoShoot = m_Shooting.FindAction("AutoShoot", throwIfNotFound: true);
         // WeaponSwitch
         m_WeaponSwitch = asset.FindActionMap("WeaponSwitch", throwIfNotFound: true);
-        m_WeaponSwitch_SetPistol = m_WeaponSwitch.FindAction("SetPistol", throwIfNotFound: true);
+        m_WeaponSwitch_SetPistol = m_WeaponSwitch.FindAction("SetRifle", throwIfNotFound: true);
         m_WeaponSwitch_SetShotgun = m_WeaponSwitch.FindAction("SetShotgun", throwIfNotFound: true);
         m_WeaponSwitch_SetMachineGun = m_WeaponSwitch.FindAction("SetMachineGun", throwIfNotFound: true);
     }

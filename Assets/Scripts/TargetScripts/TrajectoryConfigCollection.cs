@@ -37,7 +37,7 @@ public class TrajectoryConfigCollection : MonoBehaviour
         R_L_LinearFalling.SetWaypoints();
         R_L_CurveToStraight_Raise.SetWaypoints();
 
-        Debug.Log("trajectoryConfigCollection. Base Trajectories Initiated");
+        //Debug.Log("trajectoryConfigCollection. Base Trajectories Initiated");
     }
     void SetAllL_R_Configs()
     {
@@ -81,21 +81,21 @@ public class TrajectoryConfigCollection : MonoBehaviour
     }*/
     public int ReturnRandomConfig()
     {
-        Debug.Log("trajectoryConfigCollection.configList.Count is:  " + configList.Count.ToString());
+        //Debug.Log("trajectoryConfigCollection.configList.Count is:  " + configList.Count.ToString());
         int randomConfigIndex;
         randomConfigIndex = Random.Range(0, (configList.Count/*-1*/));//shouldnt work with count but here we are
         //Debug.Log("TrajectoryConfigCollection.randomConfigIndex = "+randomConfigIndex);
-        Debug.Log("trajectoryConfigCollection returning config with index "+ randomConfigIndex);
+        //Debug.Log("trajectoryConfigCollection returning config with index "+ randomConfigIndex);
         return randomConfigIndex;
     }
     void TestDebug()
     {//should be deleted
-        Debug.Log("Number of configs = "+configList.Count);
+        //Debug.Log("Number of configs = "+configList.Count);
         IList list1 = configList;
         for (int i = 0; i < list1.Count; i++)
         {
             List<Transform> list = (List<Transform>)list1[i];
-            Debug.Log("List "+i+" Count = " + list.Count);
+            //Debug.Log("List "+i+" Count = " + list.Count);
         }
     }
 }

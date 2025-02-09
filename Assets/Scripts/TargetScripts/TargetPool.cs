@@ -17,11 +17,11 @@ public class TargetPool : MonoBehaviour
     {
         trajectoryConfigCollection=GetComponent<TrajectoryConfigCollection>();
         targetPoolPool = new ObjectPool<Target>(CreateTarget,OnGetFromPool,OnReleaseToPool, OnDestroyTarget, targetPoolCollectionCheck, targetPoolDefaultCapacity, targetPoolMaxSize);
-        Debug.Log("targetPool. trajectoryConfigCollection is: " +  (trajectoryConfigCollection == null ? "NULL": "NOT NULL")) ;
+        //Debug.Log("targetPool. trajectoryConfigCollection is: " +  (trajectoryConfigCollection == null ? "NULL": "NOT NULL")) ;
     }
     Target CreateTarget()
     {
-        Debug.Log("TargetPool. Creating Target");
+        //Debug.Log("TargetPool. Creating Target");
         Target target = Instantiate(targetPrefab);
         //target.Initialize();
 
@@ -46,7 +46,7 @@ public class TargetPool : MonoBehaviour
         //target.gameObject.GetComponent<TargetMovement>().trajectoryConfigCollection=this.GetComponent<TrajectoryConfigCollection>();//this works
         //target.targetMovement.trajectoryConfigCollection = trajectoryConfigCollection/*this.GetComponent<TrajectoryConfigCollection>()*/;//**** this is correct
         //target.SetTrajectoryConfingCollection(this.GetComponent<TrajectoryConfigCollection>());//*** this doesnt
-        Debug.Log("targetPool. target.trajectory cfg is:"+ (target.GetComponent<TargetMovement>().trajectoryConfigCollection==null? "NULL" : "NOTNULL"));
+        //Debug.Log("targetPool. target.trajectory cfg is:"+ (target.GetComponent<TargetMovement>().trajectoryConfigCollection==null? "NULL" : "NOTNULL"));
         return target;
     }
 

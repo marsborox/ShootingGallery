@@ -26,9 +26,6 @@ public class Shotgun : Weapon
         {
             shotGunShotPool.Get();
         }
-        Debug.Log("Shotgun PostShot");
-        //projectileInstance.transform.position= 
-        base.WeaponPostShoot();
     }
 
     Projectile CreateProjectile()

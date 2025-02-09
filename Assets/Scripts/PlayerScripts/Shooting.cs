@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-
 //using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -28,7 +27,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private int defaultCapacity = 10;
     [SerializeField] private int maxSize = 30;
 
-    bool autoShooting = false;
+    public bool autoShooting = false;
     // Start is called before the first frame update
 
     List <Weapon> weapons = new List<Weapon>();
@@ -44,7 +43,7 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         EnablePlayerInput();
-        SetPistol();
+        SetRifle();
         CreateWeaponArray();
     }
 
@@ -52,7 +51,7 @@ public class Shooting : MonoBehaviour
     void Update()
     {
         //PlayerInput();
-        WeaponCooldownChecker();
+        //WeaponCooldownChecker();
         if (currentWeapon is MachineGun&& currentWeapon.shootReady&&autoShooting)
         {
             currentWeapon.WeaponShoots();
@@ -64,7 +63,7 @@ public class Shooting : MonoBehaviour
         playerControls.Shooting.Shoot.started+= Shoot;
         playerControls.Shooting.Shoot.canceled+= StopShoot;
         playerControls.Shooting.Reload.started+= _ =>Reload();
-        playerControls.WeaponSwitch.SetPistol.started += _ => SetPistol();
+        playerControls.WeaponSwitch.SetPistol.started += _ => SetRifle();
         playerControls.WeaponSwitch.SetShotgun.started += _ => SetShotgun();
         playerControls.WeaponSwitch.SetMachineGun.started += _ => SetMachineGun();
 
@@ -75,7 +74,7 @@ public class Shooting : MonoBehaviour
         playerControls.Shooting.Shoot.started -= Shoot;
         playerControls.Shooting.Shoot.canceled -= StopShoot;
         playerControls.Shooting.Reload.started -= _ => Reload();
-        playerControls.WeaponSwitch.SetPistol.started -= _ => SetPistol();
+        playerControls.WeaponSwitch.SetPistol.started -= _ => SetRifle();
         playerControls.WeaponSwitch.SetShotgun.started -= _ => SetShotgun();
         playerControls.WeaponSwitch.SetMachineGun.started -= _ => SetMachineGun();
     }
@@ -89,16 +88,12 @@ public class Shooting : MonoBehaviour
     }
     void Shoot(InputAction.CallbackContext context)
     {
-        if (currentWeapon.shootReady && !(currentWeapon is MachineGun))
+        if (!(currentWeapon is MachineGun))
         {
-            currentWeapon.WeaponShoots();
-            currentWeapon.cooldownToReduce = currentWeapon.cooldown;
-            currentWeapon.shootReady = false;
-            /*currentWeapon.shootReady = false;
-            currentWeapon.Shoot();
-            StartCoroutine(ShootingRoutine());*/
+            currentWeapon.Shoot(currentWeapon.WeaponShoots);
+
         }
-        else if (currentWeapon.shootReady && (currentWeapon is MachineGun))
+        else if (currentWeapon is MachineGun)
         { 
             autoShooting = true;
         }
@@ -138,6 +133,8 @@ public class Shooting : MonoBehaviour
     private void Reload()
     {
         Debug.Log("Shooting.ReloadingChecker");
+        currentWeapon.WeaponReload();
+        autoShooting = false;
     }
     void OnEnable()
     {
@@ -149,11 +146,12 @@ public class Shooting : MonoBehaviour
         playerControls.Disable();
     }
     
-    public void SetPistol()
+    public void SetRifle()
     { 
         Debug.Log("shooting.rifle set");
 
         currentWeapon=rifle;
+        autoShooting = false;
         uiWeapons.DisableActiveUIs();
         uiWeapons.RifleSetActiveUI();
     }
@@ -162,6 +160,7 @@ public class Shooting : MonoBehaviour
         Debug.Log("shooting.shotgun set");
 
         currentWeapon=shotgun;
+        autoShooting = false;
         uiWeapons.DisableActiveUIs();
         uiWeapons.ShotgunSetActiveUI();
     }
@@ -175,7 +174,7 @@ public class Shooting : MonoBehaviour
 
     }
     
-
+/*
     public void WeaponCooldownChecker()
     {
         foreach (Weapon weapon in weapons)
@@ -194,16 +193,6 @@ public class Shooting : MonoBehaviour
             }
         }
     }
-    void UpdateCoolDownProgres(Weapon weapon)
-    {
-        if (weapon.cooldownToReduce > 0)
-        {
-            weapon.cooldownToReduce = weapon.cooldownToReduce - weapon.cooldown * Time.deltaTime;
-        }
-        else 
-        {
-            weapon.shootReady = true;
-        }
-    }
+*/
  
 }

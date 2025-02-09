@@ -7,24 +7,38 @@ using UnityEngine.Pool;
 public class MachineGun : Weapon
 {
     private IObjectPool<Projectile> machineGunShotPool;
-    
+    Shooting shooting;
     private void Awake()
     {
 
-        machineGunShotPool = new ObjectPool<Projectile>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxSize);//
+        machineGunShotPool = new ObjectPool<Projectile>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxSize);
+        shooting = GetComponent<Shooting>();
     }
     private void Start()
     {
 
     }
+    private void Update()
+    {
+        //here insert continuous shooting for machinegun
+        if (shooting.autoShooting)
+        {
+            base.Shoot(ContinuousShooting);
+            base.Update();
+        }
+    }
     public override void WeaponShoots()
+    {
+            
+            //projectileInstance.transform.position= 
+    }
+
+    void ContinuousShooting()
     {
         Debug.Log("MachineGun Shot");
         //throw new System.NotImplementedException();
         machineGunShotPool.Get();
         Debug.Log("MachineGun PostShot");
-        //projectileInstance.transform.position= 
-        base.WeaponPostShoot();
     }
 
     Projectile CreateProjectile()

@@ -18,14 +18,17 @@ public class Rifle : Weapon
     {
         
     }
+    void DoShot()
+    { 
+        
+    }
     public override void WeaponShoots()
     {
-        Debug.Log("Rifle Shot");
-        //throw new System.NotImplementedException();
-        rifleShotPool.Get();
-        Debug.Log("Rifle PostShot");
-        //projectileInstance.transform.position= 
-        base.WeaponPostShoot();
+            //Debug.Log("Rifle Shot");
+            //throw new System.NotImplementedException();
+            rifleShotPool.Get();
+            //Debug.Log("Rifle PostShot");
+            //projectileInstance.transform.position= 
     }
     
     Projectile CreateProjectile()

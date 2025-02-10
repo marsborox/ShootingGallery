@@ -34,6 +34,8 @@ public class UIWeapons : MonoBehaviour
         RifleCooldownFraction();
         ShotgunCooldownFraction();
         MachineGunCooldownFraction();
+
+
     }
 
     public void DisableActiveUIs()
@@ -58,6 +60,8 @@ public class UIWeapons : MonoBehaviour
     }
 
 
+    //needs to be reworked - if weapon is reloading or on cd perform this
+
     public void RifleCooldownFraction()
     {
         uiRifle.CooldownFill(rifle.cooldownToReduce/rifle.cooldown);
@@ -69,5 +73,18 @@ public class UIWeapons : MonoBehaviour
     public void MachineGunCooldownFraction()
     {
         uimachineGun.CooldownFill(machineGun.cooldownToReduce/machineGun.cooldown);
+    }
+
+    public void RifleReloadFraction()
+    {
+
+    }
+    public void ShotgunReloadFraction() 
+    { 
+    
+    }
+    public void MachineGunReloadFraction() 
+    { 
+    
     }
 }

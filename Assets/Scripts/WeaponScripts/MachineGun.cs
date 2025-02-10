@@ -20,11 +20,11 @@ public class MachineGun : Weapon
     }
     private void Update()
     {
+            base.Update();
         //here insert continuous shooting for machinegun
         if (shooting.autoShooting)
         {
             base.Shoot(ContinuousShooting);
-            base.Update();
         }
     }
     public override void WeaponShoots()

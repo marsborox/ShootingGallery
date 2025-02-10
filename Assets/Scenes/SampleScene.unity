@@ -325,10 +325,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rifle
       objectReference: {fileID: 0}
-    - target: {fileID: 2347429035046193294, guid: 5de8723a189757b4985f6610889729bb, type: 3}
-      propertyPath: m_FillAmount
-      value: 0.297
-      objectReference: {fileID: 0}
     - target: {fileID: 4259514284605303176, guid: 5de8723a189757b4985f6610889729bb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1268,10 +1264,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6292260804251720493, guid: 5bb273fc4747c5d4a8b0f79fda4a30a6, type: 3}
-      propertyPath: m_FillAmount
-      value: 0.288
-      objectReference: {fileID: 0}
     - target: {fileID: 9002518821508649700, guid: 5bb273fc4747c5d4a8b0f79fda4a30a6, type: 3}
       propertyPath: m_Name
       value: Shotgun
@@ -1980,8 +1972,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4470850923447555488, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: onCooldown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470850923447555488, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
       propertyPath: reloadTime
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470850923447555488, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: cooldownTime
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4470850923447555488, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
       propertyPath: projectilePrefab
@@ -1992,8 +1992,16 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7093930168627182722, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: onCooldown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093930168627182722, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
       propertyPath: reloadTime
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093930168627182722, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: cooldownTime
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7093930168627182722, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
       propertyPath: projectilePrefab
@@ -2012,8 +2020,16 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7646088224482738283, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: onCooldown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646088224482738283, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
       propertyPath: reloadTime
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646088224482738283, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: cooldownTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7646088224482738283, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
       propertyPath: projectilePrefab

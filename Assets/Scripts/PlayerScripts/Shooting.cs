@@ -52,7 +52,7 @@ public class Shooting : MonoBehaviour
     {
         //PlayerInput();
         //WeaponCooldownChecker();
-        if (currentWeapon is MachineGun&& currentWeapon.shootReady&&autoShooting)
+        if (currentWeapon is MachineGun&& currentWeapon.onCooldown&&autoShooting)
         {
             currentWeapon.WeaponShoots();
         }
@@ -105,9 +105,9 @@ public class Shooting : MonoBehaviour
     IEnumerator ShootingRoutine()
     {
         Weapon usedWeapon=currentWeapon;
-        Debug.Log("shooting.ShootingRoutine"+usedWeapon.cooldown.ToString());
-        yield return new WaitForSeconds(usedWeapon.cooldown);
-        currentWeapon.shootReady = true;
+        Debug.Log("shooting.ShootingRoutine"+usedWeapon.cooldownTime.ToString());
+        yield return new WaitForSeconds(usedWeapon.cooldownTime);
+        currentWeapon.onCooldown = true;
     }
 
     #region ProjectilePooling

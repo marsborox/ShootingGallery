@@ -46,7 +46,7 @@ public class TargetMovement : MonoBehaviour
     private void Move()
     {
         //Debug.Log("target.Moving");
-        transform.position = Vector2.MoveTowards(transform.position, nextWaypoint.position, movementSpeed);// *Time.deltaTime
+        transform.position = Vector2.MoveTowards(transform.position, nextWaypoint.position, movementSpeed );// *Time.deltaTime
         //Debug.Log(Vector2.Distance(transform.position, nextWaypoint.transform.position));
     }
 

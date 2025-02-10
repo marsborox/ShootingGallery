@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 using UnityEditor.ShaderKeywordFilter;
 
 using UnityEngine;
@@ -16,6 +19,8 @@ public class UIWeapons : MonoBehaviour
     [SerializeField] Shotgun shotgun;
     [SerializeField] MachineGun machineGun;
     // Start is called before the first frame update
+    Color32 normalColor = Color.white;
+    Color32 reloadColor = Color.red;
 
     private void Awake()
     {
@@ -31,13 +36,15 @@ public class UIWeapons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         RifleCooldownFraction();
         ShotgunCooldownFraction();
         MachineGunCooldownFraction();
-
-
+        */
+        FillAllFractions();
     }
-
+    #region active weapon selector must fix
+    //only one square with changingp position
     public void DisableActiveUIs()
     {
         uiRifleActive.SetActive(false);
@@ -58,21 +65,75 @@ public class UIWeapons : MonoBehaviour
     {
         uiMachineGunActive.SetActive(true);
     }
-
+    #endregion
 
     //needs to be reworked - if weapon is reloading or on cd perform this
 
+    void FillAllFractions()
+    {
+        FillFractions(rifle,uiRifle);
+        FillFractions(shotgun,uiShotgun);
+        FillFractions(machineGun, uimachineGun);
+
+    }
+    void ColorChanger()
+    { 
+        
+    }
+    void FillFractions(Weapon weapon, UIWeapon uiWeapon)
+    {
+        
+        if (weapon.reloading||(weapon.onCooldown))
+        {
+            if (weapon.reloading)
+            {
+                uiWeapon.WeaponSetColor(reloadColor);
+                uiWeapon.CooldownFill(weapon.reloadTimeToReduce / weapon.reloadTime);
+
+            }
+
+            else 
+            {
+                uiWeapon.WeaponSetColor(normalColor);
+                uiWeapon.CooldownFill(weapon.cooldownTimeToReduce / weapon.cooldownTime); 
+            }
+        }
+        else uiWeapon.WeaponSetColor(normalColor);
+
+    }
+    void InsertNonShootProcess()
+    { 
+        
+
+
+
+    }
+
+    float Fill(float toReduce,float full )
+    {
+        return toReduce/ full;
+    }
+
+    void WhatToDo()
+    {
+        
+    }
+    
+    void DoCooldown() { }
+    void DoReload() { }
+
+
     public void RifleCooldownFraction()
     {
-        uiRifle.CooldownFill(rifle.cooldownToReduce/rifle.cooldown);
+        uiRifle.CooldownFill(rifle.cooldownTimeToReduce/rifle.cooldownTime);
     }
     public void ShotgunCooldownFraction()
     {
-        uiShotgun.CooldownFill(shotgun.cooldownToReduce/shotgun.cooldown);
+        uiShotgun.CooldownFill(shotgun.cooldownTimeToReduce/shotgun.cooldownTime);
     }
     public void MachineGunCooldownFraction()
     {
-        uimachineGun.CooldownFill(machineGun.cooldownToReduce/machineGun.cooldown);
+        uimachineGun.CooldownFill(machineGun.cooldownTimeToReduce/machineGun.cooldownTime);
     }
 
     public void RifleReloadFraction()

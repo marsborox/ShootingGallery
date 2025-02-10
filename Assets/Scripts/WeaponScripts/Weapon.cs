@@ -6,9 +6,6 @@ using UnityEngine.Pool;
 
 public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] public float cooldown;
-    [SerializeField] public float cooldownToReduce;
-    public bool shootReady=true;
 
     [SerializeField] public Projectile projectilePrefab;
     [SerializeField] public bool weaponActive = false;
@@ -20,10 +17,13 @@ public abstract class Weapon : MonoBehaviour
 
     [SerializeField] public int ammoMax=10;
     [SerializeField] public int ammo = 10;
+
+    [SerializeField] public float cooldownTime;
+    [SerializeField] public float cooldownTimeToReduce;
+    public bool onCooldown=false;
     [SerializeField] public float reloadTime;
     [SerializeField] public float reloadTimeToReduce;
     public bool reloading = false;
-
     public abstract void WeaponShoots();
 
     public void Update()
@@ -35,16 +35,17 @@ public abstract class Weapon : MonoBehaviour
 
     void CooldownChecker()
     {
-        if (!shootReady)
+        
+        if (onCooldown)
         {
             //UpdateCoolDownProgres(weapon)
-            if (cooldownToReduce > 0)
+            if (cooldownTimeToReduce > 0)
             {
-                cooldownToReduce = cooldownToReduce - /*cooldown * */ Time.deltaTime;
+                cooldownTimeToReduce = cooldownTimeToReduce - /*cooldown * */ Time.deltaTime;
             }
             else
             {
-                shootReady = true;
+                onCooldown = false;
             }
             //here update interface
         }
@@ -65,20 +66,17 @@ public abstract class Weapon : MonoBehaviour
             }
         }
     }
-    public void Shoot(Action action) 
+    public void Shoot(Action weaponAction) 
     {
-        if (ammo <= 0)
+        
+        if (!onCooldown && !reloading&& ammo > 0)
         {
-            shootReady = false;
-            return;
-        }
 
-        if (shootReady && !reloading)
-        {
-            action();
-            cooldownToReduce = cooldown;
-            shootReady = false;
+            weaponAction();
             ammo--;
+            onCooldown = true;
+            cooldownTimeToReduce = cooldownTime;
+            
         }
     }
     void Shoot()
@@ -89,13 +87,7 @@ public abstract class Weapon : MonoBehaviour
     { 
     
     }
-    public void WeaponPreShoot()
-    { 
-        if (ammo <= 0)
-        {
-            shootReady = false;
-        }
-    }
+
 
     public void WeaponReload()
     {

@@ -115,11 +115,13 @@ public class Shooting : MonoBehaviour
     { 
         Projectile projectileInstance = Instantiate(projectilePrefab);
         projectileInstance.projectilePoolPublic = projectilePool;
+        //projectileInstance.shooting = this;
         return projectileInstance;
     }
     private void OnGetFromPool(Projectile projectile)
     {
         projectile.gameObject.SetActive(true);
+       /* projectile.SetDamage(activeWeapon.damage);*/
     }
     private void OnReleaseToPool(Projectile projectile)
     { 

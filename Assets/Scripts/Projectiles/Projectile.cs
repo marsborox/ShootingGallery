@@ -5,16 +5,21 @@ using UnityEngine.Pool;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float dispersion = 0;
-    int damage = 10;
+    int damage = 0;
     Collider2D collider;
+
+    public Shooting shooting;
     private IObjectPool<Projectile> projectilePoolPrivate;
     public IObjectPool<Projectile> projectilePoolPublic { set => projectilePoolPrivate = value; }
+
     private void Awake()
     {
         collider = GetComponent<Collider2D>();
+        shooting = FindObjectOfType<Shooting>();
     }
     private void Start()
     {
+
         collider.enabled = false;
         //Debug.Log("projectile.Projectile spawned, starting routine");
     }
@@ -36,27 +41,31 @@ public class Projectile : MonoBehaviour
     }
     private void OnEnable()
     {
+        if (shooting == null) { Debug.Log("projectile. shooting null"); }
+        SetDamage(shooting.currentWeapon.weaponDamage);
         SetPosition();
-        StartCoroutine(SpawnRoutine());
+        StartCoroutine(DeSpawnRoutine());
         StartCoroutine(ColliderShutdownRoutine());
         collider.enabled = true;
-    }
 
-    public void Deactivate()
-    {
-        projectilePoolPrivate.Release(this);
     }
-    IEnumerator SpawnRoutine()
+    public void SetShootingOnCreate(Shooting passedShoting)
+    { 
+        shooting = passedShoting;
+    }
+    IEnumerator DeSpawnRoutine()
     {
         yield return new WaitForSecondsRealtime(0.4f);
         //Debug.Log("projectile.Projectile despawning");
-        Deactivate();
+        projectilePoolPrivate.Release(this);
     }
+ 
     IEnumerator ColliderShutdownRoutine()
     {
         yield return new WaitForSecondsRealtime(0.02f);
         //yield return new WaitForEndOfFrame();
         collider.enabled = false;
+
     }
     public virtual void SetPosition() 
     {
@@ -64,7 +73,10 @@ public class Projectile : MonoBehaviour
         Vector2 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         gameObject.transform.position = pz;
     }
-
+    public void SetDamage(int insertedDamage)
+    {
+        damage = insertedDamage;
+    }
     public Vector2 Disperze(Vector2 inputVector)
     {
         float moveDistance=Random.Range(0,dispersion);

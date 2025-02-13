@@ -1,4 +1,6 @@
 
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +11,7 @@ public class UIWeapon : MonoBehaviour
     [SerializeField] public Image cooldownReady;// why not see
     [SerializeField] public Image weaponImage;
 
-
+    [SerializeField] TextMeshProUGUI ammoText;
     // Start is called before the first frame update
 
 
@@ -20,5 +22,9 @@ public class UIWeapon : MonoBehaviour
     public void WeaponSetColor(Color inputColor) 
     {
         weaponImage.color = inputColor;
+    }
+    public void DisplayAmmo(string ammoInsertText)
+    {
+        ammoText.text = ammoInsertText;
     }
 }

@@ -9,7 +9,7 @@ public class TargetMovement : MonoBehaviour
     [SerializeField] int waypointIndex;
     public bool directionIsLeft;
     float throwSpeed = 500f;
-    float movementSpeed = 0.01f;//0.01-0.1 ok //0.02 os fastish but ok
+    float movementSpeed = 5f;//0.01-0.1 ok //0.02 os fastish but ok// only without Time.deltaTime
     public int trajectoryIndex;
     // Start is called before the first frame update
     public Transform nextWaypoint;
@@ -45,8 +45,10 @@ public class TargetMovement : MonoBehaviour
     }
     private void Move()
     {
+
+        float delta = movementSpeed * Time.deltaTime;
         //Debug.Log("target.Moving");
-        transform.position = Vector2.MoveTowards(transform.position, nextWaypoint.position, movementSpeed );// *Time.deltaTime
+        transform.position = Vector2.MoveTowards(transform.position, nextWaypoint.position, delta);// *Time.deltaTime
         //Debug.Log(Vector2.Distance(transform.position, nextWaypoint.transform.position));
     }
 

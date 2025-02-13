@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 
+using TMPro;
+
 using UnityEditor.ShaderKeywordFilter;
 
 using UnityEngine;
@@ -21,6 +23,7 @@ public class UIWeapons : MonoBehaviour
     // Start is called before the first frame update
     Color32 normalColor = Color.white;
     Color32 reloadColor = Color.red;
+    
 
     private void Awake()
     {
@@ -31,8 +34,6 @@ public class UIWeapons : MonoBehaviour
     {
         
     }
-
-
     // Update is called once per frame
     void Update()
     {
@@ -41,7 +42,7 @@ public class UIWeapons : MonoBehaviour
         ShotgunCooldownFraction();
         MachineGunCooldownFraction();
         */
-        FillAllFractions();
+        AllWeaponsFillDisplayAll();
     }
     #region active weapon selector must fix
     //only one square with changingp position
@@ -74,24 +75,32 @@ public class UIWeapons : MonoBehaviour
         FillFractions(rifle,uiRifle);
         FillFractions(shotgun,uiShotgun);
         FillFractions(machineGun, uimachineGun);
-
+    }
+    void AllWeaponsFillDisplayAll()
+    {
+        UiWeaponDisplayFull(rifle, uiRifle);
+        UiWeaponDisplayFull(shotgun, uiShotgun);
+        UiWeaponDisplayFull(machineGun, uimachineGun);
     }
     void ColorChanger()
     { 
         
     }
+    void UiWeaponDisplayFull(Weapon weapon, UIWeapon uiWeapon)
+    {
+        FillFractions(weapon, uiWeapon);
+        DisplayAmmo(weapon, uiWeapon);
+    }
+
     void FillFractions(Weapon weapon, UIWeapon uiWeapon)
     {
-        
         if (weapon.reloading||(weapon.onCooldown))
         {
             if (weapon.reloading)
             {
                 uiWeapon.WeaponSetColor(reloadColor);
                 uiWeapon.CooldownFill(weapon.reloadTimeToReduce / weapon.reloadTime);
-
             }
-
             else 
             {
                 uiWeapon.WeaponSetColor(normalColor);
@@ -99,14 +108,11 @@ public class UIWeapons : MonoBehaviour
             }
         }
         else uiWeapon.WeaponSetColor(normalColor);
-
     }
-    void InsertNonShootProcess()
-    { 
-        
 
-
-
+    void DisplayAmmo(Weapon weapon, UIWeapon uiWeapon)
+    {
+        uiWeapon.DisplayAmmo(weapon.ammo.ToString());
     }
 
     float Fill(float toReduce,float full )

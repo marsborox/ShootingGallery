@@ -1,6 +1,8 @@
 
 using System;
 
+using JetBrains.Annotations;
+
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -18,6 +20,8 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] public int ammoMax=10;
     [SerializeField] public int ammo = 10;
 
+    public int weaponBaseDamage;
+    public int weaponDamage;
     [SerializeField] public float cooldownTime;
     [SerializeField] public float cooldownTimeToReduce;
     public bool onCooldown=false;
@@ -25,17 +29,15 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] public float reloadTimeToReduce;
     public bool reloading = false;
     public abstract void WeaponShoots();
-
+    
     public void Update()
     {
         CooldownChecker();
         ReloadingChecker();
-
     }
 
     void CooldownChecker()
     {
-        
         if (onCooldown)
         {
             //UpdateCoolDownProgres(weapon)
@@ -49,7 +51,6 @@ public abstract class Weapon : MonoBehaviour
             }
             //here update interface
         }
- 
     }
     void ReloadingChecker()
     {
@@ -66,17 +67,18 @@ public abstract class Weapon : MonoBehaviour
             }
         }
     }
+    public int GetWeaponDamage()
+    {
+        return weaponDamage;
+    }
     public void Shoot(Action weaponAction) 
     {
-        
         if (!onCooldown && !reloading&& ammo > 0)
         {
-
             weaponAction();
             ammo--;
             onCooldown = true;
             cooldownTimeToReduce = cooldownTime;
-            
         }
     }
     void Shoot()
@@ -87,8 +89,6 @@ public abstract class Weapon : MonoBehaviour
     { 
     
     }
-
-
     public void WeaponReload()
     {
         Debug.Log("weapon.performingReload");

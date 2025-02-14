@@ -10,7 +10,7 @@ public class Shotgun : Weapon
 {
     private IObjectPool<Projectile> shotGunShotPool;
     [SerializeField] int numberOfShots = 5; 
-
+    
     private void Awake()
     {
 

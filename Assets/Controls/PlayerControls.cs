@@ -28,7 +28,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""32570a18-dea7-40c6-adb7-e20ebc7fed64"",
             ""actions"": [
                 {
-                    ""name"": ""Shooting"",
+                    ""name"": ""Shoot"",
                     ""type"": ""Value"",
                     ""id"": ""597ccb2d-c458-45dd-a0f6-413e3c9183ab"",
                     ""expectedControlType"": ""Button"",
@@ -53,6 +53,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EscapeMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""71c1294b-b8ae-47d8-a75a-a62ce6bc6423"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -63,7 +72,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shooting"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -99,6 +108,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""AutoShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""781a0d6c-1abc-402b-8f43-76fc37650527"",
+                    ""path"": ""<Keyboard>/Esc"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EscapeMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53b79bfa-8fa9-43b8-b615-5d812341adc2"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EscapeMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -107,7 +138,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""1b327678-08cb-495e-97db-6f8800b8ab33"",
             ""actions"": [
                 {
-                    ""name"": ""SetRifle"",
+                    ""name"": ""SetPistol"",
                     ""type"": ""Button"",
                     ""id"": ""89f2d6f0-40e0-48d5-8913-19715d811760"",
                     ""expectedControlType"": ""Button"",
@@ -142,7 +173,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SetRifle"",
+                    ""action"": ""SetPistol"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -175,12 +206,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 }");
         // Shooting
         m_Shooting = asset.FindActionMap("Shooting", throwIfNotFound: true);
-        m_Shooting_Shoot = m_Shooting.FindAction("Shooting", throwIfNotFound: true);
+        m_Shooting_Shoot = m_Shooting.FindAction("Shoot", throwIfNotFound: true);
         m_Shooting_Reload = m_Shooting.FindAction("Reload", throwIfNotFound: true);
         m_Shooting_AutoShoot = m_Shooting.FindAction("AutoShoot", throwIfNotFound: true);
+        m_Shooting_EscapeMenu = m_Shooting.FindAction("EscapeMenu", throwIfNotFound: true);
         // WeaponSwitch
         m_WeaponSwitch = asset.FindActionMap("WeaponSwitch", throwIfNotFound: true);
-        m_WeaponSwitch_SetPistol = m_WeaponSwitch.FindAction("SetRifle", throwIfNotFound: true);
+        m_WeaponSwitch_SetPistol = m_WeaponSwitch.FindAction("SetPistol", throwIfNotFound: true);
         m_WeaponSwitch_SetShotgun = m_WeaponSwitch.FindAction("SetShotgun", throwIfNotFound: true);
         m_WeaponSwitch_SetMachineGun = m_WeaponSwitch.FindAction("SetMachineGun", throwIfNotFound: true);
     }
@@ -247,6 +279,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Shooting_Shoot;
     private readonly InputAction m_Shooting_Reload;
     private readonly InputAction m_Shooting_AutoShoot;
+    private readonly InputAction m_Shooting_EscapeMenu;
     public struct ShootingActions
     {
         private @PlayerControls m_Wrapper;
@@ -254,6 +287,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Shooting_Shoot;
         public InputAction @Reload => m_Wrapper.m_Shooting_Reload;
         public InputAction @AutoShoot => m_Wrapper.m_Shooting_AutoShoot;
+        public InputAction @EscapeMenu => m_Wrapper.m_Shooting_EscapeMenu;
         public InputActionMap Get() { return m_Wrapper.m_Shooting; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -272,6 +306,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AutoShoot.started += instance.OnAutoShoot;
             @AutoShoot.performed += instance.OnAutoShoot;
             @AutoShoot.canceled += instance.OnAutoShoot;
+            @EscapeMenu.started += instance.OnEscapeMenu;
+            @EscapeMenu.performed += instance.OnEscapeMenu;
+            @EscapeMenu.canceled += instance.OnEscapeMenu;
         }
 
         private void UnregisterCallbacks(IShootingActions instance)
@@ -285,6 +322,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @AutoShoot.started -= instance.OnAutoShoot;
             @AutoShoot.performed -= instance.OnAutoShoot;
             @AutoShoot.canceled -= instance.OnAutoShoot;
+            @EscapeMenu.started -= instance.OnEscapeMenu;
+            @EscapeMenu.performed -= instance.OnEscapeMenu;
+            @EscapeMenu.canceled -= instance.OnEscapeMenu;
         }
 
         public void RemoveCallbacks(IShootingActions instance)
@@ -369,6 +409,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnAutoShoot(InputAction.CallbackContext context);
+        void OnEscapeMenu(InputAction.CallbackContext context);
     }
     public interface IWeaponSwitchActions
     {

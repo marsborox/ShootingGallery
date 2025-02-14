@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-//using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
@@ -11,8 +9,7 @@ public class Shooting : MonoBehaviour
 {
     PlayerControls playerControls;
     [SerializeField] Projectile projectilePrefab;
-    Action shoot;
-    Action reload;
+
     private IObjectPool<Projectile> projectilePool;
 
     public Weapon currentWeapon;

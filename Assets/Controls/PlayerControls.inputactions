@@ -31,15 +31,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "EscapeMenu",
-                    "type": "Button",
-                    "id": "71c1294b-b8ae-47d8-a75a-a62ce6bc6423",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -84,28 +75,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "AutoShoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "781a0d6c-1abc-402b-8f43-76fc37650527",
-                    "path": "<Keyboard>/Esc",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "EscapeMenu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "53b79bfa-8fa9-43b8-b615-5d812341adc2",
-                    "path": "<Keyboard>/o",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "EscapeMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -174,6 +143,74 @@
                     "processors": "",
                     "groups": "",
                     "action": "SetMachineGun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MenuControl",
+            "id": "bf44112c-7406-44dc-886e-4f4e9abc59ab",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "76f30088-460a-4fc8-8d34-cd2dea4ab210",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EscapeMenu",
+                    "type": "Button",
+                    "id": "2b031123-c5ae-4d51-9216-cbde4b6b92a1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UpgradeMenu",
+                    "type": "Button",
+                    "id": "322fe449-4cbe-4473-835f-83113874a1cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b4a6d6e6-0b8d-4d7c-a3fd-f7c59336f1a2",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9defb201-3576-4493-8448-14a7001ffc23",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EscapeMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c72d1543-4696-40d9-910b-dcf8e9753478",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UpgradeMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

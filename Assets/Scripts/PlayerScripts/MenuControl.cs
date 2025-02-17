@@ -12,26 +12,5 @@ public class MenuControl : MonoBehaviour
     {
         playerControls=new PlayerControls();
     }
-    private void Start()
-    {
-        EnablePlayerInput();
-    }
-    private void OnEnable()
-    {
-        
-    }
-    void EnablePlayerInput()
-    {
-        playerControls.Menu.EscapeMenu.started += _ => EscapeMenu();
-    }
-    void EscapeMenu()
-    {
-        Debug.Log("Esc / o pressed");
-        Debug.Log("esc pressed menu is"+ (escapeMenuOn ? "On" : "Off"));
 
-    }
-    void DisablePlayerInput()
-    {
-        //playerControls.Menu.EscapeMenu.canceled += _ => EscapeMenu();
-    }
 }

@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 
 public class Shooting : MonoBehaviour
 {
-    PlayerControls playerControls;
+    //PlayerControls playerControls;
     [SerializeField] Projectile projectilePrefab;
 
     private IObjectPool<Projectile> projectilePool;
@@ -31,7 +31,7 @@ public class Shooting : MonoBehaviour
     private void Awake()
     {
         projectilePool = new ObjectPool<Projectile>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxSize);
-        playerControls=new PlayerControls();
+        //playerControls=new PlayerControls();
         rifle = GetComponent<Rifle>();
         shotgun = GetComponent<Shotgun>();
         machineGun = GetComponent<MachineGun>();
@@ -39,7 +39,7 @@ public class Shooting : MonoBehaviour
 
     void Start()
     {
-        EnablePlayerInput();
+        //EnablePlayerInput();//*************************
         SetRifle();
         CreateWeaponArray();
     }
@@ -54,6 +54,7 @@ public class Shooting : MonoBehaviour
             currentWeapon.WeaponShoots();
         }
     }
+    /*
     void EnablePlayerInput()
     {
         //shoot = playerControls.Shooting.Shoot();
@@ -74,7 +75,7 @@ public class Shooting : MonoBehaviour
         playerControls.WeaponSwitch.SetPistol.started -= _ => SetRifle();
         playerControls.WeaponSwitch.SetShotgun.started -= _ => SetShotgun();
         playerControls.WeaponSwitch.SetMachineGun.started -= _ => SetMachineGun();
-    }
+    }*/
     void CreateWeaponArray()
     { 
         
@@ -83,7 +84,7 @@ public class Shooting : MonoBehaviour
         weapons.Add(machineGun) ;
 
     }
-    void Shoot(InputAction.CallbackContext context)
+    public void Shoot(InputAction.CallbackContext context)
     {
         if (!(currentWeapon is MachineGun))
         {
@@ -95,7 +96,7 @@ public class Shooting : MonoBehaviour
             autoShooting = true;
         }
     }
-    void StopShoot(InputAction.CallbackContext context)
+    public void StopShoot(InputAction.CallbackContext context)
     {
         autoShooting = false;
     }
@@ -129,13 +130,13 @@ public class Shooting : MonoBehaviour
         Destroy(projectile.gameObject);
     }
     #endregion
-    private void Reload()
+    public void Reload(InputAction.CallbackContext context)
     {
         Debug.Log("Shooting.ReloadingChecker");
         currentWeapon.WeaponReload();
         autoShooting = false;
     }
-    void OnEnable()
+    /*void OnEnable()
     {
         playerControls.Enable();
         
@@ -143,18 +144,25 @@ public class Shooting : MonoBehaviour
     void OnDisable()
     {
         playerControls.Disable();
-    }
+    }*/
     
-    public void SetRifle()
+    public void SetRifle(InputAction.CallbackContext context)
     { 
         Debug.Log("shooting.rifle set");
-
         currentWeapon=rifle;
         autoShooting = false;
         uiWeapons.DisableActiveUIs();
         uiWeapons.RifleSetActiveUI();
     }
-    public void SetShotgun()
+    void SetRifle()
+    {//method for initial start
+        Debug.Log("shooting.rifle set");
+        currentWeapon = rifle;
+        autoShooting = false;
+        uiWeapons.DisableActiveUIs();
+        uiWeapons.RifleSetActiveUI();
+    }
+    public void SetShotgun(InputAction.CallbackContext context)
     { 
         Debug.Log("shooting.shotgun set");
 
@@ -163,7 +171,7 @@ public class Shooting : MonoBehaviour
         uiWeapons.DisableActiveUIs();
         uiWeapons.ShotgunSetActiveUI();
     }
-    public void SetMachineGun()
+    public void SetMachineGun(InputAction.CallbackContext context)
     {
         Debug.Log("shooting.machinegun set");
 
@@ -172,26 +180,4 @@ public class Shooting : MonoBehaviour
         uiWeapons.MachineGunSetActiveUI();
 
     }
-    
-/*
-    public void WeaponCooldownChecker()
-    {
-        foreach (Weapon weapon in weapons)
-        {
-            if (!weapon.shootReady)
-            {
-                //UpdateCoolDownProgres(weapon)
-                if (weapon.cooldownToReduce > 0)
-                {
-                    weapon.cooldownToReduce = weapon.cooldownToReduce - weapon.cooldown * Time.deltaTime;
-                }
-                else
-                {
-                    weapon.shootReady = true;
-                }
-            }
-        }
-    }
-*/
- 
-}
+ }

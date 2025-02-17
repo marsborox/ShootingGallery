@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9084044205488662614}
   - component: {fileID: 6204931447622664294}
-  - component: {fileID: 3586135280891037503}
+  - component: {fileID: 4701620425818904103}
+  - component: {fileID: 9152355610894946542}
   - component: {fileID: -703291072154857102}
   - component: {fileID: 1939684547893671898}
   - component: {fileID: 4470850923447555488}
@@ -68,7 +69,19 @@ MonoBehaviour:
   m_DefaultActionMap: Shooting
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3586135280891037503
+--- !u!114 &4701620425818904103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694234318040892575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99524061697739945a28f2a6c488d291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9152355610894946542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7151316937a2b1648a18efb826ced34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: -6520004094155727759, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
+  projectilePrefab: {fileID: 4055800372496051109, guid: 7949b6fc94fe0474b9fb1ab6ff675bed, type: 3}
   weaponActive: 0
   collectionCheck: 1
   defaultCapacity: 10
@@ -133,11 +146,11 @@ MonoBehaviour:
   ammoMax: 10
   ammo: 10
   weaponBaseDamage: 0
-  weaponDamage: 0
-  cooldownTime: 0
+  weaponDamage: 20
+  cooldownTime: 0.7
   cooldownTimeToReduce: 0
   onCooldown: 0
-  reloadTime: 0
+  reloadTime: 5
   reloadTimeToReduce: 0
   reloading: 0
 --- !u!114 &7093930168627182722
@@ -152,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd8d75e7b8bea14c996c1810c8e9fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: -6520004094155727759, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
+  projectilePrefab: {fileID: -4305642310430471346, guid: f0d2870cb605919429478ee380a7a1a6, type: 3}
   weaponActive: 0
   collectionCheck: 1
   defaultCapacity: 10
@@ -160,11 +173,11 @@ MonoBehaviour:
   ammoMax: 10
   ammo: 10
   weaponBaseDamage: 0
-  weaponDamage: 0
-  cooldownTime: 0
+  weaponDamage: 4
+  cooldownTime: 0.5
   cooldownTimeToReduce: 0
   onCooldown: 0
-  reloadTime: 0
+  reloadTime: 5
   reloadTimeToReduce: 0
   reloading: 0
   numberOfShots: 5
@@ -180,18 +193,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18bdd31ac1790a241ac8ec06055473c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: -6520004094155727759, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
+  projectilePrefab: {fileID: -6445328734398111105, guid: 872eebc5a4263324ea60fb7431674329, type: 3}
   weaponActive: 0
   collectionCheck: 1
   defaultCapacity: 10
   maxSize: 30
-  ammoMax: 10
-  ammo: 10
+  ammoMax: 100
+  ammo: 100
   weaponBaseDamage: 0
-  weaponDamage: 0
-  cooldownTime: 0
+  weaponDamage: 4
+  cooldownTime: 0.1
   cooldownTimeToReduce: 0
   onCooldown: 0
-  reloadTime: 0
+  reloadTime: 10
   reloadTimeToReduce: 0
   reloading: 0

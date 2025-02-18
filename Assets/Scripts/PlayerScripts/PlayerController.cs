@@ -94,10 +94,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Esc / o pressed");
         Debug.Log("esc pressed menu is" + (pauseMenuOn ? "On" : "Off"));
     }
-
-   
-
-
     void PauseMenuOn()
     { 
         pauseMenuOn = true;
@@ -110,4 +106,6 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 1f;
         EnableWeaponActionsControls();
     }
+
+
 }

@@ -15,8 +15,8 @@ TagManager:
   - UI
   - BackGround
   - Target
-  - 
-  - 
+  - PauseMenu
+  - BuyMenu
   - 
   - 
   - 
@@ -57,4 +57,10 @@ TagManager:
     locked: 0
   - name: HealthBars
     uniqueID: 3553026447
+    locked: 0
+  - name: PauseMenu
+    uniqueID: 1249399941
+    locked: 0
+  - name: BuyMenu
+    uniqueID: 2354927923
     locked: 0

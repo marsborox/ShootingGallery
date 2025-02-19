@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] float startTime;
-    float timeRemaining;
+    [SerializeField] float startTimeMax;
+    public float timeRemaining;
     bool gameGoing = true;
     void Start()
     {
@@ -16,13 +16,15 @@ public class Timer : MonoBehaviour
     }
     void Update()
     {
-        if(!gameGoing)
-        FlowOfTime();
+        if (gameGoing)
+        {
+            FlowOfTime();
+        }
     }
 
     void ResetTimer()
     {
-        timeRemaining = startTime;
+        timeRemaining = startTimeMax;
     }
     void FlowOfTime()
     { 
@@ -32,6 +34,7 @@ public class Timer : MonoBehaviour
         {
             gameGoing = false;
             Debug.Log("timer.Game Over");
+            
         }
     }
 

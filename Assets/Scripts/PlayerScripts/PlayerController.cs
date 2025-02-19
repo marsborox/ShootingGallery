@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     PlayerControls playerControls;
     Shooting shooting;
-    bool pauseMenuOn = false;
+    [SerializeField] GameObject uiPauseMenu;
+
+    public bool pauseMenuOn = false;
     void Awake()
     {
         playerControls = new PlayerControls();
@@ -99,12 +101,14 @@ public class PlayerController : MonoBehaviour
         pauseMenuOn = true;
         Time.timeScale = 0f;
         DisableWeaponActionsControls();
+        uiPauseMenu.SetActive(true);
     }
     void PauseMenuOff()
     { 
         pauseMenuOn = false;
         Time.timeScale = 1f;
         EnableWeaponActionsControls();
+        uiPauseMenu.SetActive(false);
     }
 
 

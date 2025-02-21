@@ -13,7 +13,7 @@ public class PauseMenu : Menu
     {
         ActivateButton(restartButton, NewGame);
         ActivateButton(optionsButton, Options);
-        ActivateButton(quitToWindowsButton, QuitToMainMenu);
+        ActivateButton(quitToMainMenuButton, QuitToMainMenu);
         ActivateButton(quitToWindowsButton, QuitToWindows);
     }
 }

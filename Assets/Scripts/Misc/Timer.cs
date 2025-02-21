@@ -25,6 +25,7 @@ public class Timer : MonoBehaviour
     void ResetTimer()
     {
         timeRemaining = startTimeMax;
+        Time.timeScale = 1f;
     }
     void FlowOfTime()
     { 

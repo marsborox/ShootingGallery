@@ -13,6 +13,12 @@ public class TrajectoryConfigCollection : MonoBehaviour
     [SerializeField] public SO_TrajectoryConfig R_L_CurveToStraight_Raise;
     public SO_TrajectoryConfig L_R_CurveToStraight_Raise;
 
+    [SerializeField] public SO_TrajectoryConfig R_L_StraightLineCentre;
+    public SO_TrajectoryConfig L_R_StraightLineCentre;
+    [SerializeField] public SO_TrajectoryConfig R_L_StraightLineTop;
+    public SO_TrajectoryConfig L_R_StraightLineTop;
+    [SerializeField] public SO_TrajectoryConfig R_L_StraightLineBot;
+    public SO_TrajectoryConfig L_R_StraightLineBot;
 
 
     public List<SO_TrajectoryConfig> configList /*{ get; private set; }*/;
@@ -36,7 +42,9 @@ public class TrajectoryConfigCollection : MonoBehaviour
         R_L_GaussCurve.SetWaypoints();
         R_L_LinearFalling.SetWaypoints();
         R_L_CurveToStraight_Raise.SetWaypoints();
-
+        R_L_StraightLineCentre.SetWaypoints();
+        R_L_StraightLineTop.SetWaypoints();
+        R_L_StraightLineBot.SetWaypoints();
         //Debug.Log("trajectoryConfigCollection. Base Trajectories Initiated");
     }
     void SetAllL_R_Configs()
@@ -47,6 +55,15 @@ public class TrajectoryConfigCollection : MonoBehaviour
         L_R_LinearFalling.trajectoryWaypointTransformList = SetL_R_Config(R_L_LinearFalling.trajectoryWaypointTransformList);
         L_R_CurveToStraight_Raise = new SO_TrajectoryConfig();
         L_R_CurveToStraight_Raise.trajectoryWaypointTransformList = SetL_R_Config(R_L_CurveToStraight_Raise.trajectoryWaypointTransformList);
+
+        L_R_StraightLineBot = new SO_TrajectoryConfig();
+        L_R_StraightLineBot.trajectoryWaypointTransformList = SetL_R_Config(R_L_StraightLineBot.trajectoryWaypointTransformList);
+        L_R_StraightLineCentre = new SO_TrajectoryConfig();
+        L_R_StraightLineCentre.trajectoryWaypointTransformList = SetL_R_Config(R_L_StraightLineCentre.trajectoryWaypointTransformList);
+        L_R_StraightLineTop = new SO_TrajectoryConfig();
+        L_R_StraightLineTop.trajectoryWaypointTransformList = SetL_R_Config(R_L_StraightLineTop.trajectoryWaypointTransformList);
+
+
     }
 
     void AddConfigsToConfigList()
@@ -57,6 +74,13 @@ public class TrajectoryConfigCollection : MonoBehaviour
         configList.Add(L_R_LinearFalling);
         configList.Add(R_L_CurveToStraight_Raise);
         configList.Add(L_R_CurveToStraight_Raise);
+        configList.Add(R_L_StraightLineBot);
+        configList.Add(L_R_StraightLineBot);
+        configList.Add(R_L_StraightLineCentre);
+        configList.Add(L_R_StraightLineCentre);
+        configList.Add(R_L_StraightLineTop);
+        configList.Add(L_R_StraightLineTop);
+
     }
 
     List<Transform> SetL_R_Config(List<Transform> R_L_Variant)

@@ -3612,6 +3612,12 @@ MonoBehaviour:
   L_R_LinearFalling: {fileID: 0}
   R_L_CurveToStraight_Raise: {fileID: 11400000, guid: dec93dfb195d5b1479a0294dc3bcdb88, type: 2}
   L_R_CurveToStraight_Raise: {fileID: 0}
+  R_L_StraightLineCentre: {fileID: 11400000, guid: 6d71d94f18dd5464f969d078b9541438, type: 2}
+  L_R_StraightLineCentre: {fileID: 0}
+  R_L_StraightLineTop: {fileID: 11400000, guid: aa19c0d90747f5249aca2a1e215e336b, type: 2}
+  L_R_StraightLineTop: {fileID: 0}
+  R_L_StraightLineBot: {fileID: 11400000, guid: 28040d33aebc43741893e4e8fe3d7cd8, type: 2}
+  L_R_StraightLineBot: {fileID: 0}
   configList: []
 --- !u!114 &1363072957
 MonoBehaviour:

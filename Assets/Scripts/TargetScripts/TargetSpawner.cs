@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetSpawner : MonoBehaviour
 {
     TargetPool targetPool;
-    float MaxRespawnTime = 2;
+    public float MaxRespawnTime = 0.2f;
     bool spawningInProgress = false;
 
     private void Awake()

@@ -15,10 +15,11 @@ public class Score : MonoBehaviour
     private void Awake()
     {
         uIDisplay = ui.GetComponent<UIDisplay>();
+        ManageSingleton();
     }
     void Start()
     {
-        
+        playerScore = 0;
     }
     
 
@@ -32,13 +33,19 @@ public class Score : MonoBehaviour
         playerScore=playerScore + addScore;
         uIDisplay.SetScoretext(playerScore);
     }
-    private void OnEnable()
-    {
-        
-    }
-    private void OnDisable()
-    {
-        
+    void ManageSingleton()
+    {//it will track of how many instances of audio player exist
+
+        int instanceCount = FindObjectsOfType(GetType()).Length;
+        if (instanceCount > 1)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
 }

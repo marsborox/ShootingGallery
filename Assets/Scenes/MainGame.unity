@@ -3631,6 +3631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925d155d73442604d9bafebd0b5a90df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxRespawnTime: 2
 --- !u!1 &1379297480
 GameObject:
   m_ObjectHideFlags: 0
@@ -4862,7 +4863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7189555ba0661f4d877e3bcc10d0e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeMax: 90
+  startTimeMax: 10
   timeRemaining: 0
 --- !u!1001 &289897340150680408
 PrefabInstance:

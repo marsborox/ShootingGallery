@@ -29,13 +29,13 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         playerControls.Enable();
-        
+        uiPauseMenu=FindObjectOfType<PauseMenu>().gameObject;
     }
     void OnDisable()
     {
         playerControls.Disable();
     }
-    void EnablePlayerInput()
+    public void EnablePlayerInput()
     {
         //shoot = playerControls.Shooting.Shoot();
         playerControls.Shooting.Shoot.started += shooting.Shoot;
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         playerControls.MenuControl.EscapeMenu.started +=  PauseMenu;
 
     }
-    void DisablePlayerInput()
+    public void DisablePlayerInput()
     {
         //shoot = playerControls.Shooting.Shoot();
 

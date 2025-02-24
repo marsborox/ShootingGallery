@@ -1,32 +1,33 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
+using TMPro;
+
 using UnityEngine;
 using static Target;
 
 public class Score : MonoBehaviour
 {
     public int playerScore;
-    [SerializeField] GameObject ui;
+    
     UIDisplay uIDisplay;
     public event Action OnDeath;
+    
     // Start is called before the first frame update
     
     private void Awake()
     {
-        uIDisplay = ui.GetComponent<UIDisplay>();
         ManageSingleton();
     }
-    void Start()
-    {
-        playerScore = 0;
-    }
-    
+   
 
     // Update is called once per frame
-    void Update()
+
+    public void ResetScoreScript()
     {
-        
+        uIDisplay = FindObjectOfType<UIDisplay>();
+        playerScore = 0;
     }
     public void AddScore(int addScore)
     {

@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     [SerializeField] float startTimeMax;
     public float timeRemaining;
     bool gameGoing = true;
+    [SerializeField] PlayerController playerController;
     void Start()
     {
         ResetTimer();
@@ -25,6 +26,8 @@ public class Timer : MonoBehaviour
     {
         timeRemaining = startTimeMax;
         Time.timeScale = 1f;
+        playerController.enabled=true;
+        FindObjectOfType<Score>().ResetScoreScript();
     }
     void FlowOfTime()
     { 
@@ -34,6 +37,7 @@ public class Timer : MonoBehaviour
         {
             gameGoing = false;
             Debug.Log("timer.Game Over");
+            playerController.enabled = false;
             SceneManager.LoadScene("GameOver");
         }
     }

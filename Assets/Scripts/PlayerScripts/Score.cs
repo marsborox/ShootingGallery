@@ -7,23 +7,19 @@ using TMPro;
 using UnityEngine;
 using static Target;
 
-public class Score : MonoBehaviour
+public class Score : Singleton<Score>
 {
     public int playerScore;
     
     UIDisplay uIDisplay;
     public event Action OnDeath;
-    
+
     // Start is called before the first frame update
-    
-    private void Awake()
+
+    protected override void Awake()
     {
-        ManageSingleton();
+        base.Awake();
     }
-   
-
-    // Update is called once per frame
-
     public void ResetScoreScript()
     {
         uIDisplay = FindObjectOfType<UIDisplay>();
@@ -35,8 +31,7 @@ public class Score : MonoBehaviour
         uIDisplay.SetScoretext(playerScore);
     }
     void ManageSingleton()
-    {//it will track of how many instances of audio player exist
-
+    {
         int instanceCount = FindObjectsOfType(GetType()).Length;
         if (instanceCount > 1)
         {

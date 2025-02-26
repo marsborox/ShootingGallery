@@ -11,19 +11,17 @@ public class Rifle : Weapon
 
     private void Awake()
     {
-        
+        base.Awake();
         rifleShotPool =new ObjectPool<Projectile>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxSize);//
     }
     private void Start()
     {
         
     }
-    void DoShot()
-    { 
-        
-    }
-    public override void WeaponShoots()
+
+    public void WeaponShoots()
     {
+        base.WeaponShoots();
             //Debug.Log("Rifle Shot");
             //throw new System.NotImplementedException();
             rifleShotPool.Get();

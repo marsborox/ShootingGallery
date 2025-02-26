@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4701620425818904103}
   - component: {fileID: 9152355610894946542}
   - component: {fileID: -703291072154857102}
-  - component: {fileID: 1939684547893671898}
   - component: {fileID: 4470850923447555488}
   - component: {fileID: 7093930168627182722}
   - component: {fileID: 7646088224482738283}
@@ -81,6 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99524061697739945a28f2a6c488d291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiPauseMenu: {fileID: 0}
+  pauseMenuOn: 0
 --- !u!114 &9152355610894946542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,20 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b39b1f3d8bd43348bfe0b76d4032bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1939684547893671898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694234318040892575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d26c1b790cf37004da4a2316738d0e3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerScore: 0
-  ui: {fileID: 0}
 --- !u!114 &4470850923447555488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +160,7 @@ MonoBehaviour:
   ammoMax: 10
   ammo: 10
   weaponBaseDamage: 0
-  weaponDamage: 4
+  weaponDamage: 7
   cooldownTime: 0.5
   cooldownTimeToReduce: 0
   onCooldown: 0
@@ -201,7 +188,7 @@ MonoBehaviour:
   ammoMax: 100
   ammo: 100
   weaponBaseDamage: 0
-  weaponDamage: 4
+  weaponDamage: 6
   cooldownTime: 0.1
   cooldownTimeToReduce: 0
   onCooldown: 0

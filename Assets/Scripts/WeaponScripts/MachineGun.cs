@@ -10,7 +10,7 @@ public class MachineGun : Weapon
     Shooting shooting;
     private void Awake()
     {
-
+        base.Awake();
         machineGunShotPool = new ObjectPool<Projectile>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxSize);
         shooting = GetComponent<Shooting>();
     }
@@ -27,7 +27,7 @@ public class MachineGun : Weapon
             base.Shoot(ContinuousShooting);
         }
     }
-    public override void WeaponShoots()
+    public void WeaponShoots()
     {
             
             //projectileInstance.transform.position= 
@@ -38,6 +38,7 @@ public class MachineGun : Weapon
         Debug.Log("MachineGun Shot");
         //throw new System.NotImplementedException();
         machineGunShotPool.Get();
+        base.WeaponShoots();
         Debug.Log("MachineGun PostShot");
     }
 

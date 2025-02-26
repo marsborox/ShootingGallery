@@ -13,7 +13,7 @@ public class Shotgun : Weapon
     
     private void Awake()
     {
-
+        base.Awake();
         shotGunShotPool = new ObjectPool<Projectile>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxSize);//
     }
     private void Start()
@@ -22,7 +22,7 @@ public class Shotgun : Weapon
     }
 
 
-    public override void WeaponShoots()
+    public void WeaponShoots()
     {
         Debug.Log("Shotgun Shot");
         //throw new System.NotImplementedException();
@@ -30,6 +30,7 @@ public class Shotgun : Weapon
         {
             shotGunShotPool.Get();
         }
+        base.WeaponShoots();
     }
 
     Projectile CreateProjectile()

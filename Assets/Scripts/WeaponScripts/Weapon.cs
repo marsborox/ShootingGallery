@@ -28,8 +28,20 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] public float reloadTime;
     [SerializeField] public float reloadTimeToReduce;
     public bool reloading = false;
-    public abstract void WeaponShoots();
-    
+
+
+    AudioPlayer audioPlayer;
+
+    [SerializeField] AudioClip shootAudioClip;
+    [SerializeField] AudioClip reloadAudioClip;
+    [SerializeField] AudioClip emptyAudioClip;
+    public float reloadAudioLenght;
+    bool reloadSoundPlayed;
+    public void Awake()
+    {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+        
+    }
     public void Update()
     {
         CooldownChecker();
@@ -40,6 +52,13 @@ public abstract class Weapon : MonoBehaviour
     {
         if (onCooldown)
         {
+            if (reloadTimeToReduce >= reloadAudioLenght && !reloadSoundPlayed)
+            {
+                audioPlayer.PlayClip(reloadAudioClip);
+                reloadSoundPlayed = true;
+            } 
+            
+            
             //UpdateCoolDownProgres(weapon)
             if (cooldownTimeToReduce > 0)
             {
@@ -64,6 +83,7 @@ public abstract class Weapon : MonoBehaviour
             {
                 ammo = ammoMax;
                 reloading = false;
+                reloadSoundPlayed = false;
             }
         }
     }
@@ -73,12 +93,16 @@ public abstract class Weapon : MonoBehaviour
     }
     public void Shoot(Action weaponAction) 
     {
-        if (!onCooldown && !reloading&& ammo > 0)
+        if (!onCooldown && !reloading && ammo > 0)
         {
             weaponAction();
             ammo--;
             onCooldown = true;
             cooldownTimeToReduce = cooldownTime;
+        }
+        else if (!onCooldown && !reloading && ammo == 0)
+        {
+            audioPlayer.PlayClip(emptyAudioClip);
         }
     }
     void Shoot()
@@ -88,6 +112,10 @@ public abstract class Weapon : MonoBehaviour
     void DoShot()
     { 
     
+    }
+    public void WeaponShoots() 
+    {
+        audioPlayer.PlayClip(shootAudioClip);
     }
     public void WeaponReload()
     {

@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioPlayer : Singleton<AudioPlayer>
+public class AudioPlayer : MonoBehaviour/*Singleton<AudioPlayer>*/
 {
     public float defaultVolume;
-    protected override void Awake()
+    /*protected override*/ void Awake()
     {
-        base.Awake();
+        //base.Awake();
     }
     public void PlayClip(AudioClip clip/*, float volume*/)
     {
+        //Debug.Log("audioPlayer. Playing AudioClip");
         if (clip != null)
         {//camera, main camera, at position where it is
             Vector3 cameraPos = Camera.main.transform.position;

@@ -22,15 +22,16 @@ public class Shotgun : Weapon
     }
 
 
-    public void WeaponShoots()
+    public override void WeaponShoots()
     {
         Debug.Log("Shotgun Shot");
         //throw new System.NotImplementedException();
         for (int i = 0; i < numberOfShots; i++)
         {
             shotGunShotPool.Get();
+            audioPlayer.PlayClip(shootAudioClip);
+            //base.WeaponShoots();
         }
-        base.WeaponShoots();
     }
 
     Projectile CreateProjectile()

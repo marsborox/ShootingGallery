@@ -3610,7 +3610,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1416930496}
   - component: {fileID: 1416930497}
-  - component: {fileID: 1416930499}
   - component: {fileID: 1416930498}
   m_Layer: 0
   m_Name: AudioPlayer
@@ -3646,7 +3645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e61979695ebc9243b8a08c5193f7e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultVolume: 0
+  defaultVolume: 10
 --- !u!82 &1416930498
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3743,14 +3742,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!81 &1416930499
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1416930495}
-  m_Enabled: 1
 --- !u!1 &1476919960
 GameObject:
   m_ObjectHideFlags: 0
@@ -4773,7 +4764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7189555ba0661f4d877e3bcc10d0e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeMax: 10
+  startTimeMax: 90
   timeRemaining: 0
   playerController: {fileID: 4215411040365421134}
 --- !u!1001 &289897340150680408
@@ -4965,10 +4956,58 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4470850923447555488, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: emptyAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b5ba3da1fafd29b4899ed364823c1251, type: 3}
+    - target: {fileID: 4470850923447555488, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: shootAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 616999cb6d8ec3e4d93b87752d6cd276, type: 3}
+    - target: {fileID: 4470850923447555488, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: reloadAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e674e6c4ef808a54089fbc84fd36f2e4, type: 3}
+    - target: {fileID: 4470850923447555488, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: reloadAudioLenght
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4701620425818904103, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
       propertyPath: uiPauseMenu
       value: 
       objectReference: {fileID: 220445337}
+    - target: {fileID: 7093930168627182722, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: emptyAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b5ba3da1fafd29b4899ed364823c1251, type: 3}
+    - target: {fileID: 7093930168627182722, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: shootAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 480705c0ae40cea46a78cb1063b8e6ad, type: 3}
+    - target: {fileID: 7093930168627182722, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: reloadAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 87dcbe2795ce13e43847f0a5c2223807, type: 3}
+    - target: {fileID: 7093930168627182722, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: reloadAudioLenght
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646088224482738283, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: emptyAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b5ba3da1fafd29b4899ed364823c1251, type: 3}
+    - target: {fileID: 7646088224482738283, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: shootAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 616999cb6d8ec3e4d93b87752d6cd276, type: 3}
+    - target: {fileID: 7646088224482738283, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: reloadAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b3ef78e2854ae5744b9d992363779616, type: 3}
+    - target: {fileID: 7646088224482738283, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: reloadAudioLenght
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9084044205488662614, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

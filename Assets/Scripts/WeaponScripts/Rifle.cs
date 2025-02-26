@@ -19,14 +19,15 @@ public class Rifle : Weapon
         
     }
 
-    public void WeaponShoots()
+    public override void WeaponShoots()
     {
-        base.WeaponShoots();
-            //Debug.Log("Rifle Shot");
-            //throw new System.NotImplementedException();
-            rifleShotPool.Get();
-            //Debug.Log("Rifle PostShot");
-            //projectileInstance.transform.position= 
+        //Debug.Log("Rifle Shot");
+        //throw new System.NotImplementedException();
+        rifleShotPool.Get();
+        audioPlayer.PlayClip(shootAudioClip);
+        //base.WeaponShoots();
+        //Debug.Log("Rifle PostShot");
+        //projectileInstance.transform.position= 
     }
     
     Projectile CreateProjectile()

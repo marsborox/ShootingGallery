@@ -30,9 +30,9 @@ public abstract class Weapon : MonoBehaviour
     public bool reloading = false;
 
 
-    AudioPlayer audioPlayer;
+    public AudioPlayer audioPlayer;
 
-    [SerializeField] AudioClip shootAudioClip;
+    [SerializeField] public AudioClip shootAudioClip;
     [SerializeField] AudioClip reloadAudioClip;
     [SerializeField] AudioClip emptyAudioClip;
     public float reloadAudioLenght;
@@ -52,13 +52,6 @@ public abstract class Weapon : MonoBehaviour
     {
         if (onCooldown)
         {
-            if (reloadTimeToReduce >= reloadAudioLenght && !reloadSoundPlayed)
-            {
-                audioPlayer.PlayClip(reloadAudioClip);
-                reloadSoundPlayed = true;
-            } 
-            
-            
             //UpdateCoolDownProgres(weapon)
             if (cooldownTimeToReduce > 0)
             {
@@ -75,6 +68,13 @@ public abstract class Weapon : MonoBehaviour
     {
         if (reloading)
         {
+
+            if (reloadTimeToReduce <= reloadAudioLenght && !reloadSoundPlayed)
+            {
+                audioPlayer.PlayClip(reloadAudioClip);
+                reloadSoundPlayed = true;
+            }
+
             if (reloadTimeToReduce > 0)
             {
                 reloadTimeToReduce = reloadTimeToReduce - Time.deltaTime;
@@ -100,7 +100,7 @@ public abstract class Weapon : MonoBehaviour
             onCooldown = true;
             cooldownTimeToReduce = cooldownTime;
         }
-        else if (!onCooldown && !reloading && ammo == 0)
+        else if (!onCooldown && ammo == 0)
         {
             audioPlayer.PlayClip(emptyAudioClip);
         }
@@ -113,9 +113,9 @@ public abstract class Weapon : MonoBehaviour
     { 
     
     }
-    public void WeaponShoots() 
+    public virtual void WeaponShoots() 
     {
-        audioPlayer.PlayClip(shootAudioClip);
+        
     }
     public void WeaponReload()
     {

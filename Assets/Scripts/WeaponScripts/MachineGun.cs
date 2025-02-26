@@ -27,7 +27,7 @@ public class MachineGun : Weapon
             base.Shoot(ContinuousShooting);
         }
     }
-    public void WeaponShoots()
+    public override void WeaponShoots()
     {
             
             //projectileInstance.transform.position= 
@@ -38,7 +38,8 @@ public class MachineGun : Weapon
         Debug.Log("MachineGun Shot");
         //throw new System.NotImplementedException();
         machineGunShotPool.Get();
-        base.WeaponShoots();
+        audioPlayer.PlayClip(shootAudioClip);
+        //base.WeaponShoots();
         Debug.Log("MachineGun PostShot");
     }
 

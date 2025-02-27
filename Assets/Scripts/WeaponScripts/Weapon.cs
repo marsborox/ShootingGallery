@@ -103,6 +103,8 @@ public abstract class Weapon : MonoBehaviour
         else if (!onCooldown && ammo == 0)
         {
             audioPlayer.PlayClip(emptyAudioClip);
+            onCooldown = true;
+            cooldownTimeToReduce = cooldownTime;
         }
     }
     void Shoot()

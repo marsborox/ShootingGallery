@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-
-using TMPro;
-
-using UnityEditor.ShaderKeywordFilter;
-
 using UnityEngine;
 public class UIWeapons : MonoBehaviour
 {

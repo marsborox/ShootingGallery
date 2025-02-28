@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         DisableWeaponActionsControls();
         uiPauseMenu.SetActive(true);
     }
-    void PauseMenuOff()
+    public void PauseMenuOff()
     { 
         pauseMenuOn = false;
         Time.timeScale = 1f;

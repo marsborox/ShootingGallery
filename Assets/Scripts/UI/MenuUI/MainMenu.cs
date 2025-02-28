@@ -7,22 +7,26 @@ using UnityEngine.UI;
 public class MainMenu : Menu
 {
     [SerializeField] Button newGameButton;
+    [SerializeField] Button controlsButton;
     [SerializeField] Button quitToWindowsButton;
-    [SerializeField] Button optionsButton;
-    
+
+    [SerializeField] Button controlsExitButton;
+    [SerializeField] GameObject controlsMenu;
     
     void Start()
     {
         ActivateButton(newGameButton,NewGame);
         //ActivateButton(optionsButton,Options);
         ActivateButton(quitToWindowsButton,QuitToWindows);
+        ActivateButton(controlsButton, ControlsButtonMethod);
+        ActivateButton(controlsExitButton,ControlsButtonMethod);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void ControlsButtonMethod()
+    { 
+        if (controlsMenu.activeSelf)
+        {
+            controlsMenu.SetActive(false);
+        }
+        else controlsMenu.SetActive(true);
     }
-
-
-}
+ }

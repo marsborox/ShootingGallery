@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+
     public void ActivateButton(Button button, Action method)
     {
         button.onClick.AddListener(delegate
@@ -31,4 +32,5 @@ public class Menu : MonoBehaviour
     {
         Application.Quit();
     }
+
 }

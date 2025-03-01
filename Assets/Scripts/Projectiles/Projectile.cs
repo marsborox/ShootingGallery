@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
         Target target = other.gameObject.GetComponent<Target>();
         if (target !=null)
         {
-            Debug.Log("projectile. OnTrigger");
+            //Debug.Log("projectile. OnTrigger");
             //other.gameObject.GetComponent<Target>().Die();
             target.targetHealth.TakeDamage(damage);
 
@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (shooting == null) { Debug.Log("projectile. shooting null"); }
+        //if (shooting == null) { Debug.Log("projectile. shooting null"); }
         SetDamage(shooting.currentWeapon.weaponDamage);
         SetPosition();
         StartCoroutine(DeSpawnRoutine());
@@ -69,7 +69,7 @@ public class Projectile : MonoBehaviour
     }
     public virtual void SetPosition() 
     {
-        Debug.Log("projectile. mouse posiiton");
+        //Debug.Log("projectile. mouse posiiton");
         Vector2 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         gameObject.transform.position = pz;
     }
@@ -81,7 +81,7 @@ public class Projectile : MonoBehaviour
     {
         float moveDistance=Random.Range(0,dispersion);
 
-        Debug.Log("projectile. dispersion distance = "+moveDistance);
+        //Debug.Log("projectile. dispersion distance = "+moveDistance);
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
 
         Vector2 newPosition = inputVector + randomDirection * moveDistance;

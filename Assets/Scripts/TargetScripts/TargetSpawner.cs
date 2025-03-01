@@ -11,7 +11,6 @@ public class TargetSpawner : MonoBehaviour
     private void Awake()
     {
         targetPool = GetComponent<TargetPool>();
-
     }
     private void Start()
     {
@@ -20,7 +19,6 @@ public class TargetSpawner : MonoBehaviour
     
     private void Update()
     {
-        
         if (!spawningInProgress)
         {
             //SpawnOneEvery3Seconds();
@@ -36,7 +34,6 @@ public class TargetSpawner : MonoBehaviour
         yield return new WaitForSeconds(RandomRespawnTime());
         //Debug.Log("targetSpawner.DoingSpawn");
         targetPool.targetPoolPool.Get();
-
         spawningInProgress = false;
     }
     float RandomRespawnTime()
@@ -50,7 +47,6 @@ public class TargetSpawner : MonoBehaviour
         yield return new WaitForSeconds(3f);
         //Debug.Log("targetSpawner.DoingSpawn");
         targetPool.targetPoolPool.Get();
-
         spawningInProgress = false;
     }
     public void SpawnOneTarget()

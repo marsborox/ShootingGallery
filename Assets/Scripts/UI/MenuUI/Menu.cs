@@ -21,11 +21,11 @@ public class Menu : MonoBehaviour
     }
     public void Options()
     {
-        Debug.Log("OptionsPressed");
+        //Debug.Log("OptionsPressed");
     }
     public void QuitToMainMenu()
     {
-        Debug.Log("PressingMainMenu");
+        //Debug.Log("PressingMainMenu");
         SceneManager.LoadScene("MainMenu");
     }
     public void QuitToWindows()

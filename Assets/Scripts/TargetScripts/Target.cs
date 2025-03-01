@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.UIElements;
 
 public class Target : MonoBehaviour
 {
@@ -42,9 +43,12 @@ public class Target : MonoBehaviour
         //Debug.Log("rigidBody2D assigned in Initialize: " + (rigidBody2D == null ? "null" : "set"));
         
     }
-    private void Start()
+    private void Update()
     {
 
+    }
+    private void Start()
+    {
     }
 
     private void OnEnable()
@@ -65,6 +69,7 @@ public class Target : MonoBehaviour
     }
     void Respawn()
     {
+        rigidBody2D.isKinematic= true;
         //Debug.Log("target. Respawned");
         alive = true;
         targetMovement.RestartRoute();
@@ -97,12 +102,14 @@ public class Target : MonoBehaviour
     public void Die()
     {
         score.AddScore(targetScore);
-        alive = false;
         //falling down
+        alive = false;
+        rigidBody2D.isKinematic = false;
         SetGravity(deadGravity);
         //set direction of kick
-        targetMovement.Throw();
+        //targetMovement.Throw();
         StartCoroutine(DespawnRoutine());
+
     }
     IEnumerator DespawnRoutine()
     {
@@ -113,7 +120,10 @@ public class Target : MonoBehaviour
     {
         this.rigidBody2D.gravityScale = inputGravityScale;
     }
-
+    void DeathMove()
+    {
+        
+    }
     
     public void SetTrajectoryConfingCollection(TrajectoryConfigCollection cfgCollection)
     {
@@ -130,5 +140,8 @@ public class Target : MonoBehaviour
         }
         //Debug.Log("target.targetMovement.trajectoryConfigCollection end of Method is " + (targetMovement.trajectoryConfigCollection != null ? "NOT NULL" : "NULL"));
     }
-
+    public void OnKill()
+    {
+        rigidBody2D.isKinematic = true;
+    }
 }

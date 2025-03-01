@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
 public class TargetMovement : MonoBehaviour
 {
     //public bool alive = true;
@@ -16,6 +17,7 @@ public class TargetMovement : MonoBehaviour
     public TrajectoryConfigCollection trajectoryConfigCollection;
     Target target;
 
+
     private void Awake()
     {
         target = GetComponent<Target>();
@@ -25,7 +27,7 @@ public class TargetMovement : MonoBehaviour
     {
         waypointIndex = 0;
         RestartRoute();
-
+        
     }
 
     // Update is called once per frame
@@ -37,7 +39,11 @@ public class TargetMovement : MonoBehaviour
             CheckWaypoint();
             Move();
         }
-        else return;
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, nextWaypoint.position, movementSpeed * Time.deltaTime);
+        }
+
     }
     private void OnEnable()
     {
@@ -175,11 +181,21 @@ public class TargetMovement : MonoBehaviour
         //Vector3 forceVector = transform.forward;
         /*Transform transformGameObject = transform.position;
         float xAxis = transform.position.x;*/
+        /*
+        float directionVectorX;
+        if (directionIsLeft) { directionVectorX = nextWaypoint.transform.position.y; }
 
-        /*float directionVectorX;
-        if (directionIsLeft) { directionVectorX = nextWaypoint.transform.position.y; }*/
+
+       
         Vector3 forceVector = new Vector3(nextWaypoint.transform.position.x, nextWaypoint.transform.position.y);
-        target.rigidBody2D.AddForce(forceVector * throwSpeed);
+        target.rigidBody2D.AddForce(forceVector * throwSpeed);*/
 
+        
+        Vector2 direction = (nextWaypoint.transform.position-transform.position).normalized;
+
+        target.rigidBody2D.velocity = direction*movementSpeed;
+        
+
+        //target.rigidBody2D.AddForce(nextWaypoint.transform.position * movementSpeed);
     }
 }

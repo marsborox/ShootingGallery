@@ -36,7 +36,7 @@ public class Timer : MonoBehaviour
         if (timeRemaining <= 0)
         {
             gameGoing = false;
-            Debug.Log("timer.Game Over");
+            //Debug.Log("timer.Game Over");
             playerController.enabled = false;
             SceneManager.LoadScene("GameOver");
         }

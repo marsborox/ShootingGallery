@@ -43,7 +43,6 @@ public class TargetMovement : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, nextWaypoint.position, movementSpeed * Time.deltaTime);
         }
-
     }
     private void OnEnable()
     {
@@ -51,7 +50,6 @@ public class TargetMovement : MonoBehaviour
     }
     private void Move()
     {
-
         float delta = movementSpeed * Time.deltaTime;
         //Debug.Log("target.Moving");
         transform.position = Vector2.MoveTowards(transform.position, nextWaypoint.position, delta);// *Time.deltaTime

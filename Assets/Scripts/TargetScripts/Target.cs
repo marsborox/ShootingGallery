@@ -50,6 +50,7 @@ public class Target : MonoBehaviour
     }
     private void Start()
     {
+
     }
 
     private void OnEnable()
@@ -66,7 +67,8 @@ public class Target : MonoBehaviour
         */
         Respawn();
         //Debug.Log("random route Config number: " + targetMovement.trajectoryConfigCollection.ReturnRandomConfig());
-        
+        //TurnCorrectDirection();
+
     }
     void Respawn()
     {
@@ -77,8 +79,9 @@ public class Target : MonoBehaviour
         //Debug.Log("target. routeRestarted");
         SetGravity(aliveGravity);
         this.transform.rotation = Quaternion.Euler(0, 0, 0);
-        ResetVisualModelAxis();
+        //ResetVisualModelAxis();
         //this.transform.position
+        TurnCorrectDirection();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -146,8 +149,19 @@ public class Target : MonoBehaviour
     {
         rigidBody2D.isKinematic = true;
     }
-    void ResetVisualModelAxis()
+    public void TurnCorrectDirection()
     {
-        visualObject.transform.localPosition = new Vector2(0,0);
+        var visual = visualObject.transform.rotation;
+        float yRotation;
+        if (targetMovement.directionIsLeft)
+        {
+            yRotation = 0f;
+        }
+        else 
+        {
+            yRotation = 180f;
+        }
+        Quaternion quaternion = Quaternion.Euler(visual.x, yRotation, visual.z);
+        visualObject.transform.rotation = quaternion;
     }
 }

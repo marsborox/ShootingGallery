@@ -122,6 +122,7 @@ public class TargetMovement : MonoBehaviour
             transform.position = trajectoryConfigCollection.configList[trajectoryIndex].trajectoryWaypointTransformList[waypointIndex].transform.position;
             nextWaypoint = GenerateNextWaypointTransform();
             directionIsLeft = CheckDirection();
+            target.TurnCorrectDirection();
         }
     }
 

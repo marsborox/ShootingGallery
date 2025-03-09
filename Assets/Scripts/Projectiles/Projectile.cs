@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
     //int damage = 10;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Target target = other.gameObject.GetComponent<Target>();
+        Target target = other.gameObject.GetComponentInParent<Target>();
         if (target !=null)
         {
             //Debug.Log("projectile. OnTrigger");

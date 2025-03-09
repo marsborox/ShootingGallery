@@ -24,6 +24,7 @@ public class Target : MonoBehaviour
     public TargetMovement targetMovement;
     public TargetHealth targetHealth;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject visualObject;
     // Start is called before the first frame update
 
     public IObjectPool<Target> targetPool;//reference to targetMovement
@@ -35,7 +36,7 @@ public class Target : MonoBehaviour
         //Debug.Log("target.Initialize has run");
         score = FindObjectOfType<Score>();
         //trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();for some reason wont work
-        rigidBody2D = GetComponent<Rigidbody2D>();
+        rigidBody2D = GetComponentInChildren<Rigidbody2D>();
         targetHealth = GetComponent<TargetHealth>();
         targetMovement = GetComponent<TargetMovement>();
         //Debug.Log("targetMovement assigned in Initialize: " + (targetMovement == null ? "null" : "set"));
@@ -76,6 +77,7 @@ public class Target : MonoBehaviour
         //Debug.Log("target. routeRestarted");
         SetGravity(aliveGravity);
         this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        ResetVisualModelAxis();
         //this.transform.position
     }
 
@@ -143,5 +145,9 @@ public class Target : MonoBehaviour
     public void OnKill()
     {
         rigidBody2D.isKinematic = true;
+    }
+    void ResetVisualModelAxis()
+    {
+        visualObject.transform.localPosition = new Vector2(0,0);
     }
 }

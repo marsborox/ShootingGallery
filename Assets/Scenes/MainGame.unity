@@ -2696,8 +2696,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10:10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5ea838d641819de4e9e494909c7fcc8b, type: 2}
+  m_sharedMaterial: {fileID: -5922075685321096833, guid: 5ea838d641819de4e9e494909c7fcc8b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4396,8 +4396,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5ea838d641819de4e9e494909c7fcc8b, type: 2}
+  m_sharedMaterial: {fileID: -5922075685321096833, guid: 5ea838d641819de4e9e494909c7fcc8b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5130,8 +5130,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'SCORE:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5ea838d641819de4e9e494909c7fcc8b, type: 2}
+  m_sharedMaterial: {fileID: -5922075685321096833, guid: 5ea838d641819de4e9e494909c7fcc8b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6440,6 +6440,10 @@ PrefabInstance:
       propertyPath: uiPauseMenu
       value: 
       objectReference: {fileID: 220445337}
+    - target: {fileID: 7093930168627182722, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
+      propertyPath: shootAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 02cecbadbd2b8474281589819e482b1a, type: 3}
     - target: {fileID: 8456860834207276544, guid: 7b38ab1abae375144a07a3d38b0bf447, type: 3}
       propertyPath: m_Enabled
       value: 0

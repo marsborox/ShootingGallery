@@ -10,13 +10,15 @@ public class TargetMovement : MonoBehaviour
     [SerializeField] int waypointIndex;
     public bool directionIsLeft;
     float throwSpeed = 500f;
-    float movementSpeed = 5f;//0.01-0.1 ok //0.02 os fastish but ok// only without Time.deltaTime
+    public float movementSpeedNormal = 5f;
+    public float movementSpeedDead = 0;
+    public float movementSpeed;//0.01-0.1 ok //0.02 os fastish but ok// only without Time.deltaTime
     public int trajectoryIndex;
     // Start is called before the first frame update
     public Transform nextWaypoint;
     public TrajectoryConfigCollection trajectoryConfigCollection;
     Target target;
-
+    
 
     private void Awake()
     {
@@ -196,5 +198,13 @@ public class TargetMovement : MonoBehaviour
         
 
         //target.rigidBody2D.AddForce(nextWaypoint.transform.position * movementSpeed);
+    }
+    public void SetNormalSpeed()
+    {
+        movementSpeed = movementSpeedNormal;
+    }
+    public void SetDeadSpeed()
+    {
+        movementSpeed = movementSpeedDead;
     }
 }

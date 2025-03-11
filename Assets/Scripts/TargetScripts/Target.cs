@@ -13,12 +13,14 @@ public class Target : MonoBehaviour
     float aliveGravity = 0f;
     int targetScore = 1;
 
+    
+
     string floorTag = "Floor";
     string projectileTag = "Projectile";
     //public GameObject trajectoryPrefab;
     public int SO_index{ private get; set; }
 
-    
+    [SerializeField] Animator animator;
     Score score;
     public Rigidbody2D rigidBody2D;
     public TargetMovement targetMovement;
@@ -42,7 +44,6 @@ public class Target : MonoBehaviour
         //Debug.Log("targetMovement assigned in Initialize: " + (targetMovement == null ? "null" : "set"));
         //Debug.Log("targetHealth assigned in Initialize: " + (targetHealth == null ? "null" : "set"));
         //Debug.Log("rigidBody2D assigned in Initialize: " + (rigidBody2D == null ? "null" : "set"));
-        
     }
     private void Update()
     {
@@ -76,12 +77,14 @@ public class Target : MonoBehaviour
         //Debug.Log("target. Respawned");
         alive = true;
         targetMovement.RestartRoute();
+        targetMovement.SetNormalSpeed();
         //Debug.Log("target. routeRestarted");
         SetGravity(aliveGravity);
         this.transform.rotation = Quaternion.Euler(0, 0, 0);
         //ResetVisualModelAxis();
         //this.transform.position
         TurnCorrectDirection();
+        animator.enabled = true;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -106,9 +109,11 @@ public class Target : MonoBehaviour
     }
     public void Die()
     {
+        animator.enabled = false;
         score.AddScore(targetScore);
         //falling down
         alive = false;
+        targetMovement.SetDeadSpeed();
         rigidBody2D.isKinematic = false;
         SetGravity(deadGravity);
         //set direction of kick
@@ -118,7 +123,7 @@ public class Target : MonoBehaviour
     }
     IEnumerator DespawnRoutine()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(10f);
         targetPool.Release(this);//remove when floor is introduced - whole routine
     }
     void SetGravity(float inputGravityScale)

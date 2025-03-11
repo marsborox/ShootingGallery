@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alive: 1
+  animator: {fileID: 473232200812317707}
   rigidBody2D: {fileID: 1463351773307673241}
   targetMovement: {fileID: 0}
   targetHealth: {fileID: 0}
@@ -272,6 +273,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypointIndex: 0
   directionIsLeft: 0
+  movementSpeedNormal: 5
+  movementSpeedDead: 0
+  movementSpeed: 5
   trajectoryIndex: 0
   nextWaypoint: {fileID: 0}
   trajectoryConfigCollection: {fileID: 0}
@@ -288,8 +292,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 5
+  m_AngularDrag: 5
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -372,6 +376,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 089db6e77efb8094d864c57e5f585c3a, type: 3}
+--- !u!95 &473232200812317707 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3123773668918704367, guid: 089db6e77efb8094d864c57e5f585c3a, type: 3}
+  m_PrefabInstance: {fileID: 3299060123991799012}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5854033789902662816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9004148124358793284, guid: 089db6e77efb8094d864c57e5f585c3a, type: 3}

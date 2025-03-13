@@ -12,7 +12,7 @@ public class TargetHealth : MonoBehaviour
 
     [SerializeField]Image healthBar;
     // Start is called before the first frame update
-
+    [SerializeField] ParticleSystem hitEffect;
     private void Awake()
     {
         target = GetComponent<Target>();
@@ -40,11 +40,17 @@ public class TargetHealth : MonoBehaviour
     {
         healthCurrent -= damage;
         healthBar.fillAmount = (float) healthCurrent / (float)healthMax;
+        PlayHitEffect();
         //healthBar.fillAmount = fillAmount;
         if (healthCurrent <= 0)
         { 
             target.Die();
         }
+    }
+    void PlayHitEffect()
+    {
+        ParticleSystem instance = Instantiate(hitEffect,transform.position, Quaternion.identity);
+        Destroy(instance.gameObject, instance.main.duration + instance.main.startLifetime.constantMax);
     }
 
 }

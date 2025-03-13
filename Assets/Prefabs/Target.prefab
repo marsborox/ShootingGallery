@@ -259,6 +259,7 @@ MonoBehaviour:
   healthMax: 20
   healthCurrent: 0
   healthBar: {fileID: 5571075874070074549}
+  hitEffect: {fileID: 219564326373947147, guid: bb54fe89acd14a84685483e02e5752ad, type: 3}
 --- !u!114 &8332507455606771129
 MonoBehaviour:
   m_ObjectHideFlags: 0

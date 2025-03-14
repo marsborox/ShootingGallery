@@ -21,15 +21,12 @@ public class TargetHealth : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
     void Update()
     {
         
     }
     private void OnEnable()
     {
-        
         healthCurrent = healthMax;
         healthBar.fillAmount = 1;
     }
@@ -52,5 +49,4 @@ public class TargetHealth : MonoBehaviour
         ParticleSystem instance = Instantiate(hitEffect,transform.position, Quaternion.identity);
         Destroy(instance.gameObject, instance.main.duration + instance.main.startLifetime.constantMax);
     }
-
 }

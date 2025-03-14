@@ -9,6 +9,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1137534987986389375, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137534987986389375, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137534987986389375, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -48,6 +56,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5462908543153795479, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
+      propertyPath: m_Radius
+      value: 0.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462908543153795479, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462908543153795479, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6993291688055530899, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 365ee084ad7345c4390009021be37a03, type: 3}
     - target: {fileID: 8169175218049088948, guid: df3131c4d4b15504d8af64f96a009450, type: 3}
       propertyPath: m_Name
       value: ShotgunProjectile
@@ -79,3 +103,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dispersion: 1
+  shooting: {fileID: 0}

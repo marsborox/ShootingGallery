@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 
 public class BleedParticle : MonoBehaviour
 {
+        ParticleSystem particleSystem;
         // deactivate after delay
         [SerializeField] private float timeoutDelay = 3f;
 
@@ -13,8 +14,14 @@ public class BleedParticle : MonoBehaviour
         // public property to give the projectile a reference to its ObjectPool
         public IObjectPool<BleedParticle> bleedObjectPoolPublic { set => objectPoolPrivate = value; }
 
-        public void Deactivate()
+    private void Awake()
+    {
+        particleSystem = GetComponent<ParticleSystem>();
+    }
+    public void Deactivate()
         {//this method is mabye not needed?
             objectPoolPrivate.Release(this); 
         }
+
+
 }

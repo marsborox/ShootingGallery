@@ -32,7 +32,7 @@ public class Particles : MonoBehaviour
         {
             BleedParticle bleedParticleInstance = Instantiate(projectilePrefab);
             bleedParticleInstance.bleedObjectPoolPublic = bleedObjectPoolPublic;
-            //other way if many classes are on object
+            
             return bleedParticleInstance;
         }
         // invoked when retrieving the next item from the object pool

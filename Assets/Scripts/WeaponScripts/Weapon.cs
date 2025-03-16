@@ -4,11 +4,9 @@ using UnityEngine.Pool;
 
 public abstract class Weapon : MonoBehaviour
 {
-
     [SerializeField] public Projectile projectilePrefab;
     [SerializeField] public bool weaponActive = false;
     
-
     [SerializeField] public bool collectionCheck = true;
     [SerializeField] public int defaultCapacity = 10;
     [SerializeField] public int maxSize = 30;
@@ -25,7 +23,6 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] public float reloadTimeToReduce;
     public bool reloading = false;
 
-
     public AudioPlayer audioPlayer;
 
     [SerializeField] public AudioClip shootAudioClip;
@@ -36,7 +33,6 @@ public abstract class Weapon : MonoBehaviour
     public void Awake()
     {
         audioPlayer = FindObjectOfType<AudioPlayer>();
-        
     }
     public void Update()
     {
@@ -126,12 +122,12 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    public Projectile CreateProjectile(ObjectPool<Projectile> pool)
+    /*public Projectile CreateProjectile(ObjectPool<Projectile> pool)
     {
         Projectile projectileInstance = Instantiate(projectilePrefab);
         projectileInstance.projectilePoolPublic = pool;
         return projectileInstance;
-    }
+    }*/
     public void OnGetFromPool(Projectile projectile)
     {
         projectile.gameObject.SetActive(true);

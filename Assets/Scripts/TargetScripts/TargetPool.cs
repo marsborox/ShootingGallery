@@ -26,6 +26,7 @@ public class TargetPool : MonoBehaviour
         //target.Initialize();
 
         target.targetPoolInTarget = targetPoolPool;
+
         //Debug.Log("targetPool.trajectoryConfigCollection is  " + (trajectoryConfigCollection != null ? "NULL" : "NOTNULL"));
         //target.SetTrajectoryConfingCollection(this.gameObject.GetComponent<TrajectoryConfigCollection>());
         /*

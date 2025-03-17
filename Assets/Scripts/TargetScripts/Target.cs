@@ -32,11 +32,13 @@ public class Target : MonoBehaviour
     public IObjectPool<Target> targetPool;//reference to targetMovement
     public IObjectPool<Target> targetPoolInTarget { set => targetPool = value; }
 
+    
     //[SerializeField] GameObject scoreObject;
     private void Awake()
     {
         //Debug.Log("target.Initialize has run");
         score = FindObjectOfType<Score>();
+        
         //trajectoryConfigCollection = FindObjectOfType<TrajectoryConfigCollection>();for some reason wont work
         rigidBody2D = GetComponentInChildren<Rigidbody2D>();
         targetHealth = GetComponent<TargetHealth>();

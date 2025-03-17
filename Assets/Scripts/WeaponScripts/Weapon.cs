@@ -135,6 +135,7 @@ public abstract class Weapon : MonoBehaviour
     public void OnReleaseToPool(Projectile projectile)
     {
         projectile.gameObject.SetActive(false);
+        
     }
     public void OnDestroyPooledObject(Projectile projectile)
     {

@@ -6,8 +6,7 @@ using UnityEngine.Pool;
 public class BleedParticle : MonoBehaviour
 {
         ParticleSystem particleSystem;
-        // deactivate after delay
-        [SerializeField] private float timeoutDelay = 3f;
+
 
         private IObjectPool<BleedParticle> objectPoolPrivate;
 
@@ -18,6 +17,20 @@ public class BleedParticle : MonoBehaviour
     {
         particleSystem = GetComponent<ParticleSystem>();
     }
+    private void Start()
+    {
+        
+    }
+    private void OnEnable()
+    {
+        DespawnRoutine();
+    }
+    public IEnumerable DespawnRoutine()
+    { 
+        float waitTime = particleSystem.main.duration + particleSystem.main.startLifetime.constantMax;
+        yield return new WaitForSeconds (waitTime);
+        Deactivate();
+    }    
     public void Deactivate()
         {//this method is mabye not needed?
             objectPoolPrivate.Release(this); 

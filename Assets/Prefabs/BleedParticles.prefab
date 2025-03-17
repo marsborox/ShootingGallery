@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7326251629887038166}
   - component: {fileID: 219564326373947147}
   - component: {fileID: 7776746347996549024}
-  - component: {fileID: 4774874209275644502}
+  - component: {fileID: -1463702543114758167}
   m_Layer: 0
   m_Name: BleedParticles
   m_TagString: Untagged
@@ -4831,7 +4831,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &4774874209275644502
+--- !u!114 &-1463702543114758167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4840,13 +4840,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1253017906816845610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a53347569a6c0ef499921377b621bf17, type: 3}
+  m_Script: {fileID: 11500000, guid: a7957fa0074b0524d9b7f16d8ff2999f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alive: 1
-  animator: {fileID: 0}
-  rigidBody2D: {fileID: 0}
-  targetMovement: {fileID: 0}
-  targetHealth: {fileID: 0}
-  player: {fileID: 0}
-  visualObject: {fileID: 0}
+  timeoutDelay: 3

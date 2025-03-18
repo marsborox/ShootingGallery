@@ -8,32 +8,33 @@ public class BleedParticle : MonoBehaviour
         ParticleSystem particleSystem;
 
 
-        private IObjectPool<GameObject> objectPoolPrivate;
+        private IObjectPool<BleedParticle> objectPoolPrivate;
 
         // public property to give the projectile a reference to its ObjectPool
-        public IObjectPool<GameObject> bleedObjectPoolPublic { set => objectPoolPrivate = value; }
+        public IObjectPool<BleedParticle> bleedObjectPoolPublic { set => objectPoolPrivate = value; }
 
-        private void Awake()
-        {
-            particleSystem = GetComponent<ParticleSystem>();
-        }
-        private void Start()
-        {
+    private void Awake()
+    {
+        particleSystem = GetComponent<ParticleSystem>();
+    }
+    private void Start()
+    {
         
+    }
+    private void OnEnable()
+    {
+        DespawnRoutine();
+    }
+    public IEnumerable DespawnRoutine()
+    { 
+        float waitTime = particleSystem.main.duration + particleSystem.main.startLifetime.constantMax;
+        yield return new WaitForSeconds (waitTime);
+        Deactivate();
+    }    
+    public void Deactivate()
+        {//this method is mabye not needed?
+            objectPoolPrivate.Release(this); 
         }
-        private void OnEnable()
-        {
-            DespawnRoutine();
-        }
-        public IEnumerable DespawnRoutine()
-        { 
-            float waitTime = particleSystem.main.duration + particleSystem.main.startLifetime.constantMax;
-            yield return new WaitForSeconds (waitTime);
-            Deactivate();
-        }    
-        public void Deactivate()
-            {//this method is mabye not needed?
-                objectPoolPrivate.Release(gameObject); 
-            }
+
 
 }

@@ -4,22 +4,17 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 //using UnityEngine.UIElements;
 using UnityEngine.UI;
-using UnityEngine.Pool;
-using static UnityEngine.ParticleSystem;
 public class TargetHealth : MonoBehaviour
 {
     public int healthMax=20;
     public int healthCurrent;
     Target target;
 
-    private Particles particles;
-
     [SerializeField]Image healthBar;
     // Start is called before the first frame update
     [SerializeField] ParticleSystem hitEffect;
     private void Awake()
     {
-        particles = FindObjectOfType<Particles>();
         target = GetComponent<Target>();
     }
     void Start()
@@ -51,14 +46,8 @@ public class TargetHealth : MonoBehaviour
     }
     void PlayHitEffect()
     {
-        particles.SpawnBleedParticle(target);
-
-        //particles.bleedObjectPoolPublic.Get();
-
-        /*
         ParticleSystem instance = Instantiate(hitEffect,transform.position, Quaternion.identity);
         Destroy(instance.gameObject, instance.main.duration + instance.main.startLifetime.constantMax);
         Destroy(this.gameObject);
-        */
     }
 }

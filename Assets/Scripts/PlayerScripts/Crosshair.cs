@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Crosshair : MonoBehaviour
 {
+    [SerializeField] Sprite crosshairSprite;
+
     public Texture2D crosshair;
     public Texture2D crosshairUpdate;
     private Vector2 cursorHotspot;

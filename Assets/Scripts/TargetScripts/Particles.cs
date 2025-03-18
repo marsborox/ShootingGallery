@@ -5,63 +5,59 @@ using UnityEngine.Pool;
 
 public class Particles : MonoBehaviour
 {
-    Target target;
-    // deactivate after delay
-    [SerializeField] BleedParticle bleedParticle;
-
-    // stack-based ObjectPool available with Unity 2021 and above
-    public IObjectPool<BleedParticle> bleedObjectPoolPublic;
-
-    // throw an exception if we try to return an existing item, already in the pool
-    [SerializeField] private bool collectionCheck = true;
-
-    // extra options to control the pool capacity and maximum size
-    [SerializeField] private int defaultCapacity = 20;
-    [SerializeField] private int maxSize = 100;
-
-    private void Awake()
+    public class RevisedProjectile : MonoBehaviour
     {
-            bleedObjectPoolPublic = new ObjectPool<BleedParticle>(CreateParticle,
-            OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject,
-            collectionCheck, defaultCapacity, maxSize);
-    }
+        // deactivate after delay
+        [SerializeField] BleedParticle projectilePrefab;
 
-    // invoked when creating an item to populate the object pool
-    private BleedParticle CreateParticle()
-    {
-        BleedParticle bleedParticleInstance = Instantiate(bleedParticle);
-        bleedParticleInstance.bleedObjectPoolPublic = bleedObjectPoolPublic;
+        // stack-based ObjectPool available with Unity 2021 and above
+        private IObjectPool<BleedParticle> bleedObjectPoolPublic;
+
+        // throw an exception if we try to return an existing item, already in the pool
+        [SerializeField] private bool collectionCheck = true;
+
+        // extra options to control the pool capacity and maximum size
+        [SerializeField] private int defaultCapacity = 20;
+        [SerializeField] private int maxSize = 100;
+
+        private void Awake()
+        {
+            bleedObjectPoolPublic = new ObjectPool<BleedParticle>(CreateProjectile,
+                OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject,
+                collectionCheck, defaultCapacity, maxSize);
+        }
+
+        // invoked when creating an item to populate the object pool
+        private BleedParticle CreateProjectile()
+        {
+            BleedParticle bleedParticleInstance = Instantiate(projectilePrefab);
+            bleedParticleInstance.bleedObjectPoolPublic = bleedObjectPoolPublic;
             
-        return bleedParticleInstance;
-    }
-    // invoked when retrieving the next item from the object pool
-    public void OnGetFromPool(BleedParticle pooledObject)
-    {
-        pooledObject.gameObject.SetActive(true);
+            return bleedParticleInstance;
+        }
+        // invoked when retrieving the next item from the object pool
+        private void OnGetFromPool(BleedParticle pooledObject)
+        {
+            pooledObject.gameObject.SetActive(true);
+        }
 
-        pooledObject.transform.position = target.transform.position;
-    }
+        // invoked when returning an item to the object pool
+        private void OnReleaseToPool(BleedParticle pooledObject)
+        {
+            pooledObject.gameObject.SetActive(false);
+        }
 
-    // invoked when returning an item to the object pool
-    private void OnReleaseToPool(BleedParticle pooledObject)
-    {
-        pooledObject.gameObject.SetActive(false);
-    }
+        // invoked when we exceed the maximum number of pooled items (i.e. destroy the pooled object)
+        private void OnDestroyPooledObject(BleedParticle pooledObject)
+        {
+            Destroy(pooledObject.gameObject);
+        }
 
-    // invoked when we exceed the maximum number of pooled items (i.e. destroy the pooled object)
-    private void OnDestroyPooledObject(BleedParticle pooledObject)
-    {
-        Destroy(pooledObject.gameObject);
-    }
-
-    private void FixedUpdate()
-    {
+        private void FixedUpdate()
+        {
 
 
-    }
-    public void SpawnBleedParticle(Target inputTarget)
-    { 
-        target = inputTarget;
-        bleedObjectPoolPublic.Get();
+        }
+    
     }
 }

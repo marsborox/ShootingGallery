@@ -48,6 +48,5 @@ public class TargetHealth : MonoBehaviour
     {
         ParticleSystem instance = Instantiate(hitEffect,transform.position, Quaternion.identity);
         Destroy(instance.gameObject, instance.main.duration + instance.main.startLifetime.constantMax);
-        Destroy(this.gameObject);
     }
 }

@@ -12,14 +12,14 @@ public class TargetHealth : MonoBehaviour
     public int healthCurrent;
     Target target;
 
-    private Particles particles;
+    private BleedParticlePool particles;
 
     [SerializeField]Image healthBar;
     // Start is called before the first frame update
     [SerializeField] ParticleSystem hitEffect;
     private void Awake()
     {
-        particles = FindObjectOfType<Particles>();
+        particles = FindObjectOfType<BleedParticlePool>();
         target = GetComponent<Target>();
     }
     void Start()

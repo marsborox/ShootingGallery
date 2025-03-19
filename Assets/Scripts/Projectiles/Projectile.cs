@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] float dispersion = 0;
     int damage = 0;
     Collider2D collider;
-
+    
     public Shooting shooting;
     private IObjectPool<Projectile> projectilePoolPrivate;
     public IObjectPool<Projectile> projectilePoolPublic { set => projectilePoolPrivate = value; }
@@ -44,9 +44,18 @@ public class Projectile : MonoBehaviour
         //if (shooting == null) { Debug.Log("projectile. shooting null"); }
         SetDamage(shooting.currentWeapon.weaponDamage);
         SetPosition();
+        RotateProjectile();
         StartCoroutine(DeSpawnRoutine());
         StartCoroutine(ColliderShutdownRoutine());
         collider.enabled = true;
+
+    }
+    void RotateProjectile()
+    {
+        
+        float random = Random.Range(0, 360);
+        transform.Rotate(0,0,random,Space.World);
+        transform.eulerAngles = new Vector3(0, 0, random);
 
     }
     public void SetShootingOnCreate(Shooting passedShoting)

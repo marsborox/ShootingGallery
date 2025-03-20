@@ -17,7 +17,7 @@ public class Crosshair : MonoBehaviour
     }
     void SetImg()
     {
-        cursorHotspot = new Vector2(crosshair.width / 2, crosshair.height / 2);// so its set in centre of cursor object
+        cursorHotspot = new Vector2(crosshair.width / 2, crosshair.height / 2);// so its set in centre of cursor object/image
         //if we want like strtegy game cursor than its just w
         Cursor.SetCursor(crosshair, cursorHotspot, CursorMode.ForceSoftware);
     }

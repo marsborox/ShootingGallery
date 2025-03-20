@@ -23,8 +23,8 @@ public class Crosshair : MonoBehaviour
     }
     void SetSize()
     {// WORKS FOR HTML ONLY MUST FIX FOR PC
-        crosshair.width = crosshair.width*2;
-        crosshair.height = crosshair.height*2;
+        crosshair.width = crosshair.width/2;
+        crosshair.height = crosshair.height/2;
         
     }
 }

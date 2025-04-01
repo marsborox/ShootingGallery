@@ -35,6 +35,7 @@ public class TargetSpawner : MonoBehaviour
         //Debug.Log("targetSpawner.DoingSpawn");
         targetPool.targetPoolPool.Get();
         spawningInProgress = false;
+        //fjsdlkafjlkdsajflkdsafstest remove
     }
     float RandomRespawnTime()
     {

@@ -6,5 +6,6 @@ game is in beta
 
 i tried to use / learn design patterns : 
 singleton(audio - classes Singleton and  ), Flywheel, Strategy, Object pool
-FlyWheel - targets spawned take data from SO (mabze not properlz implemented)
+FlyWheel - targets spawned take data from SO (mabye not properly implemented)
 Object pool - each weapon has its own for projectiles, targets are pooled,
+i wasnt able to make particles spawn from pool for some reason
